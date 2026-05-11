@@ -1,0 +1,114 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("proyectos");
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout title={`${project.data.title} - Arturo Jofré`}>
+  <Navbar />
+  <main class="pt-24 pb-10 flex-grow" transition:animate="fade">
+    <article class="container mx-auto px-4 py-16 max-w-4xl">
+      <!-- Header -->
+      <header class="mb-16">
+        <div class="flex items-center gap-4 text-sm text-accent font-mono mb-6">
+          <span>{project.data.year}</span>
+          <span class="w-1 h-1 rounded-full bg-accent"></span>
+          <span>{project.data.client}</span>
+        </div>
+        <h1 class="text-5xl font-bold mb-6">{project.data.title}</h1>
+        <p class="text-xl text-muted leading-relaxed">
+          {project.data.description}
+        </p>
+
+        {
+          project.data.image && (
+            <div class="mt-12 rounded-2xl overflow-hidden glass border border-border aspect-[21/9]">
+              <img
+                src={project.data.image}
+                alt={project.data.title}
+                class="w-full h-full object-cover"
+              />
+            </div>
+          )
+        }
+      </header>
+
+      <!-- Meta Info -->
+      <div
+        class="grid grid-cols-2 md:grid-cols-4 gap-6 py-8 border-y border-border mb-16 text-sm"
+      >
+        {
+          project.data.rol && (
+            <div>
+              <h4 class="text-muted font-medium mb-1">Rol</h4>
+              <p class="text-foreground">{project.data.rol}</p>
+            </div>
+          )
+        }
+        {
+          project.data.type && (
+            <div>
+              <h4 class="text-muted font-medium mb-1">Tipo</h4>
+              <p class="text-foreground">{project.data.type}</p>
+            </div>
+          )
+        }
+        {
+          project.data.duration && (
+            <div>
+              <h4 class="text-muted font-medium mb-1">Duración</h4>
+              <p class="text-foreground">{project.data.duration}</p>
+            </div>
+          )
+        }
+        {
+          project.data.url && (
+            <div>
+              <h4 class="text-muted font-medium mb-1">Enlace</h4>
+              <a
+                href={project.data.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-accent hover:underline"
+              >
+                Ver proyecto
+              </a>
+            </div>
+          )
+        }
+      </div>
+
+      <!-- Content -->
+      <div class="prose prose-invert prose-orange max-w-none">
+        <Content />
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { animate, stagger, inView } from "motion";
+
+  const initAnimations = () => {
+    animate(
+      "header > *, .grid > *, .prose > *",
+      { opacity: [0, 1], y: [10, 0] },
+      { delay: stagger(0.05), duration: 0.5 },
+    );
+  };
+
+  document.addEventListener("astro:page-load", initAnimations);
+</script>

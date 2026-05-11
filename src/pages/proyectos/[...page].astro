@@ -1,0 +1,94 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import Button from "../../components/Button.astro";
+
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths({ paginate }) {
+  const allProjects = await getCollection("proyectos");
+  const sortedProjects = allProjects.sort(
+    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+  );
+  return paginate(sortedProjects, { pageSize: 9 });
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title={`Proyectos - Página ${page.currentPage} - Arturo Jofré`}>
+  <Navbar />
+  <main class="pt-24 pb-10 flex-grow" transition:animate="fade">
+    <div class="container mx-auto px-4">
+      <div class="py-16 mb-8 border-b border-border">
+        <h1 class="text-5xl font-bold mb-4">Portafolio</h1>
+        <p class="text-xl text-muted">
+          Una selección de proyectos en los que he trabajado. (Página {
+            page.currentPage
+          } de {page.lastPage})
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        {
+          page.data.map((project) => (
+            <ProjectCard
+              title={project.data.title}
+              img={project.data.thumb}
+              link={`/proyectos/${project.id}`}
+              description={project.data.description}
+              year={project.data.year}
+            />
+          ))
+        }
+      </div>
+
+      <!-- Pagination Controls -->
+      <div
+        class="flex items-center justify-between border-t border-border pt-8"
+      >
+        <div class="flex gap-4">
+          {
+            page.url.prev && (
+              <Button variant="outline" size="sm" href={page.url.prev}>
+                &larr; Anterior
+              </Button>
+            )
+          }
+          {
+            page.url.next && (
+              <Button variant="outline" size="sm" href={page.url.next}>
+                Siguiente &rarr;
+              </Button>
+            )
+          }
+        </div>
+        <span class="text-sm text-muted">
+          Mostrando {page.start + 1} - {page.end + 1} de {page.total} proyectos
+        </span>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { animate, stagger, inView } from "motion";
+
+  const initAnimations = () => {
+    const container = document.querySelector(".grid");
+    if (container) {
+      inView(container, () => {
+        animate(
+          ".grid > *",
+          { opacity: [0, 1], y: [15, 0] },
+          { delay: stagger(0.05), duration: 0.5 },
+        );
+      });
+    }
+  };
+
+  document.addEventListener("astro:page-load", initAnimations);
+</script>

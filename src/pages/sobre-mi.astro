@@ -1,0 +1,132 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import JobPosition from "../components/JobPosition.astro";
+---
+
+<Layout title="Sobre mí - Arturo Jofré">
+  <Navbar />
+  <main class="pt-24 pb-10 flex-grow" transition:animate="fade">
+    <div class="container mx-auto px-4">
+      <!-- Intro -->
+      <section class="py-16 space-y-6 max-w-3xl">
+        <h1 class="text-5xl font-bold mb-8">Sobre mí</h1>
+        <div class="text-lg text-muted space-y-4 leading-relaxed">
+          <p>
+            Mi nombre es Arturo Jofré López vivo en Santiago pero soy oriundo de
+            Tucapel. Durante los últimos 14 años he trabajado con consultoras,
+            empresas y startups en una variedad de sectores como gobierno,
+            startups, salud, finanzas, retail, logística, y recursos humanos en
+            diversos roles como Diseñador Web, Diseñador UX, Lead UX y Product
+            Designer creando de todo tipo soluciones digitales, landings, sitios
+            web, e-commerce, apps y SaaS.
+          </p>
+          <p>
+            Creo que el diseño de productos digitales es un viaje colaborativo,
+            donde la empatía por los usuarios, la tecnología y el entendimiento
+            profundo de las necesidades del negocio son claves para el éxito por
+            ello mi enfoque se basa en facilitar la comunicación a través del
+            diseño.
+          </p>
+          <p>
+            Estudie diseño gráfico en Duoc UC, y Arquitectura de Información y
+            Experiencia de Usuario en Universidad Central de Chile.
+          </p>
+          <p>
+            En el 2015 co-funde la Pávlov una consultora de diseño, con un par
+            de amigos con el fin de ofrecer servicios de manera autonoma.
+          </p>
+          <p>
+            Actualmente trabajo como diseñador UX en Cleverit, mejorando la
+            experiencia de usuario en grandes empresas.
+          </p>
+        </div>
+      </section>
+
+      <!-- Resume / CV -->
+      <section
+        class="grid lg:grid-cols-[1fr_2fr] gap-12 py-20 border-t border-border mt-8"
+      >
+        <div>
+          <p
+            class="text-xs font-semibold tracking-widest uppercase text-accent mb-2"
+          >
+            CURRICULUM
+          </p>
+          <h2 class="text-3xl sm:text-4xl font-bold sticky top-24">
+            Experiencia<br />Laboral
+          </h2>
+        </div>
+        <div class="flex flex-col gap-6">
+          <div class="glass p-8 rounded-2xl border border-border">
+            <div class="flex flex-col gap-6">
+              <JobPosition
+                companylogo="/"
+                company="Cleverit"
+                jobtitle="Diseñador UX Senior"
+                period="SEP 2022 - ACTUALIDAD"
+              />
+              <JobPosition
+                companylogo="/"
+                company="Multiplica"
+                jobtitle="Diseñador UX Senior"
+                period="OCT 2021 - JUN 2022"
+              />
+              <JobPosition
+                companylogo="/"
+                company="Aureolab"
+                jobtitle="Lead UX"
+                period="AGO 2020 - OCT 2021"
+              />
+              <JobPosition
+                companylogo="/"
+                company="Aureolab"
+                jobtitle="Diseñador UX"
+                period="ENE 2019 - AGO 2020"
+              />
+              <JobPosition
+                companylogo="/"
+                company="Agencia Land"
+                jobtitle="Diseñador UI/UX - Front-End"
+                period="JUN 2017 - ENE 2019"
+              />
+              <JobPosition
+                companylogo="/"
+                company="PVW Publicidad"
+                jobtitle="Diseñador Web"
+                period="ENE 2012 - JUN 2015"
+              />
+              <JobPosition
+                companylogo="/"
+                company="PVW Publicidad"
+                jobtitle="Diseñador gráfico"
+                period="JUL 2011 - ENE 2012"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { animate, stagger, inView } from "motion";
+
+  const initAnimations = () => {
+    const sections = document.querySelectorAll("section");
+    sections.forEach((section) => {
+      inView(section, (info) => {
+        animate(
+          info.target.querySelectorAll("h1, h2, p, .glass > *"),
+          { opacity: [0, 1], y: [15, 0] },
+          { delay: stagger(0.05), duration: 0.5 },
+        );
+      });
+    });
+  };
+
+  document.addEventListener("astro:page-load", initAnimations);
+</script>

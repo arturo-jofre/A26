@@ -1,23 +1,41 @@
+---
+import { ClientRouter } from "astro:transitions";
+import "../styles/global.css";
+
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Portafolio de Arturo Jofré - Product Designer" } =
+	Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es" class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&family=Geist:wght@100..900&display=swap"
+			rel="stylesheet"
+		/>
+
+		<ClientRouter />
 	</head>
-	<body>
+	<body
+		class="antialiased min-h-screen flex flex-col relative overflow-x-hidden"
+	>
+		<!-- Diagonal stripe patterns in the left and right margins (Tailwind-style) -->
+		<div class="stripe-l" aria-hidden="true"></div>
+		<div class="stripe-r" aria-hidden="true"></div>
 		<slot />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

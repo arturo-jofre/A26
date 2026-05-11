@@ -1,0 +1,48 @@
+---
+interface Props {
+	title: string;
+	description: string;
+	img?: string;
+	link: string;
+	year: number;
+}
+const { title, description, img, link, year } = Astro.props;
+---
+
+<a
+	href={link}
+	class="group block relative bg-background hover:bg-white/[0.025] transition-colors duration-300"
+>
+	<div
+		class="aspect-video w-full bg-white/5 overflow-hidden relative border-b border-foreground/10"
+	>
+		{
+			img ? (
+				<img
+					src={img}
+					alt={title}
+					class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+				/>
+			) : (
+				<div class="w-full h-full flex items-center justify-center text-muted text-sm">
+					Sin imagen
+				</div>
+			)
+		}
+	</div>
+	<div class="p-6">
+		<div class="flex justify-between items-start mb-2">
+			<h3
+				class="text-sm font-bold group-hover:text-accent transition-colors"
+			>
+				{title}
+			</h3>
+			<span class="text-[10px] font-mono text-muted ml-2 flex-shrink-0"
+				>{year}</span
+			>
+		</div>
+		<p class="text-xs text-muted line-clamp-2 leading-relaxed">
+			{description}
+		</p>
+	</div>
+</a>

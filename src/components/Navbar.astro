@@ -1,0 +1,48 @@
+---
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1);
+---
+
+<header
+  class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-md border-b border-foreground/10"
+  transition:persist
+>
+  <div
+    class="mx-auto container px-8 md:px-12 h-16 flex items-center justify-between"
+  >
+    <a
+      href="/"
+      class="text-sm font-bold tracking-tighter hover:text-accent transition-colors"
+    >
+      <img
+        class="w-8 h-8"
+        src="/assets/arturojofre_logo.svg"
+        alt="Arturo Jofre logo"
+      />
+    </a>
+    <nav class="hidden md:flex gap-8">
+      <a
+        href="/"
+        class={`text-sm font-medium transition-colors hover:text-foreground ${currentPath === "" ? "text-foreground" : "text-muted"}`}
+        >Inicio</a
+      >
+      <a
+        href="/proyectos"
+        class={`text-sm font-medium transition-colors hover:text-foreground ${currentPath.startsWith("proyectos") ? "text-foreground" : "text-muted"}`}
+        >Proyectos</a
+      >
+      <a
+        href="/sobre-mi"
+        class={`text-sm font-medium transition-colors hover:text-foreground ${currentPath.startsWith("sobre-mi") ? "text-foreground" : "text-muted"}`}
+        >Sobre mí</a
+      >
+    </nav>
+    <a
+      href="https://calendar.app.google/ZE6YQWLGgc8WUZSDA"
+      target="_blank"
+      class="hidden md:inline-flex items-center gap-2 text-xs font-mono bg-accent hover:bg-accent/90 text-white px-4 py-2 transition-colors"
+    >
+      Trabajemos juntos
+    </a>
+  </div>
+</header>

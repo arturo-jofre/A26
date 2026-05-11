@@ -1,5 +1,5 @@
 {
-  "name": "",
+  "name": "A26-web-portafolio",
   "type": "module",
   "version": "0.0.1",
   "engines": {
@@ -12,6 +12,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.1.9"
+    "@tailwindcss/vite": "^4.2.4",
+    "astro": "^6.1.9",
+    "motion": "^12.38.0",
+    "tailwindcss": "^4.2.4"
   }
 }
