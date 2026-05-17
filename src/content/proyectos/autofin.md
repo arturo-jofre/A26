@@ -15,9 +15,12 @@ team: "Aureolab"
 tags: ["Public"]
 draft: false
 ---
-
+<div class="intro">
 Autofin es una empresa dedicada al financiamiento automotriz que otorga créditos para financiar la compra de vehículos nuevos, usados, de uso particular o comercial.
+</div>
 
-Tras el rediseño las visitas pasaron de 60.000 visitas a 120.000 mensuales promedio.
+## Resultados
+
+- Tras el rediseño las visitas pasaron de 60.000 visitas a 120.000 mensuales promedio.
 
 <img src="/assets/img/portafolio/autofin-web.png">

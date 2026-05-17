@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+import Button from "../components/Button.astro";
+---
+
+<Layout title="404 - Página no encontrada - Arturo Jofré">
+  <Navbar />
+  <main class="pt-24 pb-10 flex-grow" transition:animate="fade">
+    <div class="container mx-auto px-4">
+      <div
+        class="min-h-[60vh] flex flex-col items-center justify-center text-center space-y-8"
+      >
+        <div class="relative">
+          <span
+            class="text-[180px] md:text-[240px] font-bold tracking-tighter text-foreground/5 select-none font-mono absolute inset-0 flex items-center justify-center"
+            aria-hidden="true"
+          >
+            404
+          </span>
+          <p
+            class="relative text-6xl md:text-8xl font-extrabold tracking-tight text-gradient"
+          >
+            404
+          </p>
+        </div>
+
+        <div class="space-y-4 max-w-md">
+          <h1 class="text-3xl md:text-4xl font-bold">Página no encontrada</h1>
+          <p class="text-lg text-muted leading-relaxed">
+            La página que buscas no existe o fue movida.
+          </p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <Button variant="primary" size="lg" href="/">
+            Volver al inicio
+          </Button>
+          <Button variant="outline" size="lg" href="/proyectos">
+            Ver proyectos
+          </Button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  import { animate, stagger } from "motion";
+
+  document.addEventListener("astro:page-load", () => {
+    animate(
+      "h1, p, .flex",
+      { opacity: [0, 1], y: [20, 0] },
+      { delay: stagger(0.1), duration: 0.5 },
+    );
+  });
+</script>

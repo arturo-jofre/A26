@@ -1,0 +1,321 @@
+---
+
+---
+
+<section id="orbital" class="relative py-24">
+	<div class="mx-auto px-8 md:px-12">
+		<div class="mb-8">
+			<p
+				class="text-xs font-mono tracking-widest uppercase text-accent mb-2"
+			>
+				Estructura
+			</p>
+			<h2 class="text-4xl font-extrabold tracking-tight">Orbital</h2>
+		</div>
+
+		<div
+			id="orbital-container"
+			class="relative h-[75dvh] bg-white/[0.02] border border-foreground/10"
+		>
+			<div id="orbital-canvas" class="w-full h-full"></div>
+		</div>
+	</div>
+
+	<div
+		class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent"
+	>
+	</div>
+</section>
+
+<style>
+	.orbital-label {
+		font-family: "Geist Mono", monospace;
+		font-size: 0.6rem;
+		text-transform: uppercase;
+		letter-spacing: 0.15em;
+		color: #f04000;
+		user-select: none;
+		pointer-events: none;
+	}
+</style>
+
+<script>
+	import * as THREE from "three";
+	import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+	import {
+		CSS2DRenderer,
+		CSS2DObject,
+	} from "three/addons/renderers/CSS2DRenderer.js";
+
+	let scene: THREE.Scene;
+	let camera: THREE.OrthographicCamera;
+	let renderer: THREE.WebGLRenderer;
+	let labelRenderer: CSS2DRenderer;
+	let controls: OrbitControls;
+	let animationId: number;
+	let orbitalGroup: THREE.Group;
+
+	let autoRotate = true;
+	let interactionTimeout: ReturnType<typeof setTimeout>;
+
+	function createCircleGeometry(
+		radius: number,
+		segments = 128,
+	): THREE.BufferGeometry {
+		const points: THREE.Vector3[] = [];
+		for (let i = 0; i <= segments; i++) {
+			const theta = (i / segments) * Math.PI * 2;
+			points.push(
+				new THREE.Vector3(
+					Math.cos(theta) * radius,
+					0,
+					Math.sin(theta) * radius,
+				),
+			);
+		}
+		return new THREE.BufferGeometry().setFromPoints(points);
+	}
+
+	function createCircleGeometryXY(
+		radius: number,
+		segments = 128,
+	): THREE.BufferGeometry {
+		const points: THREE.Vector3[] = [];
+		for (let i = 0; i <= segments; i++) {
+			const theta = (i / segments) * Math.PI * 2;
+			points.push(
+				new THREE.Vector3(
+					Math.cos(theta) * radius,
+					Math.sin(theta) * radius,
+					0,
+				),
+			);
+		}
+		return new THREE.BufferGeometry().setFromPoints(points);
+	}
+
+	function initScene() {
+		const container = document.getElementById("orbital-canvas")!;
+		const width = container.clientWidth;
+		const height = container.clientHeight;
+
+		scene = new THREE.Scene();
+
+		camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
+		camera.position.set(0, 3, 7);
+		camera.lookAt(0, 0, 0);
+
+		renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+		renderer.setSize(width, height);
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+		container.appendChild(renderer.domElement);
+
+		labelRenderer = new CSS2DRenderer();
+		labelRenderer.setSize(width, height);
+		labelRenderer.domElement.style.position = "absolute";
+		labelRenderer.domElement.style.top = "0";
+		labelRenderer.domElement.style.pointerEvents = "none";
+		container.appendChild(labelRenderer.domElement);
+
+		controls = new OrbitControls(camera, renderer.domElement);
+		controls.enableDamping = true;
+		controls.dampingFactor = 0.05;
+		controls.minDistance = 4;
+		controls.maxDistance = 15;
+		controls.addEventListener("start", () => {
+			autoRotate = false;
+			clearTimeout(interactionTimeout);
+		});
+		controls.addEventListener("end", () => {
+			interactionTimeout = setTimeout(() => {
+				autoRotate = true;
+			}, 3000);
+		});
+
+		orbitalGroup = new THREE.Group();
+		orbitalGroup.rotation.x = 0.3;
+		scene.add(orbitalGroup);
+
+		const planetMaterial = new THREE.LineBasicMaterial({
+			color: 0xd6d3ce,
+			transparent: true,
+			opacity: 0.85,
+		});
+		const orbitMaterial = new THREE.LineBasicMaterial({
+			color: 0x3a3734,
+			transparent: true,
+			opacity: 0.4,
+		});
+		const satelliteMaterial = new THREE.MeshBasicMaterial({
+			color: 0xf04000,
+		});
+
+		const planetGroup = new THREE.Group();
+		orbitalGroup.add(planetGroup);
+
+		const planetRing1 = new THREE.LineLoop(
+			createCircleGeometry(0.8),
+			planetMaterial,
+		);
+		planetGroup.add(planetRing1);
+
+		const planetRing2 = new THREE.LineLoop(
+			createCircleGeometryXY(0.8),
+			planetMaterial.clone(),
+		);
+		planetGroup.add(planetRing2);
+
+		interface Satellite {
+			mesh: THREE.Mesh;
+			orbitGroup: THREE.Group;
+			orbitSpeed: number;
+			satSpeed: number;
+			angle: number;
+			radius: number;
+			worldPos: THREE.Vector3;
+		}
+
+		const satellites: Satellite[] = [];
+		const satelliteData = [
+			{
+				name: "UX",
+				radius: 2.0,
+				inclination: 0.4,
+				azimut: 0,
+				orbitSpeed: 0.25,
+				satSpeed: 0.3,
+			},
+			{
+				name: "DEV",
+				radius: 2.2,
+				inclination: -0.3,
+				azimut: Math.PI / 3,
+				orbitSpeed: 0.15,
+				satSpeed: 0.5,
+			},
+			{
+				name: "BUSINESS",
+				radius: 2.4,
+				inclination: 0.55,
+				azimut: -Math.PI / 5,
+				orbitSpeed: 0.35,
+				satSpeed: 0.2,
+			},
+		];
+
+		satelliteData.forEach(
+			({ name, radius, inclination, azimut, orbitSpeed, satSpeed }) => {
+				const orbitGroup = new THREE.Group();
+				orbitGroup.rotation.x = inclination;
+				orbitGroup.rotation.y = azimut;
+				orbitalGroup.add(orbitGroup);
+
+				const orbitLine = new THREE.LineLoop(
+					createCircleGeometry(radius),
+					orbitMaterial.clone(),
+				);
+				orbitGroup.add(orbitLine);
+
+				const satelliteGeom = new THREE.SphereGeometry(0.06, 16, 16);
+				const satellite = new THREE.Mesh(
+					satelliteGeom,
+					satelliteMaterial.clone(),
+				);
+				satellite.position.set(radius, 0, 0);
+				orbitGroup.add(satellite);
+
+				const worldPos = new THREE.Vector3();
+				satellite.getWorldPosition(worldPos);
+
+				const labelDiv = document.createElement("div");
+				labelDiv.className = "orbital-label";
+				labelDiv.textContent = name;
+				const label = new CSS2DObject(labelDiv);
+				label.position.set(0, 0.25, 0);
+				satellite.add(label);
+
+				satellites.push({
+					mesh: satellite,
+					orbitGroup,
+					orbitSpeed,
+					satSpeed,
+					angle: Math.random() * Math.PI * 2,
+					radius,
+					worldPos,
+				});
+			},
+		);
+
+		function animate() {
+			animationId = requestAnimationFrame(animate);
+
+			if (autoRotate) {
+				orbitalGroup.rotation.y += 0.003;
+				planetGroup.rotation.y += 0.008;
+			}
+
+			satellites.forEach((sat) => {
+				sat.orbitGroup.rotation.y += sat.orbitSpeed * 0.015;
+				sat.angle += sat.satSpeed * 0.015;
+				sat.mesh.position.x = Math.cos(sat.angle) * sat.radius;
+				sat.mesh.position.z = Math.sin(sat.angle) * sat.radius;
+				sat.mesh.getWorldPosition(sat.worldPos);
+			});
+
+			controls.update();
+			renderer.render(scene, camera);
+			labelRenderer.render(scene, camera);
+		}
+
+		animate();
+
+		function onResize() {
+			const w = container.clientWidth;
+			const h = container.clientHeight;
+			camera.aspect = w / h;
+			camera.updateProjectionMatrix();
+			renderer.setSize(w, h);
+			labelRenderer.setSize(w, h);
+		}
+
+		window.addEventListener("resize", onResize);
+	}
+
+	function destroyScene() {
+		cancelAnimationFrame(animationId);
+		clearTimeout(interactionTimeout);
+
+		if (renderer) {
+			renderer.dispose();
+			renderer.domElement.remove();
+		}
+		if (labelRenderer) {
+			labelRenderer.domElement.remove();
+		}
+		if (controls) {
+			controls.dispose();
+		}
+
+		scene?.traverse((obj) => {
+			if (obj instanceof THREE.Mesh) {
+				obj.geometry.dispose();
+				if (Array.isArray(obj.material)) {
+					obj.material.forEach((m) => m.dispose());
+				} else {
+					obj.material.dispose();
+				}
+			}
+			if (obj instanceof THREE.LineLoop || obj instanceof THREE.Line) {
+				obj.geometry.dispose();
+				if (Array.isArray(obj.material)) {
+					obj.material.forEach((m) => m.dispose());
+				} else {
+					obj.material.dispose();
+				}
+			}
+		});
+	}
+
+	document.addEventListener("astro:after-swap", destroyScene);
+	document.addEventListener("astro:page-load", initScene);
+</script>

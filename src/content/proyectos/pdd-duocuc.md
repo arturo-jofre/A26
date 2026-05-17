@@ -11,10 +11,10 @@ color: "#1A203D"
 rol: "UX, UI, Developer"
 url: https://pdd.duoc.cl
 tags: ["Public"]
+archived: true
 ---
 <div class="intro">
 El proceso de diseño del Plan de Desarrollo 2021-2025 busca la definición de objetivos y diseño de la estrategia institucional que determinarán el propósito que conducirá los siguientes cinco años. El proceso es participativo y busca involucrar a la comunidad a ser parte del desafío de trabajar juntos en pensar el Duoc UC del mañana.
 </div>
 
 <img src="/assets/img/portafolio/pdd-duoc.png" alt="{title}">
-

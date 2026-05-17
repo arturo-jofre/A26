@@ -11,6 +11,8 @@ image: /assets/img/portafolio/thumbs/pavlov.png
 color: "#FF6C36"
 rol: Diseñador UX,Developer
 tags: ["Public"]
+draft: false
+archived: true
 ---
 
 Pávlov es una agencia de diseño, desarrollo web y fotografía orientada al mercado gastronómico.

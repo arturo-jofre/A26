@@ -18,6 +18,9 @@ const proyectosCollection = defineCollection({
     type: z.string().optional(),
     tags: z.array(z.string()),
     draft: z.boolean().optional(),
+    featured: z.boolean().optional().default(false),
+    private: z.boolean().optional().default(false),
+    archived: z.boolean().optional().default(false),
   }),
 });
 

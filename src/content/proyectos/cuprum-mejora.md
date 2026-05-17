@@ -10,6 +10,12 @@ color: "#1f3366"
 rol: Diseñador UX, Front-end Developer Wordpress
 tags: ["Public"]
 draft: false
+archived: true
 ---
+<div class="intro">
+Landing para campaña para mejorar la pensión orientada a jovenes de caracter informativa explicando que es APV, como funciona y coomo pue de mejorar la pensión.
+</div>
 
 <img src="/assets/img/portafolio/cuprum-apv.png">
+
+## El desafío

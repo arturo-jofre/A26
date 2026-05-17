@@ -12,7 +12,8 @@ type: "Product Design, UX, UI"
 image: /assets/img/portafolio/ua-app-3.png
 thumb: /assets/img/portafolio/thumbs/ua-app-thumb.png
 color: "#020203"
-tags: ["Private"]
+tags: []
+private: true
 intro: Under Armour una de las principales marcas de ropa y accesorios deportivos a nivel mundial. Y con el fin de mejorar la experiencia de sus clientes en las tiendas trabajamos en el desarrollo de una nueva app.
 
 ---

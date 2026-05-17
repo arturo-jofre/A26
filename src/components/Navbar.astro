@@ -7,9 +7,7 @@ const currentPath = pathname.slice(1);
   class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-md border-b border-foreground/10"
   transition:persist
 >
-  <div
-    class="mx-auto container px-8 md:px-12 h-16 flex items-center justify-between"
-  >
+  <div class="mx-auto container px-8 h-16 flex items-center justify-between">
     <a
       href="/"
       class="text-sm font-bold tracking-tighter hover:text-accent transition-colors"
@@ -20,7 +18,7 @@ const currentPath = pathname.slice(1);
         alt="Arturo Jofre logo"
       />
     </a>
-    <nav class="hidden md:flex gap-8">
+    <nav class="hidden md:flex gap-8 font-mono uppercase">
       <a
         href="/"
         class={`text-sm font-medium transition-colors hover:text-foreground ${currentPath === "" ? "text-foreground" : "text-muted"}`}
@@ -32,6 +30,11 @@ const currentPath = pathname.slice(1);
         >Proyectos</a
       >
       <a
+        href="/archivo"
+        class={`text-sm font-medium transition-colors hover:text-foreground ${currentPath.startsWith("archivo") ? "text-foreground" : "text-muted"}`}
+        >Archivo</a
+      >
+      <a
         href="/sobre-mi"
         class={`text-sm font-medium transition-colors hover:text-foreground ${currentPath.startsWith("sobre-mi") ? "text-foreground" : "text-muted"}`}
         >Sobre mí</a
@@ -40,7 +43,7 @@ const currentPath = pathname.slice(1);
     <a
       href="https://calendar.app.google/ZE6YQWLGgc8WUZSDA"
       target="_blank"
-      class="hidden md:inline-flex items-center gap-2 text-xs font-mono bg-accent hover:bg-accent/90 text-white px-4 py-2 transition-colors"
+      class="hidden md:inline-flex items-center gap-2 text-xs font-mono uppercase bg-accent hover:bg-accent/90 text-white px-4 py-2 transition-colors"
     >
       Trabajemos juntos
     </a>

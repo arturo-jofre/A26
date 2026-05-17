@@ -10,10 +10,11 @@ thumb: "/assets/img/portafolio/thumbs/PHB-thumb.png"
 image: "/assets/img/portafolio/PHB-full.png"
 tags: ["Public"]
 intro: "Próximantente, caso estudio en construcción."
+draft: false
 ---
 
 <div class="grid gap-3">
-	<img class="rounded-2xl" src="/public/assets/img/portafolio/PHB_01.png" alt="Diseño de landing" loading="lazy"> 
-	<img class="rounded-2xl" src="/public/assets/img/portafolio/PHB_02.png" alt="Diseño de landing" loading="lazy">
-	<img class="rounded-2xl" src="/public/assets/img/portafolio/PHB_03.png" alt="Diseño de landing" loading="lazy"> 
+ <img class="rounded-2xl" src="/public/assets/img/portafolio/PHB_01.png" alt="Diseño de landing" loading="lazy">
+ <img class="rounded-2xl" src="/public/assets/img/portafolio/PHB_02.png" alt="Diseño de landing" loading="lazy">
+ <img class="rounded-2xl" src="/public/assets/img/portafolio/PHB_03.png" alt="Diseño de landing" loading="lazy">
 </div>

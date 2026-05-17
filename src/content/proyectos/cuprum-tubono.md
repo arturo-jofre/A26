@@ -9,8 +9,9 @@ date: 2018-01-01
 thumb: "/assets/img/portafolio/thumbs/cuprum-apv-tu-bono.png"
 color: "#1f3366"
 rol: Diseñador UX, Front-end Developer Wordpress
-tags: ["Archive"]
-draft: true
+tags: []
+archived: true
+draft: false
 ---
 
-<img class="rounded-2xl" src="/assets/img/portafolio/cuprum-apv-tu-bono.png"> 
+<img class="rounded-2xl" src="/assets/img/portafolio/cuprum-apv-tu-bono.png">

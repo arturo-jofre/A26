@@ -12,7 +12,7 @@ image: "/assets/img/portafolio/p-regalanovios.png"
 thumb: "/assets/img/portafolio/thumbs/regalanovios.png"
 color: "#6956d8"
 tags: ["Public"]
-
+draft: false
 ---
 
 
@@ -46,8 +46,7 @@ Regalanovios es un portal de listas de regalos para de novios fundada en 2013 su
 
 ## Resultados
 
-El trabajo de investigación y testeo posibilitó la mejora de los flujos de registro y compra disminuyendo en un 90% las atenciones de servicio al cliente relacionados. 
-
+El trabajo de investigación y testeo posibilitó la mejora de los flujos de registro y compra disminuyendo en un 90% las atenciones de servicio al cliente relacionados.
 
 ## Prototipo
 

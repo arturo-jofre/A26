@@ -5,8 +5,11 @@ import Footer from "../../components/Footer.astro";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
+  const isDev = import.meta.env.DEV;
   const projects = await getCollection("proyectos");
-  return projects.map((project) => ({
+  return projects
+    .filter((p) => isDev ? true : !p.data.draft)
+    .map((project) => ({
     params: { slug: project.id },
     props: { project },
   }));
@@ -19,7 +22,7 @@ const { Content } = await render(project);
 <Layout title={`${project.data.title} - Arturo Jofré`}>
   <Navbar />
   <main class="pt-24 pb-10 flex-grow" transition:animate="fade">
-    <article class="container mx-auto px-4 py-16 max-w-4xl">
+    <article class="container mx-auto px-4 py-16">
       <!-- Header -->
       <header class="mb-16">
         <div class="flex items-center gap-4 text-sm text-accent font-mono mb-6">
@@ -100,15 +103,26 @@ const { Content } = await render(project);
 </Layout>
 
 <script>
-  import { animate, stagger, inView } from "motion";
+  import { animate, stagger } from "motion";
 
-  const initAnimations = () => {
-    animate(
+  let currentAnimator: ReturnType<typeof animate> | null = null;
+
+  function destroyAnimations() {
+    if (currentAnimator) {
+      currentAnimator.stop();
+      currentAnimator = null;
+    }
+  }
+
+  function initAnimations() {
+    destroyAnimations();
+    currentAnimator = animate(
       "header > *, .grid > *, .prose > *",
       { opacity: [0, 1], y: [10, 0] },
       { delay: stagger(0.05), duration: 0.5 },
     );
-  };
+  }
 
+  document.addEventListener("astro:after-swap", destroyAnimations);
   document.addEventListener("astro:page-load", initAnimations);
 </script>

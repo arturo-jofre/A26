@@ -12,15 +12,24 @@ color: "#efc03b"
 rol: "Diseñador UX"
 cliente: "Autofin"
 tags: ["Public"]
-draft: true
+
 ---
 
-Nuevo portal clientes Autofin. Autofin es una empresa dedicada al financiamiento automotriz que otorga créditos para financiar la compra de vehículos nuevos, usados, de uso particular o comercial.
+<div class="intro">
+Crear un nuevo portal de clientes para Autofin, empresa dedicada al financiamiento automotriz, que permita a los usuarios consultar sus créditos, pagos, saldos, etc.
+</div>
 
-<img src="/assets/img/portafolio/autofin-portal-clientes.png"> 
+<img src="/assets/img/portafolio/autofin-portal-clientes.png">
+
+## El desafío
+
+- Crear un nuevo portal de clientes para Autofin.
+- Permitir a los usuarios consultar sus créditos, pagos, saldos, etc.
+- Permitir a los usuarios realizar pagos de sus créditos.
+- Permitir a los usuarios contactar con soporte.
 
 ## Prototipo
 
 <div class="prototype">
-	<iframe src="https://marvelapp.com/prototype/26267e2g?emb=1&iosapp=false&frameless=false" width="100%" height="900" allowTransparency="true" frameborder="0"></iframe>
+ <iframe src="https://marvelapp.com/prototype/26267e2g?emb=1&iosapp=false&frameless=false" width="100%" height="900" allowTransparency="true" frameborder="0"></iframe>
 </div>

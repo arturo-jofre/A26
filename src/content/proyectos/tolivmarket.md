@@ -13,7 +13,8 @@ image: "/assets/img/portafolio/tolivmarket.png"
 thumb: "/assets/img/portafolio/tolivmarket.png"
 color: "#f57423"
 url: "https://www.tolivmarket.com"
-tags: ["Public", "Destacados"]
+tags: []
+featured: true
 
 ---
 

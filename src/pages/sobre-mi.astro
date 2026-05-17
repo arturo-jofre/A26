@@ -115,18 +115,28 @@ import JobPosition from "../components/JobPosition.astro";
 <script>
   import { animate, stagger, inView } from "motion";
 
-  const initAnimations = () => {
+  let cleanupFns: (() => void)[] = [];
+
+  function destroyAnimations() {
+    cleanupFns.forEach((fn) => fn());
+    cleanupFns = [];
+  }
+
+  function initAnimations() {
+    destroyAnimations();
     const sections = document.querySelectorAll("section");
     sections.forEach((section) => {
-      inView(section, (info) => {
+      const stop = inView(section, (info) => {
         animate(
           info.target.querySelectorAll("h1, h2, p, .glass > *"),
           { opacity: [0, 1], y: [15, 0] },
           { delay: stagger(0.05), duration: 0.5 },
         );
       });
+      cleanupFns.push(stop);
     });
-  };
+  }
 
+  document.addEventListener("astro:after-swap", destroyAnimations);
   document.addEventListener("astro:page-load", initAnimations);
 </script>

@@ -14,6 +14,8 @@ tags: ["Public"]
 draft: false
 ---
 
+<div class="intro">
 Un CRM a medida para Autofin. Autofin es una empresa dedicada al financiamiento automotriz que otorga créditos para financiar la compra de vehículos nuevos, usados, de uso particular o comercial.
+</div>
 
-<img src="/assets/img/portafolio/autofin-crm.png"> 
+<img src="/assets/img/portafolio/autofin-crm.png">

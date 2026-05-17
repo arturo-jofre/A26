@@ -9,7 +9,8 @@ date: 2023-01-01
 image: /assets/img/portafolio/p-base.png
 thumb: /assets/img/portafolio/thumbs/base.png
 color: "#f57423"
-tags: ["Private"]
+tags: []
+private: true
 draft: true
 ---
 

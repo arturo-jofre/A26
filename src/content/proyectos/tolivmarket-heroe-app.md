@@ -11,7 +11,8 @@ image: "/assets/img/portafolio/tolivmarket-heroe-app-34.png"
 thumb: "/assets/img/portafolio/thumbs/tolivmarket-heroe-thumb.png"
 color: "#f57423"
 url: "https://www.tolivmarket.com"
-tags: ["Public", "Destacados"]
+tags: []
+featured: true
 intro: "Durante la pandemia y con la necesidad de digitalizar al emprendimiento local, facilitar la ultima milla y a su vez llevar el delivery a ciudades donde otros no llegan."
 ---
 

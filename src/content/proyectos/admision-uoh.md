@@ -11,16 +11,19 @@ color: "#1A203D"
 rol: "Diseñador UX, Developer"
 type: "UX, UI, Development"
 tags: ["Public"]
+draft: false
+archived: true
 ---
 
 <div class="intro">
 La Universidad de O’Higgins es una institución de educación superior estatal. Creada en 2015 como la primera universidad publica de la región de O'higgins. La Universidad  comenzó su actividad académica con 13 carreras en 2017.</div>
 
 <div class="grid gap-3">
-	<img class="rounded-2xl" src="/assets/img/portafolio/UOH_01.png" alt="Diseño de landing" loading="lazy"> 
-	<img class="rounded-2xl" src="/assets/img/portafolio/UOH_02.png" alt="Diseño de landing" loading="lazy"> 
-	 
+ <img class="rounded-2xl" src="/assets/img/portafolio/UOH_01.png" alt="Diseño de landing" loading="lazy">
+ <img class="rounded-2xl" src="/assets/img/portafolio/UOH_02.png" alt="Diseño de landing" loading="lazy">
+  
 </div>
 
 ## Desafio
+
 Crear el primer landing de admisión de esta nueva universidad.

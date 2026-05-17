@@ -9,8 +9,9 @@ date: 2020-09-01
 thumb: "/assets/img/portafolio/thumbs/hospitalvirtual-duocuc.png"
 color: "#00D9C6"
 rol: "Diseñador UX, Front-end Developer Wordpress"
-tags: ["Archive"]
-draft: true
+tags: []
+archived: true
+draft: false
 ---
 
 El proyecto nace bajo la necesidad académica de dar respuestas a la alta demanda de campo clínico, la inmediatez de la educación, la tendencia del entrenamiento en salud, y el foco de generar estrategias pedagógicas innovadoras y disruptivas que promuevan la adquisición de una serie de competencias y habilidades en nuestros estudiantes.

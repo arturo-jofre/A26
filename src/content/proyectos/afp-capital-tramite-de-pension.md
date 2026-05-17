@@ -1,57 +1,48 @@
 ---
 
-title: Tramite de pension AFP Capital
+title: Trámite de pensión AFP Capital
 client: AFP capital
-description: La descripcion
+description: Nuevo proceso de solicitud de tramite de pensión de AFP Capital.
 url: https://www.arturojofre.cl
 year: 2026
 date: 2025-12-01
 image: /assets/img/portafolio/p-base.png
 thumb: /assets/img/portafolio/thumbs/base.png
 color: "#f57423"
-tags: ["Private"]
-draft: true
+tags: [UX]
+private: true
+
 ---
 
 <div class="intro">
-Durante la pandemia y con la necesidad de digitalizar al emprendimiento local, facilitar la ultima milla y a su vez llevar el delivery a ciudades donde otros no llegan.
+Nuevo proceso de solicitud de tramite de pensión de AFP Capital.
 </div>
 
 <div class="grid-1-2">
-    <img src="/assets/img/portafolio/tolivmarket-heroe-icon.png" alt="">
-    <img src="/assets/img/portafolio/tolivmarket-heroe-app.png" alt="">
+
 </div>
 
 ## ¿El motivo?
 
-Durante la pandemia y con la necesidad de digitalizar al emprendimiento local, facilitar la ultima milla y a su vez llevar el delivery a ciudades donde otros no llegan.
+Incorporación de nuevos tipos de pensionados y implementación de nuevas funcionalidades a la solicitud de tramite de pensión de AFP Capital.
 
 ## Acerca de
 
-Toliv Market es el marketplace más austral del mundo lanzado en Magallanes, actualmente opera en más de 20 comunas y 9 ciudades a lo largo de Chile, cuenta con webapp y aplicaciones para Android y iOS.
-
 ## Los objetivos
 
-- Crear una app fácil de usar.
-- Darle control a los repartidores de su tiempo y dinero.
+- Reducir fricción
+- Incluir los diferentes tipos de pensionados.
+- Incorporar los flujos de traspasos de Cuenta 2, APV y APVC.
+
+## Solucion
+
+La incorporación de nuevos tipos de pensionados y flujos de traspasos requería actualizar el flujo existente, incorporando nuevas pantallas, validaciones y optimizaciones para cada caso. Se intervino el flujo integrar estas nuevas funcionalidades de manera fluida, manteniendo la usabilidad y reduciendo la fricción para los usuarios.
 
 ## La estrategia
 
-- Investigar como los repartidores usan otras plataformas y conocer cuales son las principales ventajas y problemas.
+- Investigación de nuevos tipos de pensionados y sus necesidades.
+- Investigación de nuevas funcionalidades para la solicitud de tramite de pensión.
 
-## Prototipo
+## Resultados
 
-### Disponible en
-
-<div class="stores">
-<a class="icon-store" href="#"><img src="/assets/img/Google_Play.svg" alt="Disponible en Google Play"></a>
-<a class="icon-store" href="#"><img src="/assets/img/App_Store.svg" alt="Disponible en Apple App Store"></a>
-</div>
-
-## El problema
-
-## La solución
-
-¿Que tan largo fue el proyecto?
-De que tamaño fue el equipo?
-Cual fue mi contribución / rol
+- Redudicr la fricción de los usuarios para realizar el tramite de manera digital.

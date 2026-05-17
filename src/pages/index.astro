@@ -4,330 +4,382 @@ import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import Button from "../components/Button.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import OrbitalSection from "../components/OrbitalSection.astro";
 
 import { getCollection } from "astro:content";
 
 const allProjects = await getCollection("proyectos");
 const projectsByTag = allProjects
-  .filter((project) => project.data.tags?.includes("Destacados"))
-  .sort(
-    (a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
-  )
-  .slice(0, 4);
+	.filter((project) => project.data.featured)
+	.sort(
+		(a, b) =>
+			new Date(b.data.date).getTime() - new Date(a.data.date).getTime(),
+	)
+	.slice(0, 4);
 ---
 
 <Layout title="Arturo Jofré - Product Designer">
-  <Navbar />
-  <main class="flex-grow" transition:animate="fade">
-    <!-- ──────────────────────────────── HERO ──────────────────────────────── -->
-    <section
-      id="hero"
-      class="relative container mx-auto overflow-hidden pt-32 pb-24"
-    >
-      <!-- Hero glow -->
-      <div class="hero-glow" aria-hidden="true"></div>
+	<Navbar />
+	<main class="flex-grow">
+		<!-- HERO -->
+		<section
+			id="hero"
+			class="relative container mx-auto overflow-hidden pt-32 pb-24"
+		>
+			<!-- Hero glow -->
+			<div class="hero-glow" aria-hidden="true"></div>
 
-      <!-- Left & right structural vertical lines that frame content -->
-      <div
-        class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-full pointer-events-none"
-        aria-hidden="true"
-      >
-        <div class="absolute inset-0 border-x border-foreground/10"></div>
-        <!-- Corner accent marks (top-left) -->
-        <div
-          class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-accent/60"
-        >
-        </div>
-        <div
-          class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-accent/60"
-        >
-        </div>
-      </div>
+			<!-- Left & right structural vertical lines that frame content -->
+			<div
+				class="absolute inset-y-0 left-1/2 -translate-x-1/2 w-full pointer-events-none"
+				aria-hidden="true"
+			>
+				<div class="absolute inset-0 border-x border-foreground/10">
+				</div>
+				<!-- Corner accent marks (top-left) -->
+				<div
+					class="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-accent/60"
+				>
+				</div>
+				<div
+					class="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-accent/60"
+				>
+				</div>
+			</div>
 
-      <div class="relative z-10 mx-auto px-8 md:px-12">
-        <div class="max-w-3xl space-y-8">
-          <!-- Eyebrow label, Tailwind-style badge -->
-          <div
-            class="inline-flex items-center gap-2 border border-foreground/10 rounded-full px-4 py-1.5 text-xs font-semibold text-muted tracking-widest uppercase"
-          >
-            <span class="relative flex h-1.5 w-1.5">
-              <span
-                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
-              ></span>
-              <span
-                class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"
-              ></span>
-            </span>
-            Disponible para proyectos
-          </div>
+			<div class="relative z-10 mx-auto px-8 md:px-12">
+				<div class="max-w-3xl space-y-8">
+					<!-- Eyebrow label, Tailwind-style badge -->
+					<div
+						class="hero-animate inline-flex items-center gap-2 border border-foreground/10 rounded-full px-4 py-1.5 text-xs font-mono text-muted tracking-widest uppercase"
+					>
+						<span class="relative flex h-1.5 w-1.5">
+							<span
+								class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
+							></span>
+							<span
+								class="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-500"
+							></span>
+						</span>
+						Disponible para proyectos
+					</div>
 
-          <h1
-            class="text-5xl md:text-7xl font-bold tracking-tight leading-[0.95]"
-          >
-            Arturo Jofré López
-            <br />
-            <span class="text-gradient">Product Designer</span>
-          </h1>
+					<h1
+						class="hero-animate text-5xl md:text-7xl font-bold tracking-tight leading-[0.95]"
+					>
+						Arturo Jofré López
+						<br />
+						<span class="text-gradient">Product Designer</span>
+					</h1>
 
-          <p class="text-lg md:text-xl text-muted max-w-xl leading-relaxed">
-            Diseño productos digitales que impactan. Transformo la complejidad
-            en experiencias simples, intuitivas y memorables.
-          </p>
+					<p
+						class="hero-animate text-lg md:text-xl text-muted max-w-xl leading-relaxed"
+					>
+						Diseño productos digitales que impactan. Transformo la
+						complejidad en experiencias simples, intuitivas y
+						memorables.
+					</p>
 
-          <div class="flex flex-col sm:flex-row gap-4 items-start">
-            <Button
-              variant="primary"
-              size="lg"
-              href="https://calendar.app.google/ZE6YQWLGgc8WUZSDA"
-            >
-              Agenda una reunión
-            </Button>
-            <Button variant="outline" size="lg" href="/proyectos">
-              Ver proyectos
-            </Button>
-          </div>
-        </div>
-      </div>
+					<div
+						class="hero-animate flex flex-col sm:flex-row gap-4 items-start"
+					>
+						<Button
+							variant="primary"
+							size="lg"
+							href="https://calendar.app.google/ZE6YQWLGgc8WUZSDA"
+						>
+							Agenda una reunión
+						</Button>
+						<Button variant="outline" size="lg" href="/proyectos">
+							Ver proyectos
+						</Button>
+					</div>
+				</div>
+			</div>
 
-      <!-- Bottom border line like Tailwind.com -->
-      <div
-        class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent"
-      >
-      </div>
-    </section>
+			<!-- Bottom border line like Tailwind.com -->
+			<div
+				class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent"
+			>
+			</div>
+		</section>
 
-    <!-- ────────────────────────── PROYECTOS DESTACADOS ───────────────────── -->
-    <section class="relative py-24">
-      <div class="mx-auto max-w-5xl px-8 md:px-12">
-        <div class="flex items-end justify-between mb-12">
-          <div>
-            <p
-              class="text-xs font-mono tracking-widest uppercase text-accent mb-2"
-            >
-              Portafolio
-            </p>
-            <h2 class="text-4xl font-extrabold tracking-tight">
-              Últimos proyectos
-            </h2>
-          </div>
-          <Button variant="outline" size="sm" href="/proyectos"
-            >Ver todos →</Button
-          >
-        </div>
+		<OrbitalSection />
 
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10"
-        >
-          {
-            projectsByTag.map((project) => (
-              <ProjectCard
-                title={project.data.title}
-                img={project.data.thumb}
-                link={`/proyectos/${project.id}`}
-                description={project.data.description}
-                year={project.data.year}
-              />
-            ))
-          }
-        </div>
-      </div>
+		<!-- ────────────────────────── PROYECTOS DESTACADOS ───────────────────── -->
+		<section class="relative py-24">
+			<div class="mx-auto px-8 md:px-12">
+				<div class="flex items-end justify-between mb-12">
+					<div>
+						<p
+							class="text-xs font-mono tracking-widest uppercase text-accent mb-2"
+						>
+							Portafolio
+						</p>
+						<h2 class="text-4xl font-extrabold tracking-tight">
+							Últimos proyectos
+						</h2>
+					</div>
+					<Button variant="outline" size="sm" href="/proyectos"
+						>Ver todos →</Button
+					>
+				</div>
 
-      <!-- Section bottom divider -->
-      <div
-        class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent"
-      >
-      </div>
-    </section>
+				<div
+					class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px"
+				>
+					{
+						projectsByTag.map((project) => (
+							<ProjectCard
+								title={project.data.title}
+								img={project.data.thumb}
+								link={`/proyectos/${project.id}`}
+								description={project.data.description}
+								year={project.data.year}
+							/>
+						))
+					}
+				</div>
+			</div>
 
-    <!-- ───────────────────────────── SERVICIOS ───────────────────────────── -->
-    <section class="relative py-24">
-      <div class="mx-auto max-w-5xl px-8 md:px-12">
-        <div class="mb-12">
-          <p
-            class="text-xs font-semibold tracking-widest uppercase text-accent mb-2"
-          >
-            Especialidades
-          </p>
-          <h2 class="text-4xl font-extrabold tracking-tight">Servicios</h2>
-        </div>
+			<!-- Section bottom divider -->
+			<div
+				class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent"
+			>
+			</div>
+		</section>
 
-        <!-- Services grid — bordered cells like Tailwind feature cards -->
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10">
-          <div
-            class="bg-background p-8 group hover:bg-white/[0.02] transition-colors"
-          >
-            <div
-              class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-5 text-accent group-hover:bg-accent/20 transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                ><path d="M12 20h9"></path><path
-                  d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path></svg
-              >
-            </div>
-            <h3 class="text-base font-bold mb-3">Experiencia de usuario</h3>
-            <p class="text-sm text-muted leading-relaxed">
-              Diseño productos centrados en el usuario a través de la
-              investigación. Escucho, entiendo y empatizo para generar
-              estrategias que balanceen las necesidades de los usuarios con los
-              objetivos de negocio.
-            </p>
-          </div>
-          <div
-            class="bg-background p-8 group hover:bg-white/[0.02] transition-colors"
-          >
-            <div
-              class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-5 text-accent group-hover:bg-accent/20 transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                ><polyline points="16 18 22 12 16 6"></polyline><polyline
-                  points="8 6 2 12 8 18"></polyline></svg
-              >
-            </div>
-            <h3 class="text-base font-bold mb-3">Desarrollo web</h3>
-            <p class="text-sm text-muted leading-relaxed">
-              Transformo el diseño visual en sitios web y landing pages
-              interactivos con una buena experiencia de usuario, optimizados
-              para SEO, de alta performance y fácil administración.
-            </p>
-          </div>
-          <div
-            class="bg-background p-8 group hover:bg-white/[0.02] transition-colors"
-          >
-            <div
-              class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-5 text-accent group-hover:bg-accent/20 transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                ><path
-                  d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
-                ></path><path d="m9 12 2 2 4-4"></path></svg
-              >
-            </div>
-            <h3 class="text-base font-bold mb-3">Identidad de marca</h3>
-            <p class="text-sm text-muted leading-relaxed">
-              Creo una identidad única para tu marca a través del diseño de un
-              logotipo memorable y colores coherentes que conecten con tu
-              audiencia, ayudándote a destacar de la competencia.
-            </p>
-          </div>
-        </div>
-      </div>
+		<!-- ────── SERVICIOS ────── -->
+		<section class="relative py-24">
+			<div class="mx-auto px-8 md:px-12">
+				<div class="mb-12">
+					<p
+						class="text-xs font-semibold tracking-widest uppercase text-accent mb-2"
+					>
+						Especialidades
+					</p>
+					<h2 class="text-4xl font-extrabold tracking-tight">
+						Servicios
+					</h2>
+				</div>
 
-      <div
-        class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent"
-      >
-      </div>
-    </section>
+				<!-- Services grid — bordered cells like Tailwind feature cards -->
+				<div
+					class="grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10"
+				>
+					<div
+						class="bg-background p-8 group hover:bg-white/[0.02] transition-colors"
+					>
+						<div
+							class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-5 text-accent group-hover:bg-accent/20 transition-colors"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								><path d="M12 20h9"></path><path
+									d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"
+								></path></svg
+							>
+						</div>
+						<h3 class="text-base font-bold mb-3">
+							Experiencia de usuario
+						</h3>
+						<p class="text-sm text-muted leading-relaxed">
+							Diseño productos centrados en el usuario a través de
+							la investigación. Escucho, entiendo y empatizo para
+							generar estrategias que balanceen las necesidades de
+							los usuarios con los objetivos de negocio.
+						</p>
+					</div>
+					<div
+						class="bg-background p-8 group hover:bg-white/[0.02] transition-colors"
+					>
+						<div
+							class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-5 text-accent group-hover:bg-accent/20 transition-colors"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								><polyline points="16 18 22 12 16 6"
+								></polyline><polyline points="8 6 2 12 8 18"
+								></polyline></svg
+							>
+						</div>
+						<h3 class="text-base font-bold mb-3">Desarrollo web</h3>
+						<p class="text-sm text-muted leading-relaxed">
+							Transformo el diseño visual en sitios web y landing
+							pages interactivos con una buena experiencia de
+							usuario, optimizados para SEO, de alta performance y
+							fácil administración.
+						</p>
+					</div>
+					<div
+						class="bg-background p-8 group hover:bg-white/[0.02] transition-colors"
+					>
+						<div
+							class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-5 text-accent group-hover:bg-accent/20 transition-colors"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="20"
+								height="20"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								><path
+									d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+								></path><path d="m9 12 2 2 4-4"></path></svg
+							>
+						</div>
+						<h3 class="text-base font-bold mb-3">
+							Identidad de marca
+						</h3>
+						<p class="text-sm text-muted leading-relaxed">
+							Creo una identidad única para tu marca a través del
+							diseño de un logotipo memorable y colores coherentes
+							que conecten con tu audiencia, ayudándote a destacar
+							de la competencia.
+						</p>
+					</div>
+				</div>
+			</div>
 
-    <!-- ────────────────────────────── SOBRE MÍ ───────────────────────────── -->
-    <section class="relative py-24">
-      <div class="mx-auto max-w-5xl px-8 md:px-12">
-        <div class="grid lg:grid-cols-2 gap-16 items-center">
-          <div class="space-y-6">
-            <p
-              class="text-xs font-semibold tracking-widest uppercase text-accent"
-            >
-              Sobre mí
-            </p>
-            <h2 class="text-4xl font-extrabold tracking-tight">
-              14 años diseñando productos digitales
-            </h2>
-            <div class="space-y-4 text-muted leading-relaxed">
-              <p>
-                Durante los últimos 13 años he estado en diseño y desarrollo, y
-                actualmente me dedico al diseño de productos digitales para
-                empresas y startups en diferentes industrias.
-              </p>
-              <p>
-                Mi enfoque es comprender las necesidades y desafíos de los
-                negocios para crear soluciones efectivas y atractivas para los
-                usuarios. Me encanta trabajar en equipos multidisciplinarios
-                para lograr resultados excepcionales.
-              </p>
-            </div>
-            <Button size="md" variant="outline" href="/sobre-mi"
-              >Leer más y ver CV →</Button
-            >
-          </div>
+			<div
+				class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent"
+			>
+			</div>
+		</section>
 
-          <!-- Stats cell block -->
-          <div class="grid grid-cols-2 gap-px bg-foreground/10">
-            {
-              [
-                { number: "14+", label: "Años de experiencia" },
-                { number: "50+", label: "Proyectos entregados" },
-                { number: "8+", label: "Industrias diferentes" },
-                { number: "2015", label: "Co-fundador Pávlov" },
-              ].map(({ number, label }) => (
-                <div class="bg-background p-8">
-                  <div class="text-4xl font-extrabold text-gradient mb-2">
-                    {number}
-                  </div>
-                  <div class="text-sm text-muted">{label}</div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-  <Footer />
+		<!-- ──── SOBRE MÍ ─── -->
+		<section class="relative py-24">
+			<div class="mx-auto px-8 md:px-12">
+				<div class="grid lg:grid-cols-2 gap-16 items-center">
+					<div class="space-y-6">
+						<p
+							class="text-xs font-semibold tracking-widest uppercase text-accent"
+						>
+							Sobre mí
+						</p>
+						<h2 class="text-4xl font-extrabold tracking-tight">
+							14 años diseñando productos digitales
+						</h2>
+						<div class="space-y-4 text-muted leading-relaxed">
+							<p>
+								Durante los últimos 13 años he estado en diseño
+								y desarrollo, y actualmente me dedico al diseño
+								de productos digitales para empresas y startups
+								en diferentes industrias.
+							</p>
+							<p>
+								Mi enfoque es comprender las necesidades y
+								desafíos de los negocios para crear soluciones
+								efectivas y atractivas para los usuarios. Me
+								encanta trabajar en equipos multidisciplinarios
+								para lograr resultados excepcionales.
+							</p>
+						</div>
+						<Button size="md" variant="outline" href="/sobre-mi"
+							>Leer más y ver CV →</Button
+						>
+					</div>
+
+					<!-- Stats cell block -->
+					<div class="grid grid-cols-2 gap-px bg-foreground/10">
+						{
+							[
+								{
+									number: "14+",
+									label: "Años de experiencia",
+								},
+								{
+									number: "50+",
+									label: "Proyectos entregados",
+								},
+								{
+									number: "8+",
+									label: "Industrias diferentes",
+								},
+								{
+									number: "2015",
+									label: "Co-fundador Pávlov",
+								},
+							].map(({ number, label }) => (
+								<div class="bg-background p-8">
+									<div class="text-4xl font-extrabold text-gradient mb-2">
+										{number}
+									</div>
+									<div class="text-sm font-mono text-muted">
+										{label}
+									</div>
+								</div>
+							))
+						}
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer />
 </Layout>
 
 <script>
-  import { animate, stagger, inView } from "motion";
+	import { animate, stagger, inView } from "motion";
 
-  const initAnimations = () => {
-    const hero = document.querySelector("#hero");
-    if (hero) {
-      animate(
-        "#hero .inline-flex, #hero h1, #hero p, #hero .flex.flex-col",
-        { opacity: [0, 1], y: [12, 0] },
-        { delay: stagger(0.08), duration: 0.6 },
-      );
-    }
+	let cleanupFns: (() => void)[] = [];
 
-    document.querySelectorAll("section:not(#hero)").forEach((section) => {
-      inView(
-        section,
-        (info) => {
-          animate(
-            info.target.querySelectorAll("h2, p, .grid > *, .space-y-4 > *"),
-            { opacity: [0, 1], y: [16, 0] },
-            { delay: stagger(0.05), duration: 0.55 },
-          );
-        },
-        { amount: 0.15 },
-      );
-    });
-  };
+	function destroyAnimations() {
+		cleanupFns.forEach((fn) => fn());
+		cleanupFns = [];
+	}
 
-  document.addEventListener("astro:page-load", initAnimations);
+	function initAnimations() {
+		destroyAnimations();
+
+		const hero = document.querySelector("#hero");
+		if (hero) {
+			const animator = animate(
+				".hero-animate",
+				{ opacity: [0, 1], y: [12, 0] },
+				{ delay: stagger(0.08), duration: 0.6 },
+			);
+			cleanupFns.push(() => animator.stop());
+		}
+
+		document.querySelectorAll("section").forEach((section) => {
+			const stop = inView(
+				section,
+				(info) => {
+					animate(
+						info.target.querySelectorAll(
+							"h2, p, .grid > *, .space-y-4 > *",
+						),
+						{ opacity: [0, 1], y: [16, 0] },
+						{ delay: stagger(0.05), duration: 0.55 },
+					);
+				},
+				{ amount: 0.15 },
+			);
+			cleanupFns.push(stop);
+		});
+	}
+
+	document.addEventListener("astro:after-swap", destroyAnimations);
+	document.addEventListener("astro:page-load", initAnimations);
 </script>
