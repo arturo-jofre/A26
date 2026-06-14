@@ -7,8 +7,8 @@ import Button from "../components/Button.astro";
 
 <Layout title="404 - Página no encontrada - Arturo Jofré">
   <Navbar />
-  <main class="pt-24 pb-10 flex-grow" transition:animate="fade">
-    <div class="container mx-auto px-4">
+  <main id="main" class="pt-24 pb-10 flex-grow">
+    <div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
       <div
         class="min-h-[60vh] flex flex-col items-center justify-center text-center space-y-8"
       >
@@ -20,7 +20,7 @@ import Button from "../components/Button.astro";
             404
           </span>
           <p
-            class="relative text-6xl md:text-8xl font-extrabold tracking-tight text-gradient"
+            class="relative text-6xl md:text-8xl font-bold tracking-tight"
           >
             404
           </p>
@@ -50,11 +50,29 @@ import Button from "../components/Button.astro";
 <script>
   import { animate, stagger } from "motion";
 
-  document.addEventListener("astro:page-load", () => {
-    animate(
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  let currentAnimator: ReturnType<typeof animate> | null = null;
+
+  function destroyAnimations() {
+    if (currentAnimator) {
+      currentAnimator.stop();
+      currentAnimator = null;
+    }
+  }
+
+  function initAnimations() {
+    destroyAnimations();
+    if (prefersReducedMotion) return;
+    currentAnimator = animate(
       "h1, p, .flex",
       { opacity: [0, 1], y: [20, 0] },
       { delay: stagger(0.1), duration: 0.5 },
     );
-  });
+  }
+
+  document.addEventListener("astro:after-swap", destroyAnimations);
+  document.addEventListener("astro:page-load", initAnimations);
 </script>

@@ -1,0 +1,66 @@
+---
+interface Props {
+	tone?: "quiet" | "strong" | "accent";
+	size?: "sm" | "md" | "lg";
+	class?: string;
+}
+const {
+	tone = "strong",
+	size = "md",
+	class: className = "",
+} = Astro.props;
+
+const sizeMap = {
+	sm: "w-3 h-3",
+	md: "w-3.5 h-3.5",
+	lg: "w-4 h-4",
+};
+const cornerSize = sizeMap[size];
+
+const toneMap = {
+	quiet: "border-border",
+	strong: "border-border-strong",
+	accent: "border-accent",
+};
+const borderClass = toneMap[tone];
+---
+
+<div class:list={["relative", className]}>
+	<span
+		aria-hidden="true"
+		class:list={[
+			"absolute top-0 left-0 pointer-events-none",
+			cornerSize,
+			"border-t border-l",
+			borderClass,
+		]}
+	></span>
+	<span
+		aria-hidden="true"
+		class:list={[
+			"absolute top-0 right-0 pointer-events-none",
+			cornerSize,
+			"border-t border-r",
+			borderClass,
+		]}
+	></span>
+	<span
+		aria-hidden="true"
+		class:list={[
+			"absolute bottom-0 left-0 pointer-events-none",
+			cornerSize,
+			"border-b border-l",
+			borderClass,
+		]}
+	></span>
+	<span
+		aria-hidden="true"
+		class:list={[
+			"absolute bottom-0 right-0 pointer-events-none",
+			cornerSize,
+			"border-b border-r",
+			borderClass,
+		]}
+	></span>
+	<slot />
+</div>

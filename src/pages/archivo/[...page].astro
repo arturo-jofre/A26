@@ -8,9 +8,10 @@ import Button from "../../components/Button.astro";
 import { getCollection } from "astro:content";
 
 export async function getStaticPaths({ paginate }) {
+  const isDev = import.meta.env.DEV;
   const allProjects = await getCollection("proyectos");
   const sortedProjects = allProjects
-    .filter((p) => !p.data.draft && p.data.archived)
+    .filter((p) => (isDev ? true : !p.data.draft) && p.data.archived)
     .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
   return paginate(sortedProjects, { pageSize: 9 });
 }
@@ -20,8 +21,8 @@ const { page } = Astro.props;
 
 <Layout title={`Archivo - Arturo Jofré`}>
   <Navbar />
-  <main class="pt-24 pb-10 flex-grow" transition:animate="fade">
-    <div class="container mx-auto px-4">
+  <main class="pt-24 pb-10 flex-grow">
+    <div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
       <div class="py-16 mb-8 border-b border-border">
         <h1 class="text-5xl font-bold mb-4">Archivo</h1>
         <p class="text-xl text-muted">
@@ -29,7 +30,7 @@ const { page } = Astro.props;
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10 mb-12">
         {
           page.data.map((project) => (
             <ProjectCard
@@ -46,7 +47,7 @@ const { page } = Astro.props;
 
       <!-- Pagination Controls -->
       <div
-        class="flex items-center justify-between border-t border-border pt-8"
+        class="flex items-center justify-between border-t border-border pt-8 flex-wrap gap-4"
       >
         <div class="flex gap-4">
           {

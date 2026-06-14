@@ -21,8 +21,8 @@ const { Content } = await render(project);
 
 <Layout title={`${project.data.title} - Arturo Jofré`}>
   <Navbar />
-  <main class="pt-24 pb-10 flex-grow" transition:animate="fade">
-    <article class="container mx-auto px-4 py-16">
+  <main id="main" class="pt-24 pb-10 flex-grow">
+    <article class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 py-16">
       <!-- Header -->
       <header class="mb-16">
         <div class="flex items-center gap-4 text-sm text-accent font-mono mb-6">
@@ -37,7 +37,7 @@ const { Content } = await render(project);
 
         {
           project.data.image && (
-            <div class="mt-12 rounded-2xl overflow-hidden glass border border-border aspect-[21/9]">
+            <div class="mt-12 rounded-xl overflow-hidden glass border border-border aspect-[21/9]">
               <img
                 src={project.data.image}
                 alt={project.data.title}
@@ -94,7 +94,7 @@ const { Content } = await render(project);
       </div>
 
       <!-- Content -->
-      <div class="prose prose-invert prose-orange max-w-none">
+      <div class="prose-custom">
         <Content />
       </div>
     </article>
@@ -104,6 +104,10 @@ const { Content } = await render(project);
 
 <script>
   import { animate, stagger } from "motion";
+
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
   let currentAnimator: ReturnType<typeof animate> | null = null;
 
@@ -116,6 +120,7 @@ const { Content } = await render(project);
 
   function initAnimations() {
     destroyAnimations();
+    if (prefersReducedMotion) return;
     currentAnimator = animate(
       "header > *, .grid > *, .prose > *",
       { opacity: [0, 1], y: [10, 0] },

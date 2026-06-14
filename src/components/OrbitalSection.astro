@@ -1,29 +1,340 @@
 ---
-
+import Kicker from "./Kicker.astro";
 ---
 
 <section id="orbital" class="relative py-24">
-	<div class="mx-auto px-8 md:px-12">
-		<div class="mb-8">
-			<p
-				class="text-xs font-mono tracking-widest uppercase text-accent mb-2"
-			>
-				Estructura
-			</p>
-			<h2 class="text-4xl font-extrabold tracking-tight">Orbital</h2>
+	<div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
+		<div class="mb-8 space-y-2">
+			<Kicker>PRACTICE AREAS // UX · DEV · BUSINESS</Kicker>
+			<h2 class="text-2xl font-bold tracking-tight">Orbital</h2>
 		</div>
 
 		<div
 			id="orbital-container"
-			class="relative h-[75dvh] bg-white/[0.02] border border-foreground/10"
+			class="orbital relative h-[75dvh] bg-white/[0.02] border border-border overflow-hidden isolate"
+			role="img"
+			aria-label="Three practice areas orbiting a center of craft: UX, DEV, BUSINESS."
 		>
-			<div id="orbital-canvas" class="w-full h-full"></div>
-		</div>
-	</div>
+			<div class="orbital-grid" aria-hidden="true"></div>
+			<div class="orbital-dots" aria-hidden="true"></div>
 
-	<div
-		class="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-foreground/15 to-transparent"
-	>
+			<div id="orbital-canvas" class="absolute inset-0 z-[1]"></div>
+
+			<div
+				id="orbital-static"
+				class="absolute inset-0 hidden items-center justify-center z-20"
+				aria-hidden="true"
+			>
+				<div
+					class="font-mono text-xs uppercase tracking-widest text-muted flex items-center gap-8"
+				>
+					<span>UX</span>
+					<span class="w-1 h-1 rounded-full bg-muted"></span>
+					<span>DEV</span>
+					<span class="w-1 h-1 rounded-full bg-muted"></span>
+					<span>BUSINESS</span>
+				</div>
+			</div>
+
+			<div class="orbital-hud" aria-hidden="true">
+				<span class="orbital-hud-corner orbital-hud-corner--tl"></span>
+				<span class="orbital-hud-corner orbital-hud-corner--tr"></span>
+				<span class="orbital-hud-corner orbital-hud-corner--bl"></span>
+				<span class="orbital-hud-corner orbital-hud-corner--br"></span>
+
+				<span class="orbital-hud-crosshair">
+					<span></span>
+					<span></span>
+				</span>
+
+				<div class="orbital-hud-panel orbital-hud-panel--tl">
+					<Kicker tone="accent" class="mb-1">SYSTEM // ONLINE</Kicker>
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted leading-relaxed">
+						v0.2 · three · webgl
+					</p>
+				</div>
+
+				<div class="orbital-hud-panel orbital-hud-panel--tr text-right">
+					<Kicker tone="muted" class="mb-1">SECTOR // 03-A</Kicker>
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted leading-relaxed">
+						BAND · K · LOCK
+					</p>
+				</div>
+
+				<div class="orbital-hud-panel orbital-hud-panel--bl">
+					<Kicker tone="muted" class="mb-2">TELEMETRY</Kicker>
+					<dl
+						id="orbital-readout"
+						class="font-mono text-[10px] uppercase tracking-widest grid grid-cols-2 gap-x-4 gap-y-0.5 min-w-[260px] m-0"
+					>
+						<div class="flex justify-between gap-2">
+							<dt class="text-muted">FPS</dt>
+							<dd class="text-foreground tabular-nums m-0" data-readout="fps">--</dd>
+						</div>
+						<div class="flex justify-between gap-2">
+							<dt class="text-muted">AZI</dt>
+							<dd class="text-foreground tabular-nums m-0" data-readout="azi">000°</dd>
+						</div>
+						<div class="flex justify-between gap-2">
+							<dt class="text-muted">SCAN</dt>
+							<dd class="text-foreground tabular-nums m-0" data-readout="time">00:00:00</dd>
+						</div>
+						<div class="flex justify-between gap-2">
+							<dt class="text-muted">ELE</dt>
+							<dd class="text-foreground tabular-nums m-0" data-readout="ele">+00.0°</dd>
+						</div>
+						<div class="flex justify-between gap-2">
+							<dt class="text-muted">SATS</dt>
+							<dd class="text-foreground tabular-nums m-0" data-readout="sats">03</dd>
+						</div>
+						<div class="flex justify-between gap-2">
+							<dt class="text-muted">RNG</dt>
+							<dd class="text-foreground tabular-nums m-0" data-readout="range">0.00</dd>
+						</div>
+						<div class="flex justify-between gap-2">
+							<dt class="text-muted">FOCUS</dt>
+							<dd class="text-foreground tabular-nums m-0" data-readout="focus">+0.00 / +0.00</dd>
+						</div>
+						<div class="flex justify-between gap-2">
+							<dt class="text-muted">HDG</dt>
+							<dd class="text-foreground tabular-nums m-0" data-readout="hdg">N</dd>
+						</div>
+					</dl>
+				</div>
+
+				<div class="orbital-hud-panel orbital-hud-panel--bc">
+					<div
+						class="font-mono text-[10px] uppercase tracking-widest flex items-center gap-3"
+					>
+						<span class="text-muted">SCALE</span>
+						<div class="orbital-scale flex items-center">
+							<span class="orbital-scale-tick"></span>
+							<span class="orbital-scale-line"></span>
+							<span class="orbital-scale-tick"></span>
+						</div>
+						<span class="text-foreground tabular-nums" data-readout="scale">0.00u</span>
+					</div>
+				</div>
+
+				<div class="orbital-hud-panel orbital-hud-panel--br">
+					<Kicker tone="accent" class="mb-3">CONTROLS // MAP</Kicker>
+					<div
+						class="grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 font-mono text-[10px] uppercase tracking-widest min-w-[230px]"
+					>
+						<span class="text-muted self-center">AUTO</span>
+						<label class="orbital-hud-switch">
+							<input type="checkbox" data-config="autoRotate" checked />
+							<span></span>
+						</label>
+
+						<span class="text-muted self-center">SPD</span>
+						<input
+							type="range"
+							data-config="rotationSpeed"
+							min="0"
+							max="2"
+							step="0.05"
+							value="1"
+							class="orbital-hud-range"
+						/>
+
+						<span class="text-muted self-center">R-UX</span>
+						<input
+							type="range"
+							data-config="orbitRadius"
+							data-index="0"
+							min="1.4"
+							max="3.2"
+							step="0.05"
+							value="2.0"
+							class="orbital-hud-range"
+						/>
+
+						<span class="text-muted self-center">R-DV</span>
+						<input
+							type="range"
+							data-config="orbitRadius"
+							data-index="1"
+							min="1.4"
+							max="3.2"
+							step="0.05"
+							value="2.2"
+							class="orbital-hud-range"
+						/>
+
+						<span class="text-muted self-center">R-BZ</span>
+						<input
+							type="range"
+							data-config="orbitRadius"
+							data-index="2"
+							min="1.4"
+							max="3.2"
+							step="0.05"
+							value="2.4"
+							class="orbital-hud-range"
+						/>
+
+						<span class="text-muted self-center">SHP</span>
+						<div class="flex gap-1">
+							<button
+								type="button"
+								data-config="satelliteShape"
+								data-value="triangle"
+								class="orbital-hud-btn orbital-hud-btn--active"
+								aria-label="Triangle shape">▲</button
+							>
+							<button
+								type="button"
+								data-config="satelliteShape"
+								data-value="sphere"
+								class="orbital-hud-btn"
+								aria-label="Sphere shape">●</button
+							>
+							<button
+								type="button"
+								data-config="satelliteShape"
+								data-value="diamond"
+								class="orbital-hud-btn"
+								aria-label="Diamond shape">◆</button
+							>
+						</div>
+
+						<span class="text-muted self-center">SIZ</span>
+						<input
+							type="range"
+							data-config="satelliteSize"
+							min="0.08"
+							max="0.3"
+							step="0.01"
+							value="0.12"
+							class="orbital-hud-range"
+						/>
+
+						<span class="text-muted self-center">GRD</span>
+						<div class="flex gap-1">
+							<button
+								type="button"
+								data-config="gridResolution"
+								data-value="10"
+								class="orbital-hud-btn"
+								aria-label="10 degree grid">10°</button
+							>
+							<button
+								type="button"
+								data-config="gridResolution"
+								data-value="20"
+								class="orbital-hud-btn orbital-hud-btn--active"
+								aria-label="20 degree grid">20°</button
+							>
+							<button
+								type="button"
+								data-config="gridResolution"
+								data-value="30"
+								class="orbital-hud-btn"
+								aria-label="30 degree grid">30°</button
+							>
+							<button
+								type="button"
+								data-config="gridResolution"
+								data-value="45"
+								class="orbital-hud-btn"
+								aria-label="45 degree grid">45°</button
+							>
+						</div>
+
+						<span class="text-muted self-center">COL</span>
+						<div class="flex items-center gap-2">
+							<input
+								type="color"
+								data-config="orbitColor"
+								value="#8a847c"
+								class="orbital-hud-color"
+								aria-label="Orbit color"
+							/>
+							<label class="orbital-hud-switch">
+								<input type="checkbox" data-config="dashed" checked />
+								<span></span>
+							</label>
+							<span class="text-muted text-[9px]">DASH</span>
+						</div>
+
+						<div class="col-span-2 flex items-center gap-2 pt-1 border-t border-border/40">
+							<span class="text-muted text-[9px]">RST</span>
+							<button
+								type="button"
+								data-action="resetCamera"
+								class="orbital-hud-btn flex-1"
+								aria-label="Reset camera">RESET CAM</button
+							>
+						</div>
+					</div>
+				</div>
+
+				<div
+					id="orbital-target-sat"
+					class="orbital-hud-panel orbital-hud-panel--tc hidden"
+				>
+					<Kicker tone="accent" class="mb-2">TARGET // LOCKED</Kicker>
+					<dl
+						class="font-mono text-[10px] uppercase tracking-widest space-y-0.5 min-w-[200px] m-0"
+					>
+						<div class="flex justify-between gap-3">
+							<dt class="text-muted">NAME</dt>
+							<dd
+								class="text-foreground tabular-nums m-0"
+								data-target-sat="name">--</dd
+							>
+						</div>
+						<div class="flex justify-between gap-3">
+							<dt class="text-muted">RADIUS</dt>
+							<dd
+								class="text-foreground tabular-nums m-0"
+								data-target-sat="radius">--</dd
+							>
+						</div>
+						<div class="flex justify-between gap-3">
+							<dt class="text-muted">INCL</dt>
+							<dd
+								class="text-foreground tabular-nums m-0"
+								data-target-sat="incl">--</dd
+							>
+						</div>
+						<div class="flex justify-between gap-3">
+							<dt class="text-muted">SPD</dt>
+							<dd
+								class="text-foreground tabular-nums m-0"
+								data-target-sat="spd">--</dd
+							>
+						</div>
+					</dl>
+				</div>
+
+				<div
+					id="orbital-target-planet"
+					class="orbital-hud-panel orbital-hud-panel--tc hidden"
+				>
+					<Kicker tone="accent" class="mb-2">PLANET POINT</Kicker>
+					<dl
+						class="font-mono text-[10px] uppercase tracking-widest space-y-0.5 min-w-[200px] m-0"
+					>
+						<div class="flex justify-between gap-3">
+							<dt class="text-muted">LAT</dt>
+							<dd
+								class="text-foreground tabular-nums m-0"
+								data-target-planet="lat">--</dd
+							>
+						</div>
+						<div class="flex justify-between gap-3">
+							<dt class="text-muted">LON</dt>
+							<dd
+								class="text-foreground tabular-nums m-0"
+								data-target-planet="lon">--</dd
+							>
+						</div>
+					</dl>
+				</div>
+			</div>
+		</div>
 	</div>
 </section>
 
@@ -33,9 +344,470 @@
 		font-size: 0.6rem;
 		text-transform: uppercase;
 		letter-spacing: 0.15em;
-		color: #f04000;
+		color: var(--color-accent);
 		user-select: none;
 		pointer-events: none;
+	}
+
+	/* ---------- HUD layer ---------- */
+	.orbital-grid {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 0;
+		background-image:
+			linear-gradient(
+				to right,
+				var(--color-muted) 1px,
+				transparent 1px
+			),
+			linear-gradient(
+				to bottom,
+				var(--color-muted) 1px,
+				transparent 1px
+			);
+		background-size: 80px 80px;
+		opacity: 0.12;
+		mask-image: radial-gradient(
+			ellipse 70% 60% at 50% 50%,
+			black 0%,
+			black 50%,
+			transparent 90%
+		);
+		-webkit-mask-image: radial-gradient(
+			ellipse 70% 60% at 50% 50%,
+			black 0%,
+			black 50%,
+			transparent 90%
+		);
+	}
+
+	.orbital-dots {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 0;
+		background-image:
+			radial-gradient(
+				circle,
+				var(--color-muted) 1px,
+				transparent 1.5px
+			),
+			radial-gradient(
+				circle,
+				var(--color-muted) 1.5px,
+				transparent 2px
+			);
+		background-size:
+			24px 24px,
+			120px 120px;
+		opacity: 0.18;
+		mask-image: radial-gradient(
+			ellipse 70% 60% at 50% 50%,
+			black 0%,
+			black 50%,
+			transparent 90%
+		);
+		-webkit-mask-image: radial-gradient(
+			ellipse 70% 60% at 50% 50%,
+			black 0%,
+			black 50%,
+			transparent 90%
+		);
+	}
+
+	.orbital-hud {
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		z-index: 5;
+		font-family: "Geist Mono", monospace;
+	}
+
+	/* Corner brackets */
+	.orbital-hud-corner {
+		position: absolute;
+		width: 18px;
+		height: 18px;
+		color: var(--color-accent);
+		opacity: 0.85;
+	}
+	.orbital-hud-corner::before,
+	.orbital-hud-corner::after {
+		content: "";
+		position: absolute;
+		background: currentColor;
+	}
+	.orbital-hud-corner--tl {
+		top: 10px;
+		left: 10px;
+	}
+	.orbital-hud-corner--tl::before {
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+	}
+	.orbital-hud-corner--tl::after {
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 1px;
+	}
+	.orbital-hud-corner--tr {
+		top: 10px;
+		right: 10px;
+	}
+	.orbital-hud-corner--tr::before {
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+	}
+	.orbital-hud-corner--tr::after {
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: 1px;
+	}
+	.orbital-hud-corner--bl {
+		bottom: 10px;
+		left: 10px;
+	}
+	.orbital-hud-corner--bl::before {
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+	}
+	.orbital-hud-corner--bl::after {
+		bottom: 0;
+		left: 0;
+		top: 0;
+		width: 1px;
+	}
+	.orbital-hud-corner--br {
+		bottom: 10px;
+		right: 10px;
+	}
+	.orbital-hud-corner--br::before {
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+	}
+	.orbital-hud-corner--br::after {
+		bottom: 0;
+		right: 0;
+		top: 0;
+		width: 1px;
+	}
+
+	/* Crosshair center */
+	.orbital-hud-crosshair {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		height: 0;
+		opacity: 0.45;
+	}
+	.orbital-hud-crosshair span {
+		position: absolute;
+		background: var(--color-accent);
+	}
+	.orbital-hud-crosshair span:first-child {
+		width: 12px;
+		height: 1px;
+		left: -6px;
+		top: 0;
+	}
+	.orbital-hud-crosshair span:last-child {
+		width: 1px;
+		height: 12px;
+		left: 0;
+		top: -6px;
+	}
+
+	/* HUD panels */
+	.orbital-hud-panel {
+		position: absolute;
+		padding: 0.65rem 0.85rem;
+		background: rgba(24, 24, 24, 0.6);
+		border: 1px solid var(--color-border-strong);
+		backdrop-filter: blur(4px);
+		-webkit-backdrop-filter: blur(4px);
+		pointer-events: none;
+	}
+	.orbital-hud-panel--tl {
+		top: 28px;
+		left: 28px;
+	}
+	.orbital-hud-panel--tr {
+		top: 28px;
+		right: 28px;
+	}
+	.orbital-hud-panel--bl {
+		bottom: 28px;
+		left: 28px;
+	}
+	.orbital-hud-panel--br {
+		bottom: 28px;
+		right: 28px;
+	}
+	.orbital-hud-panel--bc {
+		bottom: 32px;
+		left: 50%;
+		transform: translateX(-50%);
+		padding: 0.45rem 0.85rem;
+		pointer-events: none;
+	}
+	.orbital-hud-panel--tc {
+		top: 28px;
+		left: 50%;
+		transform: translateX(-50%);
+		padding: 0.5rem 0.85rem;
+		pointer-events: none;
+	}
+
+	/* Scale bar visuals */
+	.orbital-scale {
+		gap: 0;
+	}
+	.orbital-scale-tick {
+		display: block;
+		width: 1px;
+		height: 10px;
+		background: var(--color-foreground);
+	}
+	.orbital-scale-line {
+		display: block;
+		width: 64px;
+		height: 1px;
+		background: var(--color-foreground);
+	}
+
+	/* Compass label sizing (overrides default .orbital-label) */
+	.orbital-label--cardinal {
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.18em;
+	}
+	.orbital-label--intercardinal {
+		font-size: 0.55rem;
+		font-weight: 500;
+		letter-spacing: 0.12em;
+		opacity: 0.7;
+	}
+
+	/* Only the bottom-right control panel catches input;
+	   individual controls override below */
+	.orbital-hud-panel--br {
+		pointer-events: auto;
+	}
+
+	/* Scanlines overlay */
+	.orbital-hud::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: repeating-linear-gradient(
+			0deg,
+			transparent 0,
+			transparent 2px,
+			rgba(240, 64, 0, 0.03) 2px,
+			rgba(240, 64, 0, 0.03) 3px
+		);
+		pointer-events: none;
+		mix-blend-mode: screen;
+	}
+
+	/* Glitch on hover */
+	.orbital-hud::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		opacity: 0;
+		transition: opacity 0.15s ease;
+		background:
+			linear-gradient(
+				90deg,
+				rgba(240, 64, 0, 0.07) 0%,
+				transparent 2%,
+				transparent 98%,
+				rgba(240, 64, 0, 0.07) 100%
+			),
+			linear-gradient(0deg, rgba(0, 200, 255, 0.04) 0%, transparent 50%);
+	}
+	.orbital:hover .orbital-hud::before {
+		opacity: 1;
+	}
+
+	/* ---------- Controls ---------- */
+	.orbital-hud-panel--br input,
+	.orbital-hud-panel--br button,
+	.orbital-hud-panel--br select,
+	.orbital-hud-panel--br label.orbital-hud-switch {
+		pointer-events: auto;
+	}
+
+	.orbital-hud-range {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 100%;
+		height: 2px;
+		background: var(--color-border-strong);
+		border: none;
+		outline: none;
+		cursor: pointer;
+		margin: 0;
+	}
+	.orbital-hud-range::-webkit-slider-thumb {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 10px;
+		height: 14px;
+		background: var(--color-accent);
+		border: 0;
+		cursor: grab;
+		border-radius: 0;
+	}
+	.orbital-hud-range::-moz-range-thumb {
+		width: 10px;
+		height: 14px;
+		background: var(--color-accent);
+		border: 0;
+		border-radius: 0;
+		cursor: grab;
+	}
+	.orbital-hud-range::-webkit-slider-thumb:active {
+		cursor: grabbing;
+	}
+
+	.orbital-hud-btn {
+		flex: 1;
+		padding: 0.25rem 0.4rem;
+		background: transparent;
+		border: 1px solid var(--color-border-strong);
+		color: var(--color-muted);
+		font-family: "Geist Mono", monospace;
+		font-size: 10px;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		cursor: pointer;
+		transition:
+			color 0.1s,
+			border-color 0.1s,
+			background 0.1s;
+		line-height: 1;
+	}
+	.orbital-hud-btn:hover {
+		color: var(--color-foreground);
+		border-color: var(--color-accent);
+	}
+	.orbital-hud-btn--active {
+		color: var(--color-accent);
+		border-color: var(--color-accent);
+		background: rgba(240, 64, 0, 0.1);
+	}
+
+	.orbital-hud-color {
+		-webkit-appearance: none;
+		appearance: none;
+		width: 32px;
+		height: 18px;
+		background: transparent;
+		border: 1px solid var(--color-border-strong);
+		cursor: pointer;
+		padding: 1px;
+		border-radius: 0;
+	}
+	.orbital-hud-color::-webkit-color-swatch-wrapper {
+		padding: 0;
+	}
+	.orbital-hud-color::-webkit-color-swatch {
+		border: none;
+	}
+	.orbital-hud-color::-moz-color-swatch {
+		border: none;
+	}
+
+	.orbital-hud-switch {
+		position: relative;
+		display: inline-block;
+		width: 28px;
+		height: 14px;
+		cursor: pointer;
+	}
+	.orbital-hud-switch input {
+		opacity: 0;
+		width: 0;
+		height: 0;
+		margin: 0;
+	}
+	.orbital-hud-switch span {
+		position: absolute;
+		inset: 0;
+		background: var(--color-border-strong);
+		border: 1px solid var(--color-border-strong);
+		transition: background 0.15s;
+	}
+	.orbital-hud-switch span::after {
+		content: "";
+		position: absolute;
+		top: 1px;
+		left: 1px;
+		width: 10px;
+		height: 10px;
+		background: var(--color-muted);
+		transition:
+			transform 0.15s,
+			background 0.15s;
+	}
+	.orbital-hud-switch input:checked + span {
+		background: rgba(240, 64, 0, 0.15);
+		border-color: var(--color-accent);
+	}
+	.orbital-hud-switch input:checked + span::after {
+		transform: translateX(14px);
+		background: var(--color-accent);
+	}
+
+	/* Mobile compaction */
+	@media (max-width: 640px) {
+		.orbital-hud-panel--tl,
+		.orbital-hud-panel--tr {
+			top: 20px;
+		}
+		.orbital-hud-panel--bl,
+		.orbital-hud-panel--br {
+			bottom: 20px;
+		}
+		.orbital-hud-panel--tl,
+		.orbital-hud-panel--bl {
+			left: 20px;
+		}
+		.orbital-hud-panel--tr,
+		.orbital-hud-panel--br {
+			right: 20px;
+		}
+		.orbital-hud-panel {
+			padding: 0.5rem 0.6rem;
+		}
+		.orbital-hud-panel--br > div {
+			min-width: 200px;
+		}
+		.orbital-hud-panel--bc {
+			display: none;
+		}
+		.orbital-hud-panel--tc {
+			top: 18px;
+			padding: 0.35rem 0.6rem;
+		}
+		.orbital-hud-panel--tc dl {
+			min-width: 0;
+		}
 	}
 </style>
 
@@ -47,16 +819,120 @@
 		CSS2DObject,
 	} from "three/addons/renderers/CSS2DRenderer.js";
 
+	const prefersReducedMotion = window.matchMedia(
+		"(prefers-reduced-motion: reduce)"
+	).matches;
+
+	// === Scene refs ===
 	let scene: THREE.Scene;
-	let camera: THREE.OrthographicCamera;
+	let camera: THREE.PerspectiveCamera;
 	let renderer: THREE.WebGLRenderer;
 	let labelRenderer: CSS2DRenderer;
 	let controls: OrbitControls;
 	let animationId: number;
 	let orbitalGroup: THREE.Group;
-
-	let autoRotate = true;
+	let planetGroup: THREE.Group;
+	let starfield: THREE.Points | null = null;
+	let compass: THREE.Group | null = null;
+	let cameraRay: THREE.Line | null = null;
+	let satelliteMaterial: THREE.MeshBasicMaterial;
 	let interactionTimeout: ReturnType<typeof setTimeout>;
+	let canvasHeight = 0;
+
+	// === Interaction state ===
+	const raycaster = new THREE.Raycaster();
+	const pointer = new THREE.Vector2();
+	let hoveredSatellite: Satellite | null = null;
+	let selectedSatellite: Satellite | null = null;
+	let planetMarker: THREE.Sprite | null = null;
+	let planetMarkerLat: number | null = null;
+	let planetMarkerLon: number | null = null;
+	let reticleTexture: THREE.CanvasTexture | null = null;
+	let pointerDownInfo: { x: number; y: number; time: number } | null = null;
+	let cameraResetAnim: {
+		startPos: THREE.Vector3;
+		endPos: THREE.Vector3;
+		startTime: number;
+		duration: number;
+	} | null = null;
+
+	// === Readout state ===
+	let fpsFrames = 0;
+	let fpsLastUpdate = performance.now();
+	let scanStart = performance.now();
+	let lastReadoutUpdate = 0;
+	const readoutEls: Record<string, HTMLElement | null> = {};
+
+	// === Config ===
+	type SatelliteShape = "triangle" | "sphere" | "diamond";
+	type GridResolution = 10 | 20 | 30 | 45;
+
+	interface Config {
+		autoRotate: boolean;
+		rotationSpeed: number;
+		gridResolution: GridResolution;
+		satelliteShape: SatelliteShape;
+		satelliteSize: number;
+		orbitRadii: [number, number, number];
+		orbitColor: number;
+		dashed: boolean;
+	}
+
+	const config: Config = {
+		autoRotate: true,
+		rotationSpeed: 1.0,
+		gridResolution: 20,
+		satelliteShape: "triangle",
+		satelliteSize: 0.12,
+		orbitRadii: [2.0, 2.2, 2.4],
+		orbitColor: 0x8a847c,
+		dashed: true,
+	};
+
+	// === Structural satellite data (not affected by config) ===
+	const satelliteData = [
+		{
+			name: "UX",
+			inclination: 0.4,
+			azimut: 0,
+			orbitSpeed: 0.25,
+			satSpeed: 0.3,
+		},
+		{
+			name: "DEV",
+			inclination: -0.3,
+			azimut: Math.PI / 3,
+			orbitSpeed: 0.15,
+			satSpeed: 0.5,
+		},
+		{
+			name: "BUSINESS",
+			inclination: 0.55,
+			azimut: -Math.PI / 5,
+			orbitSpeed: 0.35,
+			satSpeed: 0.2,
+		},
+	];
+
+	interface Satellite {
+		mesh: THREE.Mesh;
+		orbitGroup: THREE.Group;
+		orbitLine: THREE.LineLoop;
+		orbitLineMaterial: THREE.LineBasicMaterial | THREE.LineDashedMaterial;
+		orbitSpeed: number;
+		satSpeed: number;
+		angle: number;
+		radius: number;
+		dataIndex: number;
+	}
+
+	let satellites: Satellite[] = [];
+
+	// Tracks the dashed state of the planet grid at the time of the last build,
+	// so applyConfig can avoid rebuilding when the toggle hasn't changed.
+	let lastGridDashed = config.dashed;
+
+	// === Helpers ===
 
 	function createCircleGeometry(
 		radius: number,
@@ -76,28 +952,341 @@
 		return new THREE.BufferGeometry().setFromPoints(points);
 	}
 
-	function createCircleGeometryXY(
+	function createParallelGeometry(
 		radius: number,
-		segments = 128,
+		latitudeDeg: number,
+		segments = 96,
 	): THREE.BufferGeometry {
+		const lat = (latitudeDeg * Math.PI) / 180;
+		const y = Math.sin(lat) * radius;
+		const r = Math.cos(lat) * radius;
+		const points: THREE.Vector3[] = [];
+		for (let i = 0; i <= segments; i++) {
+			const theta = (i / segments) * Math.PI * 2;
+			points.push(
+				new THREE.Vector3(Math.cos(theta) * r, y, Math.sin(theta) * r),
+			);
+		}
+		return new THREE.BufferGeometry().setFromPoints(points);
+	}
+
+	function createMeridianGeometry(
+		radius: number,
+		longitudeDeg: number,
+		segments = 96,
+	): THREE.BufferGeometry {
+		// True great circle through both poles at the given longitude.
+		// Convention: longitude 0° = +Z, 90° = +X, 180° = -Z, 270° = -X.
+		const phi = (longitudeDeg * Math.PI) / 180;
 		const points: THREE.Vector3[] = [];
 		for (let i = 0; i <= segments; i++) {
 			const theta = (i / segments) * Math.PI * 2;
 			points.push(
 				new THREE.Vector3(
-					Math.cos(theta) * radius,
-					Math.sin(theta) * radius,
-					0,
+					radius * Math.cos(theta) * Math.sin(phi),
+					radius * Math.sin(theta),
+					radius * Math.cos(theta) * Math.cos(phi),
 				),
 			);
 		}
 		return new THREE.BufferGeometry().setFromPoints(points);
 	}
 
-	function initScene() {
-		const container = document.getElementById("orbital-canvas")!;
+	function buildSatelliteGeometry(
+		shape: SatelliteShape,
+		size: number,
+	): THREE.BufferGeometry {
+		if (shape === "triangle") {
+			// Dart pointing -Z, lying in the YZ plane (so silhouette is visible)
+			const s = size;
+			const vertices = new Float32Array([
+				0, 0, -s, // tip
+				0, s * 0.45, s * 0.6, // back-up
+				0, -s * 0.45, s * 0.6, // back-down
+			]);
+			const geometry = new THREE.BufferGeometry();
+			geometry.setAttribute(
+				"position",
+				new THREE.BufferAttribute(vertices, 3),
+			);
+			geometry.setIndex([0, 1, 2, 0, 2, 1]);
+			geometry.computeVertexNormals();
+			return geometry;
+		}
+		if (shape === "diamond") {
+			const s = size;
+			const vertices = new Float32Array([
+				0, s, 0, // top
+				0, 0, -s, // front
+				0, -s, 0, // bottom
+				0, 0, s, // back
+			]);
+			const geometry = new THREE.BufferGeometry();
+			geometry.setAttribute(
+				"position",
+				new THREE.BufferAttribute(vertices, 3),
+			);
+			geometry.setIndex([0, 1, 2, 3, 0, 3, 1, 2]);
+			geometry.computeVertexNormals();
+			return geometry;
+		}
+		return new THREE.SphereGeometry(size, 12, 12);
+	}
+
+	function createOrbitMaterial(
+		color: number,
+		dashed: boolean,
+	): THREE.LineBasicMaterial | THREE.LineDashedMaterial {
+		if (dashed) {
+			return new THREE.LineDashedMaterial({
+				color,
+				transparent: true,
+				opacity: 0.55,
+				dashSize: 0.08,
+				gapSize: 0.05,
+			});
+		}
+		return new THREE.LineBasicMaterial({
+			color,
+			transparent: true,
+			opacity: 0.4,
+		});
+	}
+
+	function buildStarfield(count: number): THREE.Points {
+		const positions = new Float32Array(count * 3);
+		for (let i = 0; i < count; i++) {
+			positions[i * 3] = (Math.random() - 0.5) * 50;
+			positions[i * 3 + 1] = (Math.random() - 0.5) * 30;
+			positions[i * 3 + 2] = -15 - Math.random() * 5;
+		}
+		const geometry = new THREE.BufferGeometry();
+		geometry.setAttribute(
+			"position",
+			new THREE.BufferAttribute(positions, 3),
+		);
+		const material = new THREE.PointsMaterial({
+			color: 0x8a847c,
+			size: 0.04,
+			sizeAttenuation: true,
+			transparent: true,
+			opacity: 0.6,
+		});
+		return new THREE.Points(geometry, material);
+	}
+
+	function buildCompass(): void {
+		// Apple Watch Ultra–style compass: flat ring around the planet
+		// at the equator (XZ plane), 12 tick marks, cardinal & intercardinal
+		// labels. World-fixed — does not rotate with orbitalGroup.
+		compass = new THREE.Group();
+		const ringRadius = 1.15;
+		const tickInner = 1.06;
+		const tickOuter = 1.15;
+		const cardinalR = 1.3;
+		const intercardinalR = 1.22;
+
+		// Main ring
+		const ringGeom = new THREE.TorusGeometry(ringRadius, 0.008, 8, 96);
+		const ringMat = new THREE.MeshBasicMaterial({
+			color: 0x8a847c,
+			transparent: true,
+			opacity: 0.55,
+		});
+		const ring = new THREE.Mesh(ringGeom, ringMat);
+		ring.rotation.x = Math.PI / 2;
+		compass.add(ring);
+
+		// Tick marks every 30°
+		const tickMat = new THREE.LineBasicMaterial({
+			color: 0x8a847c,
+			transparent: true,
+			opacity: 0.7,
+		});
+		for (let deg = 0; deg < 360; deg += 30) {
+			const rad = (deg * Math.PI) / 180;
+			const inner = new THREE.Vector3(
+				Math.sin(rad) * tickInner,
+				0,
+				Math.cos(rad) * tickInner,
+			);
+			const outer = new THREE.Vector3(
+				Math.sin(rad) * tickOuter,
+				0,
+				Math.cos(rad) * tickOuter,
+			);
+			const tickGeom = new THREE.BufferGeometry().setFromPoints([
+				inner,
+				outer,
+			]);
+			compass.add(new THREE.Line(tickGeom, tickMat));
+		}
+
+		// Labels (CSS2D)
+		const mkLabel = (
+			text: string,
+			angleDeg: number,
+			radius: number,
+			color: string,
+			emphasis: "cardinal" | "intercardinal",
+		) => {
+			const rad = (angleDeg * Math.PI) / 180;
+			const div = document.createElement("div");
+			div.className =
+				emphasis === "cardinal"
+					? "orbital-label orbital-label--cardinal"
+					: "orbital-label orbital-label--intercardinal";
+			div.textContent = text;
+			div.style.color = color;
+			const label = new CSS2DObject(div);
+			label.position.set(Math.sin(rad) * radius, 0, Math.cos(rad) * radius);
+			return label;
+		};
+
+		// Cardinals (N in accent)
+		compass.add(mkLabel("N", 0, cardinalR, "#f04000", "cardinal"));
+		compass.add(mkLabel("E", 90, cardinalR, "#d6d3ce", "cardinal"));
+		compass.add(mkLabel("S", 180, cardinalR, "#d6d3ce", "cardinal"));
+		compass.add(mkLabel("W", 270, cardinalR, "#d6d3ce", "cardinal"));
+
+		// Intercardinals (smaller, muted)
+		compass.add(mkLabel("NE", 45, intercardinalR, "#8a847c", "intercardinal"));
+		compass.add(mkLabel("SE", 135, intercardinalR, "#8a847c", "intercardinal"));
+		compass.add(mkLabel("SW", 225, intercardinalR, "#8a847c", "intercardinal"));
+		compass.add(mkLabel("NW", 315, intercardinalR, "#8a847c", "intercardinal"));
+
+		scene.add(compass);
+
+		// Camera position ray: line from origin to the camera.
+		// Endpoint sits at the camera (clipped by near plane) — gives the
+		// user a visual "where am I looking from" reference and crosses
+		// the compass ring at the user's cardinal bearing.
+		const rayGeom = new THREE.BufferGeometry();
+		rayGeom.setAttribute(
+			"position",
+			new THREE.BufferAttribute(new Float32Array(6), 3),
+		);
+		cameraRay = new THREE.Line(
+			rayGeom,
+			new THREE.LineBasicMaterial({
+				color: 0xf04000,
+				transparent: true,
+				opacity: 0.55,
+			}),
+		);
+		scene.add(cameraRay);
+	}
+
+	function disposeObject(obj: THREE.Object3D): void {
+		obj.traverse((child) => {
+			const m = child as THREE.Object3D & {
+				geometry?: THREE.BufferGeometry;
+				material?: THREE.Material | THREE.Material[];
+			};
+			if (m.geometry) m.geometry.dispose();
+			if (m.material) {
+				if (Array.isArray(m.material)) {
+					m.material.forEach((mm) => mm.dispose());
+				} else {
+					m.material.dispose();
+				}
+			}
+		});
+	}
+
+	function buildPlanetGrid(): void {
+		// Clear and dispose old children
+		const toRemove = [...planetGroup.children];
+		for (const child of toRemove) {
+			planetGroup.remove(child);
+			disposeObject(child);
+		}
+
+		const dashed = config.dashed;
+		const r = 0.8;
+		const step = config.gridResolution;
+
+		// Three materials: meridians (subtler), parallels (more visible),
+		// equator (accent — the primary reference line).
+		const mkLineMat = (
+			color: number,
+			opacity: number,
+		): THREE.LineBasicMaterial | THREE.LineDashedMaterial =>
+			(dashed
+				? new THREE.LineDashedMaterial({
+						color,
+						transparent: true,
+						opacity,
+						dashSize: 0.05,
+						gapSize: 0.03,
+					})
+				: new THREE.LineBasicMaterial({
+						color,
+						transparent: true,
+						opacity,
+					})) as THREE.LineBasicMaterial | THREE.LineDashedMaterial;
+
+		const meridianMat = mkLineMat(0xd6d3ce, 0.4);
+		const parallelMat = mkLineMat(0xd6d3ce, 0.6);
+		const equatorMat = mkLineMat(0xf04000, 0.75);
+
+		// Meridians — true great circles through both poles
+		for (let lon = 0; lon < 360; lon += step) {
+			const line = new THREE.LineLoop(
+				createMeridianGeometry(r, lon),
+				meridianMat,
+			);
+			if (dashed) line.computeLineDistances();
+			planetGroup.add(line);
+		}
+
+		// Parallels — horizontal circles at constant latitude
+		for (let lat = -80; lat <= 80; lat += step) {
+			const isEquator = lat === 0;
+			const mat = isEquator ? equatorMat : parallelMat;
+			const line = new THREE.LineLoop(
+				createParallelGeometry(r, lat),
+				mat,
+			);
+			if (dashed) line.computeLineDistances();
+			planetGroup.add(line);
+		}
+
+		lastGridDashed = dashed;
+
+		// Re-attach the planet marker if a planet point is currently selected
+		// (planetGroup is wiped on every rebuild, so the sprite is gone too).
+		if (planetMarkerLat !== null && planetMarkerLon !== null) {
+			createPlanetMarker(planetMarkerLat, planetMarkerLon);
+		}
+	}
+
+	// === Scene init ===
+	function initScene(): void {
+		const canvas = document.getElementById("orbital-canvas");
+		const staticFallback = document.getElementById("orbital-static");
+
+		if (prefersReducedMotion) {
+			canvas?.setAttribute("hidden", "");
+			staticFallback?.removeAttribute("hidden");
+			return;
+		}
+
+		// Cache readout elements
+		readoutEls.fps = document.querySelector('[data-readout="fps"]');
+		readoutEls.time = document.querySelector('[data-readout="time"]');
+		readoutEls.sats = document.querySelector('[data-readout="sats"]');
+		readoutEls.focus = document.querySelector('[data-readout="focus"]');
+		readoutEls.azi = document.querySelector('[data-readout="azi"]');
+		readoutEls.ele = document.querySelector('[data-readout="ele"]');
+		readoutEls.range = document.querySelector('[data-readout="range"]');
+		readoutEls.hdg = document.querySelector('[data-readout="hdg"]');
+		readoutEls.scale = document.querySelector('[data-readout="scale"]');
+
+		const container = canvas!;
 		const width = container.clientWidth;
 		const height = container.clientHeight;
+		canvasHeight = height;
 
 		scene = new THREE.Scene();
 
@@ -123,153 +1312,109 @@
 		controls.minDistance = 4;
 		controls.maxDistance = 15;
 		controls.addEventListener("start", () => {
-			autoRotate = false;
+			config.autoRotate = false;
+			const toggle = document.querySelector<HTMLInputElement>(
+				'input[data-config="autoRotate"]',
+			);
+			if (toggle) toggle.checked = false;
 			clearTimeout(interactionTimeout);
 		});
 		controls.addEventListener("end", () => {
 			interactionTimeout = setTimeout(() => {
-				autoRotate = true;
+				config.autoRotate = true;
+				const toggle = document.querySelector<HTMLInputElement>(
+					'input[data-config="autoRotate"]',
+				);
+				if (toggle) toggle.checked = true;
 			}, 3000);
 		});
 
+		// Starfield backdrop
+		starfield = buildStarfield(600);
+		scene.add(starfield);
+
+		// Apple Watch Ultra–style compass + camera ray
+		buildCompass();
+
+		// Orbital group (rotates as a whole when auto-rotate is on)
 		orbitalGroup = new THREE.Group();
 		orbitalGroup.rotation.x = 0.3;
 		scene.add(orbitalGroup);
 
-		const planetMaterial = new THREE.LineBasicMaterial({
-			color: 0xd6d3ce,
-			transparent: true,
-			opacity: 0.85,
-		});
-		const orbitMaterial = new THREE.LineBasicMaterial({
-			color: 0x3a3734,
-			transparent: true,
-			opacity: 0.4,
-		});
-		const satelliteMaterial = new THREE.MeshBasicMaterial({
-			color: 0xf04000,
-		});
-
-		const planetGroup = new THREE.Group();
+		// Planet group (with meridians/parallels, rotates around its own axis)
+		planetGroup = new THREE.Group();
 		orbitalGroup.add(planetGroup);
+		buildPlanetGrid();
 
-		const planetRing1 = new THREE.LineLoop(
-			createCircleGeometry(0.8),
-			planetMaterial,
-		);
-		planetGroup.add(planetRing1);
+		// Shared satellite material
+		satelliteMaterial = new THREE.MeshBasicMaterial({
+			color: 0xf04000,
+			side: THREE.DoubleSide,
+		});
 
-		const planetRing2 = new THREE.LineLoop(
-			createCircleGeometryXY(0.8),
-			planetMaterial.clone(),
-		);
-		planetGroup.add(planetRing2);
+		// Build satellites + orbits
+		satelliteData.forEach((data, i) => {
+			const orbitGroup = new THREE.Group();
+			orbitGroup.rotation.x = data.inclination;
+			orbitGroup.rotation.y = data.azimut;
+			orbitalGroup.add(orbitGroup);
 
-		interface Satellite {
-			mesh: THREE.Mesh;
-			orbitGroup: THREE.Group;
-			orbitSpeed: number;
-			satSpeed: number;
-			angle: number;
-			radius: number;
-			worldPos: THREE.Vector3;
-		}
+			const orbitMat = createOrbitMaterial(
+				config.orbitColor,
+				config.dashed,
+			);
+			const orbitLine = new THREE.LineLoop(
+				createCircleGeometry(config.orbitRadii[i]),
+				orbitMat,
+			);
+			if (config.dashed) orbitLine.computeLineDistances();
+			orbitGroup.add(orbitLine);
 
-		const satellites: Satellite[] = [];
-		const satelliteData = [
-			{
-				name: "UX",
-				radius: 2.0,
-				inclination: 0.4,
-				azimut: 0,
-				orbitSpeed: 0.25,
-				satSpeed: 0.3,
-			},
-			{
-				name: "DEV",
-				radius: 2.2,
-				inclination: -0.3,
-				azimut: Math.PI / 3,
-				orbitSpeed: 0.15,
-				satSpeed: 0.5,
-			},
-			{
-				name: "BUSINESS",
-				radius: 2.4,
-				inclination: 0.55,
-				azimut: -Math.PI / 5,
-				orbitSpeed: 0.35,
-				satSpeed: 0.2,
-			},
-		];
+			const mesh = new THREE.Mesh(
+				buildSatelliteGeometry(
+					config.satelliteShape,
+					config.satelliteSize,
+				),
+				satelliteMaterial,
+			);
+			mesh.position.set(config.orbitRadii[i], 0, 0);
+			orbitGroup.add(mesh);
 
-		satelliteData.forEach(
-			({ name, radius, inclination, azimut, orbitSpeed, satSpeed }) => {
-				const orbitGroup = new THREE.Group();
-				orbitGroup.rotation.x = inclination;
-				orbitGroup.rotation.y = azimut;
-				orbitalGroup.add(orbitGroup);
+			const labelDiv = document.createElement("div");
+			labelDiv.className = "orbital-label";
+			labelDiv.textContent = data.name;
+			const label = new CSS2DObject(labelDiv);
+			label.position.set(0, 0.25, 0);
+			mesh.add(label);
 
-				const orbitLine = new THREE.LineLoop(
-					createCircleGeometry(radius),
-					orbitMaterial.clone(),
-				);
-				orbitGroup.add(orbitLine);
-
-				const satelliteGeom = new THREE.SphereGeometry(0.06, 16, 16);
-				const satellite = new THREE.Mesh(
-					satelliteGeom,
-					satelliteMaterial.clone(),
-				);
-				satellite.position.set(radius, 0, 0);
-				orbitGroup.add(satellite);
-
-				const worldPos = new THREE.Vector3();
-				satellite.getWorldPosition(worldPos);
-
-				const labelDiv = document.createElement("div");
-				labelDiv.className = "orbital-label";
-				labelDiv.textContent = name;
-				const label = new CSS2DObject(labelDiv);
-				label.position.set(0, 0.25, 0);
-				satellite.add(label);
-
-				satellites.push({
-					mesh: satellite,
-					orbitGroup,
-					orbitSpeed,
-					satSpeed,
-					angle: Math.random() * Math.PI * 2,
-					radius,
-					worldPos,
-				});
-			},
-		);
-
-		function animate() {
-			animationId = requestAnimationFrame(animate);
-
-			if (autoRotate) {
-				orbitalGroup.rotation.y += 0.003;
-				planetGroup.rotation.y += 0.008;
-			}
-
-			satellites.forEach((sat) => {
-				sat.orbitGroup.rotation.y += sat.orbitSpeed * 0.015;
-				sat.angle += sat.satSpeed * 0.015;
-				sat.mesh.position.x = Math.cos(sat.angle) * sat.radius;
-				sat.mesh.position.z = Math.sin(sat.angle) * sat.radius;
-				sat.mesh.getWorldPosition(sat.worldPos);
+			satellites.push({
+				mesh,
+				orbitGroup,
+				orbitLine,
+				orbitLineMaterial: orbitMat,
+				orbitSpeed: data.orbitSpeed,
+				satSpeed: data.satSpeed,
+				angle: Math.random() * Math.PI * 2,
+				radius: config.orbitRadii[i],
+				dataIndex: i,
 			});
+		});
 
-			controls.update();
-			renderer.render(scene, camera);
-			labelRenderer.render(scene, camera);
-		}
+		setupControls();
 
+		// Reticle texture (used for both satellite reticle and planet marker)
+		reticleTexture = createReticleTexture();
+
+		// Hover/click on satellites and planet
+		setupInteraction();
+
+		fpsFrames = 0;
+		fpsLastUpdate = performance.now();
+		scanStart = performance.now();
+		lastReadoutUpdate = 0;
 		animate();
 
-		function onResize() {
+		function onResize(): void {
 			const w = container.clientWidth;
 			const h = container.clientHeight;
 			camera.aspect = w / h;
@@ -277,11 +1422,607 @@
 			renderer.setSize(w, h);
 			labelRenderer.setSize(w, h);
 		}
-
 		window.addEventListener("resize", onResize);
 	}
 
-	function destroyScene() {
+	// === Animation ===
+	function animate(): void {
+		animationId = requestAnimationFrame(animate);
+
+		if (config.autoRotate) {
+			orbitalGroup.rotation.y += 0.003 * config.rotationSpeed;
+			planetGroup.rotation.y += 0.008 * config.rotationSpeed;
+		}
+
+		const currentWorld = new THREE.Vector3();
+		const targetWorld = new THREE.Vector3();
+		const localAhead = new THREE.Vector3();
+
+		satellites.forEach((sat) => {
+			sat.orbitGroup.rotation.y += sat.orbitSpeed * 0.015;
+			sat.angle += sat.satSpeed * 0.015;
+			sat.mesh.position.x = Math.cos(sat.angle) * sat.radius;
+			sat.mesh.position.z = Math.sin(sat.angle) * sat.radius;
+
+			// Tangent orientation: look at a point ahead in the local orbit
+			localAhead
+				.set(
+					Math.cos(sat.angle + 0.05) * sat.radius,
+					0,
+					Math.sin(sat.angle + 0.05) * sat.radius,
+				);
+			targetWorld.copy(localAhead);
+			sat.orbitGroup.localToWorld(targetWorld);
+			sat.mesh.lookAt(targetWorld);
+		});
+
+		// Update camera ray: line from origin to camera world position
+		if (cameraRay) {
+			const camPos = camera.position;
+			const rayAttr = cameraRay.geometry.attributes.position as THREE.BufferAttribute;
+			rayAttr.setXYZ(0, 0, 0, 0);
+			rayAttr.setXYZ(1, camPos.x, camPos.y, camPos.z);
+			rayAttr.needsUpdate = true;
+		}
+
+		// Camera reset tween (ease-out cubic). Runs before controls.update
+		// so OrbitControls picks up the new position this frame.
+		if (cameraResetAnim) {
+			const elapsed = performance.now() - cameraResetAnim.startTime;
+			const t = Math.min(elapsed / cameraResetAnim.duration, 1);
+			const ease = 1 - Math.pow(1 - t, 3);
+			camera.position.lerpVectors(
+				cameraResetAnim.startPos,
+				cameraResetAnim.endPos,
+				ease,
+			);
+			if (t >= 1) cameraResetAnim = null;
+		}
+
+		controls.update();
+		renderer.render(scene, camera);
+		labelRenderer.render(scene, camera);
+
+		updateReadouts();
+	}
+
+	function updateReadouts(): void {
+		fpsFrames++;
+		const now = performance.now();
+
+		// Throttle DOM writes to 4Hz to avoid layout thrash
+		if (now - lastReadoutUpdate < 250) return;
+		lastReadoutUpdate = now;
+
+		const elapsed = now - fpsLastUpdate;
+		if (elapsed > 0 && readoutEls.fps) {
+			const fps = Math.round((fpsFrames * 1000) / elapsed);
+			readoutEls.fps.textContent = String(fps).padStart(2, "0");
+		}
+		fpsFrames = 0;
+		fpsLastUpdate = now;
+
+		if (readoutEls.time) {
+			const t = Math.floor((now - scanStart) / 1000);
+			const h = String(Math.floor(t / 3600)).padStart(2, "0");
+			const m = String(Math.floor((t % 3600) / 60)).padStart(2, "0");
+			const s = String(t % 60).padStart(2, "0");
+			readoutEls.time.textContent = `${h}:${m}:${s}`;
+		}
+
+		if (readoutEls.focus) {
+			const fmt = (n: number) => (n >= 0 ? "+" : "") + n.toFixed(2);
+			readoutEls.focus.textContent = `${fmt(orbitalGroup.rotation.y)} / ${fmt(orbitalGroup.rotation.x)}`;
+		}
+
+		if (readoutEls.sats) {
+			readoutEls.sats.textContent = String(satellites.length).padStart(
+				2,
+				"0",
+			);
+		}
+
+		// Camera spherical coordinates (camera always looks at origin)
+		const camPos = camera.position;
+		const range = camPos.length();
+		if (range > 0) {
+			const elevation = (Math.asin(camPos.y / range) * 180) / Math.PI;
+			const azimuthRaw = (Math.atan2(camPos.x, camPos.z) * 180) / Math.PI;
+			const azimuth = (azimuthRaw + 360) % 360;
+
+			if (readoutEls.azi) {
+				readoutEls.azi.textContent =
+					String(Math.round(azimuth)).padStart(3, "0") + "°";
+			}
+			if (readoutEls.ele) {
+				const sign = elevation >= 0 ? "+" : "";
+				readoutEls.ele.textContent =
+					sign + elevation.toFixed(1) + "°";
+			}
+			if (readoutEls.range) {
+				readoutEls.range.textContent = range.toFixed(2);
+			}
+			if (readoutEls.hdg) {
+				const dirs = [
+					"N",
+					"NE",
+					"E",
+					"SE",
+					"S",
+					"SW",
+					"W",
+					"NW",
+				];
+				readoutEls.hdg.textContent =
+					dirs[Math.round(azimuth / 45) % 8];
+			}
+
+			// Reference scale: world units represented by the 64px scale bar
+			// at the current camera distance. visibleHeight = 2·d·tan(fov/2).
+			if (readoutEls.scale && canvasHeight > 0) {
+				const fovRad = (45 * Math.PI) / 180;
+				const visibleHeight = 2 * range * Math.tan(fovRad / 2);
+				const worldUnitsPerPixel = visibleHeight / canvasHeight;
+				const scaleBarWorldUnits = 64 * worldUnitsPerPixel;
+				readoutEls.scale.textContent =
+					scaleBarWorldUnits.toFixed(2) + "u";
+			}
+		}
+	}
+
+	// === Config application ===
+	function applyConfig(): void {
+		// Satellite shape/size: swap geometry in place
+		satellites.forEach((sat) => {
+			sat.mesh.geometry.dispose();
+			sat.mesh.geometry = buildSatelliteGeometry(
+				config.satelliteShape,
+				config.satelliteSize,
+			);
+		});
+
+		// Orbit radii: rebuild line geometry
+		satellites.forEach((sat) => {
+			sat.radius = config.orbitRadii[sat.dataIndex];
+			sat.orbitLine.geometry.dispose();
+			sat.orbitLine.geometry = createCircleGeometry(sat.radius);
+			if (config.dashed) sat.orbitLine.computeLineDistances();
+		});
+
+		// Orbit material: swap type if dash toggle changed, else just update color
+		satellites.forEach((sat) => {
+			const isDashed =
+				sat.orbitLineMaterial instanceof THREE.LineDashedMaterial;
+			if (isDashed !== config.dashed) {
+				sat.orbitLineMaterial.dispose();
+				sat.orbitLineMaterial = createOrbitMaterial(
+					config.orbitColor,
+					config.dashed,
+				);
+				sat.orbitLine.material = sat.orbitLineMaterial;
+				if (config.dashed) sat.orbitLine.computeLineDistances();
+			} else {
+				sat.orbitLineMaterial.color.setHex(config.orbitColor);
+			}
+		});
+
+		// Planet grid: rebuild only if the dashed toggle actually changed.
+		// gridResolution changes go through handleButton → buildPlanetGrid directly.
+		if (lastGridDashed !== config.dashed) {
+			buildPlanetGrid();
+		}
+	}
+
+	// === Interaction ===
+	function createReticleTexture(): THREE.CanvasTexture {
+		const canvas = document.createElement("canvas");
+		canvas.width = canvas.height = 64;
+		const ctx = canvas.getContext("2d")!;
+		ctx.strokeStyle = "#f04000";
+		ctx.lineWidth = 2.5;
+		ctx.beginPath();
+		ctx.arc(32, 32, 26, 0, Math.PI * 2);
+		ctx.stroke();
+		ctx.beginPath();
+		ctx.moveTo(32, 20);
+		ctx.lineTo(32, 44);
+		ctx.moveTo(20, 32);
+		ctx.lineTo(44, 32);
+		ctx.stroke();
+		const tex = new THREE.CanvasTexture(canvas);
+		tex.colorSpace = THREE.SRGBColorSpace;
+		return tex;
+	}
+
+	function getSatLabel(sat: Satellite): CSS2DObject | null {
+		for (const child of sat.mesh.children) {
+			if (child instanceof CSS2DObject) return child;
+		}
+		return null;
+	}
+
+	function ndcFromEvent(event: PointerEvent): { x: number; y: number } {
+		const rect = renderer.domElement.getBoundingClientRect();
+		return {
+			x: ((event.clientX - rect.left) / rect.width) * 2 - 1,
+			y: -((event.clientY - rect.top) / rect.height) * 2 + 1,
+		};
+	}
+
+	function setHoverStyle(sat: Satellite | null): void {
+		if (hoveredSatellite && hoveredSatellite !== sat) {
+			const lbl = getSatLabel(hoveredSatellite);
+			if (lbl) {
+				lbl.element.style.opacity = "";
+				lbl.element.style.fontWeight = "";
+			}
+		}
+		hoveredSatellite = sat;
+		if (sat) {
+			const lbl = getSatLabel(sat);
+			if (lbl) {
+				lbl.element.style.opacity = "1";
+				lbl.element.style.fontWeight = "700";
+			}
+			renderer.domElement.style.cursor = "pointer";
+		} else {
+			renderer.domElement.style.cursor = "grab";
+		}
+	}
+
+	function onPointerMove(event: PointerEvent): void {
+		const ndc = ndcFromEvent(event);
+		pointer.set(ndc.x, ndc.y);
+		raycaster.setFromCamera(pointer, camera);
+		const satMeshes = satellites.map((s) => s.mesh);
+		const hits = raycaster.intersectObjects(satMeshes, false);
+		const hit = hits.length > 0 ? hits[0].object : null;
+		const sat = hit
+			? satellites.find((s) => s.mesh === hit) ?? null
+			: null;
+		setHoverStyle(sat);
+	}
+
+	function onPointerDown(event: PointerEvent): void {
+		// Any user interaction cancels an in-flight camera reset
+		cameraResetAnim = null;
+		pointerDownInfo = {
+			x: event.clientX,
+			y: event.clientY,
+			time: performance.now(),
+		};
+	}
+
+	function onPointerUp(event: PointerEvent): void {
+		const info = pointerDownInfo;
+		pointerDownInfo = null;
+		if (!info) return;
+		const dx = event.clientX - info.x;
+		const dy = event.clientY - info.y;
+		const dt = performance.now() - info.time;
+		if (Math.sqrt(dx * dx + dy * dy) < 5 && dt < 500) {
+			handleClick(event);
+		}
+	}
+
+	function onPointerLeave(): void {
+		setHoverStyle(null);
+	}
+
+	function handleClick(event: PointerEvent): void {
+		const ndc = ndcFromEvent(event);
+		pointer.set(ndc.x, ndc.y);
+		raycaster.setFromCamera(pointer, camera);
+
+		// Satellites first
+		const satMeshes = satellites.map((s) => s.mesh);
+		const satHits = raycaster.intersectObjects(satMeshes, false);
+		if (satHits.length > 0) {
+			const sat = satellites.find(
+				(s) => s.mesh === satHits[0].object,
+			);
+			if (sat) {
+				selectSatellite(sat);
+				return;
+			}
+		}
+
+		// Planet sphere (in world space — planet is centered at origin)
+		const planetSphere = new THREE.Sphere(
+			new THREE.Vector3(0, 0, 0),
+			0.8,
+		);
+		const worldHit = new THREE.Vector3();
+		if (raycaster.ray.intersectSphere(planetSphere, worldHit)) {
+			selectPlanetPoint(worldHit);
+			return;
+		}
+
+		deselectAll();
+	}
+
+	function addSatelliteReticle(sat: Satellite): void {
+		const existing = sat.mesh.getObjectByName("reticle");
+		if (existing) {
+			sat.mesh.remove(existing);
+			(existing as THREE.Sprite).material.dispose();
+		}
+		if (!reticleTexture) return;
+		const mat = new THREE.SpriteMaterial({
+			map: reticleTexture,
+			color: 0xf04000,
+			transparent: true,
+			opacity: 0.9,
+			depthTest: false,
+		});
+		const reticle = new THREE.Sprite(mat);
+		reticle.name = "reticle";
+		reticle.scale.set(0.35, 0.35, 1);
+		reticle.renderOrder = 999;
+		sat.mesh.add(reticle);
+	}
+
+	function selectSatellite(sat: Satellite): void {
+		// Clear any planet selection
+		if (planetMarker) {
+			planetMarker.parent?.remove(planetMarker);
+			(planetMarker.material as THREE.Material).dispose();
+			planetMarker = null;
+			planetMarkerLat = null;
+			planetMarkerLon = null;
+		}
+
+		// Reticle on the newly-selected satellite; remove any previous
+		if (selectedSatellite && selectedSatellite !== sat) {
+			const old = selectedSatellite.mesh.getObjectByName("reticle");
+			if (old) {
+				selectedSatellite.mesh.remove(old);
+				(old as THREE.Sprite).material.dispose();
+			}
+		}
+
+		selectedSatellite = sat;
+		addSatelliteReticle(sat);
+
+		const data = satelliteData[sat.dataIndex];
+		setTargetPanel("sat", {
+			name: data.name,
+			radius: sat.radius.toFixed(2) + "u",
+			incl:
+				((data.inclination * 180) / Math.PI).toFixed(1) + "°",
+			spd: data.orbitSpeed.toFixed(2),
+		});
+	}
+
+	function createPlanetMarker(lat: number, lon: number): void {
+		if (planetMarker) {
+			planetMarker.parent?.remove(planetMarker);
+			(planetMarker.material as THREE.Material).dispose();
+		}
+		if (!reticleTexture) return;
+		const latRad = (lat * Math.PI) / 180;
+		const lonRad = (lon * Math.PI) / 180;
+		const localPos = new THREE.Vector3(
+			Math.cos(latRad) * Math.sin(lonRad),
+			Math.sin(latRad),
+			Math.cos(latRad) * Math.cos(lonRad),
+		).multiplyScalar(0.8);
+
+		const mat = new THREE.SpriteMaterial({
+			map: reticleTexture,
+			color: 0xf04000,
+			transparent: true,
+			opacity: 0.9,
+			depthTest: false,
+		});
+		planetMarker = new THREE.Sprite(mat);
+		planetMarker.scale.set(0.22, 0.22, 1);
+		planetMarker.position.copy(localPos);
+		planetMarker.renderOrder = 999;
+		planetGroup.add(planetMarker);
+	}
+
+	function selectPlanetPoint(worldPoint: THREE.Vector3): void {
+		// Clear any satellite selection (remove reticle)
+		if (selectedSatellite) {
+			const r = selectedSatellite.mesh.getObjectByName("reticle");
+			if (r) {
+				selectedSatellite.mesh.remove(r);
+				(r as THREE.Sprite).material.dispose();
+			}
+			selectedSatellite = null;
+		}
+
+		// Convert to planet's local frame, then derive lat/long.
+		// The marker lives in planetGroup's local space so it rotates with
+		// the planet and stays at the same lat/long.
+		const localPoint = planetGroup.worldToLocal(worldPoint.clone());
+		const r = localPoint.length();
+		const lat = (Math.asin(localPoint.y / r) * 180) / Math.PI;
+		const lon = (Math.atan2(localPoint.x, localPoint.z) * 180) / Math.PI;
+		planetMarkerLat = lat;
+		planetMarkerLon = lon;
+		createPlanetMarker(lat, lon);
+
+		setTargetPanel("planet", {
+			lat: lat.toFixed(1) + "°",
+			lon: (((lon + 360) % 360)).toFixed(1) + "°",
+		});
+	}
+
+	function deselectAll(): void {
+		if (selectedSatellite) {
+			const r = selectedSatellite.mesh.getObjectByName("reticle");
+			if (r) {
+				selectedSatellite.mesh.remove(r);
+				(r as THREE.Sprite).material.dispose();
+			}
+			selectedSatellite = null;
+		}
+		if (planetMarker) {
+			planetMarker.parent?.remove(planetMarker);
+			(planetMarker.material as THREE.Material).dispose();
+			planetMarker = null;
+			planetMarkerLat = null;
+			planetMarkerLon = null;
+		}
+		hideTargetPanels();
+	}
+
+	function setTargetPanel(
+		kind: "sat" | "planet",
+		values: Record<string, string>,
+	): void {
+		const satPanel = document.getElementById("orbital-target-sat");
+		const planetPanel = document.getElementById(
+			"orbital-target-planet",
+		);
+		if (!satPanel || !planetPanel) return;
+		satPanel.classList.add("hidden");
+		planetPanel.classList.add("hidden");
+
+		const panel = kind === "sat" ? satPanel : planetPanel;
+		panel.classList.remove("hidden");
+		for (const [key, value] of Object.entries(values)) {
+			const el = panel.querySelector(
+				`[data-target-${kind}="${key}"]`,
+			);
+			if (el) el.textContent = value;
+		}
+	}
+
+	function hideTargetPanels(): void {
+		document
+			.getElementById("orbital-target-sat")
+			?.classList.add("hidden");
+		document
+			.getElementById("orbital-target-planet")
+			?.classList.add("hidden");
+	}
+
+	function setupInteraction(): void {
+		const canvas = renderer.domElement;
+		canvas.style.cursor = "grab";
+		canvas.addEventListener("pointermove", onPointerMove);
+		canvas.addEventListener("pointerdown", onPointerDown);
+		canvas.addEventListener("pointerup", onPointerUp);
+		canvas.addEventListener("pointerleave", onPointerLeave);
+	}
+
+	function resetCamera(): void {
+		cameraResetAnim = {
+			startPos: camera.position.clone(),
+			endPos: new THREE.Vector3(0, 3, 7),
+			startTime: performance.now(),
+			duration: 600,
+		};
+		// Make sure we're aimed back at the planet center
+		controls.target.set(0, 0, 0);
+	}
+
+	// === Control wiring ===
+	function isSatelliteShape(v: string): v is SatelliteShape {
+		return v === "triangle" || v === "sphere" || v === "diamond";
+	}
+
+	function isGridResolution(n: number): n is GridResolution {
+		return n === 10 || n === 20 || n === 30 || n === 45;
+	}
+
+	function setupControls(): void {
+		const root = document.getElementById("orbital-container");
+		if (!root) return;
+
+		// range / color / checkbox inputs
+		root.querySelectorAll<HTMLInputElement>("input[data-config]").forEach(
+			(input) => {
+				const handler = () => handleInput(input);
+				input.addEventListener("input", handler);
+				input.addEventListener("change", handler);
+			},
+		);
+
+		// button groups (shape, grid resolution)
+		root.querySelectorAll<HTMLButtonElement>(
+			"button[data-config][data-value]",
+		).forEach((btn) => {
+			btn.addEventListener("click", () => handleButton(btn));
+		});
+	}
+
+	function handleInput(input: HTMLInputElement): void {
+		const key = input.dataset.config;
+		if (!key) return;
+
+		if (input.type === "checkbox") {
+			if (key === "autoRotate") config.autoRotate = input.checked;
+			else if (key === "dashed") {
+				config.dashed = input.checked;
+				applyConfig();
+			}
+			return;
+		}
+
+		if (input.type === "range" || input.type === "color") {
+			if (key === "rotationSpeed") {
+				config.rotationSpeed = parseFloat(input.value);
+				return; // no geometry rebuild
+			}
+			if (key === "satelliteSize") {
+				config.satelliteSize = parseFloat(input.value);
+			} else if (key === "orbitRadius") {
+				const idx = parseInt(input.dataset.index ?? "0", 10);
+				if (idx >= 0 && idx < 3) {
+					config.orbitRadii[idx] = parseFloat(input.value);
+				}
+			} else if (key === "orbitColor") {
+				config.orbitColor = parseInt(
+					input.value.replace("#", ""),
+					16,
+				);
+			}
+			applyConfig();
+		}
+	}
+
+	function handleButton(btn: HTMLButtonElement): void {
+		const action = btn.dataset.action;
+		if (action === "resetCamera") {
+			resetCamera();
+			return;
+		}
+
+		const key = btn.dataset.config;
+		const value = btn.dataset.value;
+		if (!key || value === undefined) return;
+
+		if (key === "satelliteShape" && isSatelliteShape(value)) {
+			config.satelliteShape = value;
+		} else if (key === "gridResolution") {
+			const n = parseInt(value, 10);
+			if (isGridResolution(n)) {
+				config.gridResolution = n;
+				buildPlanetGrid();
+			}
+		} else {
+			return;
+		}
+
+		// Update active state within sibling group
+		const group = btn.parentElement;
+		if (group) {
+			group
+				.querySelectorAll<HTMLButtonElement>("button[data-config]")
+				.forEach((b) => {
+					b.classList.toggle("orbital-hud-btn--active", b === btn);
+				});
+		}
+
+		if (key === "satelliteShape") applyConfig();
+	}
+
+	// === Teardown ===
+	function destroyScene(): void {
 		cancelAnimationFrame(animationId);
 		clearTimeout(interactionTimeout);
 
@@ -290,30 +2031,52 @@
 			renderer.domElement.remove();
 		}
 		if (labelRenderer) {
+			// CSS2DRenderer holds label DOM nodes as children of its domElement.
+			// Strip them before removing the container, otherwise the label
+			// elements (referenced by CSS2DObject.element) leak.
+			while (labelRenderer.domElement.firstChild) {
+				labelRenderer.domElement.removeChild(
+					labelRenderer.domElement.firstChild,
+				);
+			}
 			labelRenderer.domElement.remove();
 		}
 		if (controls) {
 			controls.dispose();
 		}
 
-		scene?.traverse((obj) => {
-			if (obj instanceof THREE.Mesh) {
-				obj.geometry.dispose();
-				if (Array.isArray(obj.material)) {
-					obj.material.forEach((m) => m.dispose());
-				} else {
-					obj.material.dispose();
+		if (scene) {
+			scene.traverse((obj) => {
+				const disposable = obj as THREE.Object3D & {
+					geometry?: THREE.BufferGeometry;
+					material?: THREE.Material | THREE.Material[];
+				};
+				if (disposable.geometry) disposable.geometry.dispose();
+				if (disposable.material) {
+					if (Array.isArray(disposable.material)) {
+						disposable.material.forEach((m) => m.dispose());
+					} else {
+						disposable.material.dispose();
+					}
 				}
-			}
-			if (obj instanceof THREE.LineLoop || obj instanceof THREE.Line) {
-				obj.geometry.dispose();
-				if (Array.isArray(obj.material)) {
-					obj.material.forEach((m) => m.dispose());
-				} else {
-					obj.material.dispose();
-				}
-			}
-		});
+			});
+		}
+
+		satellites = [];
+		starfield = null;
+		compass = null;
+		cameraRay = null;
+		hoveredSatellite = null;
+		selectedSatellite = null;
+		planetMarker = null;
+		planetMarkerLat = null;
+		planetMarkerLon = null;
+		if (reticleTexture) {
+			reticleTexture.dispose();
+			reticleTexture = null;
+		}
+		pointerDownInfo = null;
+		cameraResetAnim = null;
 	}
 
 	document.addEventListener("astro:after-swap", destroyScene);

@@ -1,0 +1,29 @@
+---
+interface Row {
+	key: string;
+	value: string;
+}
+interface Props {
+	rows: Row[];
+	label?: string;
+	class?: string;
+}
+const { rows, label, class: className = "" } = Astro.props;
+---
+
+<dl
+	class:list={[
+		"font-mono text-xs uppercase tracking-widest",
+		className,
+	]}
+	aria-label={label}
+>
+	{
+		rows.map(({ key, value }) => (
+			<div class="flex justify-between items-baseline gap-4 py-1.5 border-b border-border/40 last:border-0">
+				<dt class="text-muted">{key}</dt>
+				<dd class="text-foreground m-0">{value}</dd>
+			</div>
+		))
+	}
+</dl>

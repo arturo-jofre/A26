@@ -33,9 +33,12 @@ const { title, description = "Portafolio de Arturo Jofré - Product Designer" } 
 	<body
 		class="antialiased min-h-screen flex flex-col relative overflow-x-hidden"
 	>
-		<!-- Diagonal stripe patterns in the left and right margins (Tailwind-style) -->
-		<div class="stripe-l" aria-hidden="true"></div>
-		<div class="stripe-r" aria-hidden="true"></div>
+		<a
+			href="#main"
+			class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-accent focus:text-white focus:font-mono focus:text-xs focus:uppercase focus:tracking-widest focus:no-underline"
+		>
+			Saltar al contenido
+		</a>
 		<slot />
 	</body>
 </html>

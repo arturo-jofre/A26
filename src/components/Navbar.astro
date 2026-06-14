@@ -1,13 +1,20 @@
 ---
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1);
+
+const navLinks = [
+  { href: "/", label: "Inicio", match: (p: string) => p === "" },
+  { href: "/proyectos", label: "Proyectos", match: (p: string) => p.startsWith("proyectos") },
+  { href: "/archivo", label: "Archivo", match: (p: string) => p.startsWith("archivo") },
+  { href: "/sobre-mi", label: "Sobre mí", match: (p: string) => p.startsWith("sobre-mi") },
+];
 ---
 
 <header
-  class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-md border-b border-foreground/10"
+  class="fixed top-0 w-full z-50 bg-background/90 backdrop-blur-md border-b border-border"
   transition:persist
 >
-  <div class="mx-auto container px-8 h-16 flex items-center justify-between">
+  <div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 h-16 flex items-center justify-between">
     <a
       href="/"
       class="text-sm font-bold tracking-tighter hover:text-accent transition-colors"
@@ -19,33 +26,102 @@ const currentPath = pathname.slice(1);
       />
     </a>
     <nav class="hidden md:flex gap-8 font-mono uppercase">
-      <a
-        href="/"
-        class={`text-sm font-medium transition-colors hover:text-foreground ${currentPath === "" ? "text-foreground" : "text-muted"}`}
-        >Inicio</a
-      >
-      <a
-        href="/proyectos"
-        class={`text-sm font-medium transition-colors hover:text-foreground ${currentPath.startsWith("proyectos") ? "text-foreground" : "text-muted"}`}
-        >Proyectos</a
-      >
-      <a
-        href="/archivo"
-        class={`text-sm font-medium transition-colors hover:text-foreground ${currentPath.startsWith("archivo") ? "text-foreground" : "text-muted"}`}
-        >Archivo</a
-      >
-      <a
-        href="/sobre-mi"
-        class={`text-sm font-medium transition-colors hover:text-foreground ${currentPath.startsWith("sobre-mi") ? "text-foreground" : "text-muted"}`}
-        >Sobre mí</a
-      >
+      {
+        navLinks.map(({ href, label, match }) => (
+          <a
+            href={href}
+            class={`text-sm font-medium transition-colors hover:text-foreground ${match(currentPath) ? "text-foreground" : "text-muted"}`}
+          >
+            {label}
+          </a>
+        ))
+      }
     </nav>
     <a
       href="https://calendar.app.google/ZE6YQWLGgc8WUZSDA"
       target="_blank"
-      class="hidden md:inline-flex items-center gap-2 text-xs font-mono uppercase bg-accent hover:bg-accent/90 text-white px-4 py-2 transition-colors"
+      class="hidden md:inline-flex items-center gap-2 text-xs font-mono uppercase bg-accent hover:bg-accent-hover text-white px-4 py-2 transition-colors"
     >
       Trabajemos juntos
     </a>
+    <button
+      id="mobile-menu-toggle"
+      type="button"
+      class="md:hidden inline-flex items-center justify-center w-11 h-11 text-foreground hover:text-accent transition-colors"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg id="icon-menu" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="4" x2="20" y1="6" y2="6" />
+        <line x1="4" x2="20" y1="12" y2="12" />
+        <line x1="4" x2="20" y1="18" y2="18" />
+      </svg>
+      <svg id="icon-close" class="hidden" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6 6 18" />
+        <path d="m6 6 12 12" />
+      </svg>
+    </button>
+  </div>
+  <div
+    id="mobile-menu"
+    class="md:hidden hidden border-t border-border bg-background/95 backdrop-blur-md"
+  >
+    <nav class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 py-6 flex flex-col gap-4 font-mono uppercase">
+      {
+        navLinks.map(({ href, label, match }) => (
+          <a
+            href={href}
+            class={`text-base font-medium transition-colors hover:text-accent ${match(currentPath) ? "text-accent" : "text-muted"}`}
+          >
+            {label}
+          </a>
+        ))
+      }
+      <a
+        href="https://calendar.app.google/ZE6YQWLGgc8WUZSDA"
+        target="_blank"
+        class="mt-2 inline-flex items-center justify-center gap-2 text-xs font-mono uppercase bg-accent hover:bg-accent-hover text-white px-4 py-3 transition-colors"
+      >
+        Trabajemos juntos
+      </a>
+    </nav>
   </div>
 </header>
+
+<script>
+  function setupMobileMenu() {
+    const toggle = document.getElementById("mobile-menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    const iconMenu = document.getElementById("icon-menu");
+    const iconClose = document.getElementById("icon-close");
+    if (!toggle || !menu || !iconMenu || !iconClose) return;
+
+    const onToggle = () => {
+      const isOpen = !menu.classList.contains("hidden");
+      if (isOpen) {
+        menu.classList.add("hidden");
+        iconMenu.classList.remove("hidden");
+        iconClose.classList.add("hidden");
+        toggle.setAttribute("aria-expanded", "false");
+      } else {
+        menu.classList.remove("hidden");
+        iconMenu.classList.add("hidden");
+        iconClose.classList.remove("hidden");
+        toggle.setAttribute("aria-expanded", "true");
+      }
+    };
+
+    const onLinkClick = () => {
+      menu.classList.add("hidden");
+      iconMenu.classList.remove("hidden");
+      iconClose.classList.add("hidden");
+      toggle.setAttribute("aria-expanded", "false");
+    };
+
+    toggle.addEventListener("click", onToggle);
+    menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", onLinkClick));
+  }
+
+  document.addEventListener("astro:page-load", setupMobileMenu);
+</script>

@@ -3,43 +3,33 @@ import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import JobPosition from "../components/JobPosition.astro";
+import Kicker from "../components/Kicker.astro";
+import MonoMicrocopy from "../components/MonoMicrocopy.astro";
 ---
 
 <Layout title="Sobre mí - Arturo Jofré">
   <Navbar />
-  <main class="pt-24 pb-10 flex-grow" transition:animate="fade">
-    <div class="container mx-auto px-4">
+  <main id="main" class="pt-24 pb-10 flex-grow">
+    <div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
       <!-- Intro -->
-      <section class="py-16 space-y-6 max-w-3xl">
-        <h1 class="text-5xl font-bold mb-8">Sobre mí</h1>
-        <div class="text-lg text-muted space-y-4 leading-relaxed">
+      <section class="py-16 space-y-8 max-w-3xl">
+        <MonoMicrocopy>// PERSONA.ID = SOBRE_MI</MonoMicrocopy>
+        <h1 class="text-[clamp(2.25rem,6.5vw,4.5rem)] font-bold">
+          Sobre mí
+        </h1>
+        <div class="text-lg text-muted space-y-4 leading-relaxed text-pretty">
           <p>
-            Mi nombre es Arturo Jofré López vivo en Santiago pero soy oriundo de
-            Tucapel. Durante los últimos 14 años he trabajado con consultoras,
-            empresas y startups en una variedad de sectores como gobierno,
-            startups, salud, finanzas, retail, logística, y recursos humanos en
-            diversos roles como Diseñador Web, Diseñador UX, Lead UX y Product
-            Designer creando de todo tipo soluciones digitales, landings, sitios
-            web, e-commerce, apps y SaaS.
+            Soy Arturo Jofré López, vivo en Santiago y soy oriundo de Tucapel. En
+            14 años he pasado por roles de Diseñador Web, Diseñador UX, Lead UX
+            y Product Designer, en sectores como gobierno, salud, finanzas,
+            retail, logística y recursos humanos. He diseñado landings, sitios
+            web, e-commerce, apps y SaaS para consultoras, empresas y startups.
           </p>
           <p>
-            Creo que el diseño de productos digitales es un viaje colaborativo,
-            donde la empatía por los usuarios, la tecnología y el entendimiento
-            profundo de las necesidades del negocio son claves para el éxito por
-            ello mi enfoque se basa en facilitar la comunicación a través del
-            diseño.
-          </p>
-          <p>
-            Estudie diseño gráfico en Duoc UC, y Arquitectura de Información y
-            Experiencia de Usuario en Universidad Central de Chile.
-          </p>
-          <p>
-            En el 2015 co-funde la Pávlov una consultora de diseño, con un par
-            de amigos con el fin de ofrecer servicios de manera autonoma.
-          </p>
-          <p>
-            Actualmente trabajo como diseñador UX en Cleverit, mejorando la
-            experiencia de usuario en grandes empresas.
+            Estudié diseño gráfico en Duoc UC, y Arquitectura de Información y
+            Experiencia de Usuario en Universidad Central de Chile. En 2015
+            cofundé Pávlov, una consultora de diseño. Hoy trabajo como
+            Diseñador UX Senior en Cleverit.
           </p>
         </div>
       </section>
@@ -49,17 +39,13 @@ import JobPosition from "../components/JobPosition.astro";
         class="grid lg:grid-cols-[1fr_2fr] gap-12 py-20 border-t border-border mt-8"
       >
         <div>
-          <p
-            class="text-xs font-semibold tracking-widest uppercase text-accent mb-2"
-          >
-            CURRICULUM
-          </p>
+          <Kicker class="mb-2">SEP 2011 — PRESENTE · 7 ROLES</Kicker>
           <h2 class="text-3xl sm:text-4xl font-bold sticky top-24">
             Experiencia<br />Laboral
           </h2>
         </div>
         <div class="flex flex-col gap-6">
-          <div class="glass p-8 rounded-2xl border border-border">
+          <div class="glass p-8 rounded-xl border border-border">
             <div class="flex flex-col gap-6">
               <JobPosition
                 companylogo="/"
@@ -115,6 +101,10 @@ import JobPosition from "../components/JobPosition.astro";
 <script>
   import { animate, stagger, inView } from "motion";
 
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
   let cleanupFns: (() => void)[] = [];
 
   function destroyAnimations() {
@@ -124,15 +114,20 @@ import JobPosition from "../components/JobPosition.astro";
 
   function initAnimations() {
     destroyAnimations();
+    if (prefersReducedMotion) return;
     const sections = document.querySelectorAll("section");
     sections.forEach((section) => {
-      const stop = inView(section, (info) => {
-        animate(
-          info.target.querySelectorAll("h1, h2, p, .glass > *"),
-          { opacity: [0, 1], y: [15, 0] },
-          { delay: stagger(0.05), duration: 0.5 },
-        );
-      });
+      const stop = inView(
+        section,
+        (info) => {
+          animate(
+            info.target.querySelectorAll("h1, h2, p, .glass > *"),
+            { opacity: [0, 1], y: [15, 0] },
+            { delay: stagger(0.05), duration: 0.5 },
+          );
+        },
+        { once: true },
+      );
       cleanupFns.push(stop);
     });
   }

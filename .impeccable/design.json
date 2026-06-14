@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-06-13T00:00:00.000Z",
+  "title": "Design System: A26 Portafolio",
+  "extensions": {
+    "colorMeta": {
+      "bench-orange": {
+        "role": "primary",
+        "displayName": "Bench Orange",
+        "canonical": "oklch(60.45% 0.227 39.6)",
+        "tonalRamp": [
+          "oklch(15% 0.05 39.6)",
+          "oklch(25% 0.10 39.6)",
+          "oklch(35% 0.15 39.6)",
+          "oklch(45% 0.18 39.6)",
+          "oklch(55% 0.22 39.6)",
+          "oklch(65% 0.22 39.6)",
+          "oklch(75% 0.18 39.6)",
+          "oklch(90% 0.10 39.6)"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Bench Orange Hover",
+        "canonical": "oklch(55% 0.215 39.6)",
+        "tonalRamp": [
+          "oklch(15% 0.05 39.6)",
+          "oklch(25% 0.10 39.6)",
+          "oklch(35% 0.15 39.6)",
+          "oklch(45% 0.18 39.6)",
+          "oklch(55% 0.215 39.6)",
+          "oklch(65% 0.22 39.6)",
+          "oklch(75% 0.18 39.6)",
+          "oklch(90% 0.10 39.6)"
+        ]
+      },
+      "workbench-black": {
+        "role": "neutral",
+        "displayName": "Workbench Black",
+        "canonical": "oklch(20% 0 0)",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(20% 0 0)",
+          "oklch(25% 0 0)",
+          "oklch(35% 0 0)",
+          "oklch(45% 0 0)",
+          "oklch(55% 0 0)",
+          "oklch(75% 0 0)",
+          "oklch(90% 0 0)"
+        ]
+      },
+      "chalk": {
+        "role": "neutral",
+        "displayName": "Chalk",
+        "canonical": "oklch(82.6% 0.005 80)",
+        "tonalRamp": [
+          "oklch(15% 0.005 80)",
+          "oklch(25% 0.005 80)",
+          "oklch(35% 0.005 80)",
+          "oklch(45% 0.005 80)",
+          "oklch(55% 0.005 80)",
+          "oklch(70% 0.005 80)",
+          "oklch(82.6% 0.005 80)",
+          "oklch(92% 0.005 80)"
+        ]
+      },
+      "iron": {
+        "role": "neutral",
+        "displayName": "Iron",
+        "canonical": "oklch(53.4% 0.006 80)",
+        "tonalRamp": [
+          "oklch(15% 0.006 80)",
+          "oklch(25% 0.006 80)",
+          "oklch(35% 0.006 80)",
+          "oklch(45% 0.006 80)",
+          "oklch(53.4% 0.006 80)",
+          "oklch(65% 0.006 80)",
+          "oklch(78% 0.006 80)",
+          "oklch(90% 0.006 80)"
+        ]
+      },
+      "scribe": {
+        "role": "neutral",
+        "displayName": "Scribe",
+        "canonical": "oklch(22.5% 0.003 80)",
+        "tonalRamp": [
+          "oklch(10% 0.003 80)",
+          "oklch(15% 0.003 80)",
+          "oklch(22.5% 0.003 80)",
+          "oklch(30% 0.003 80)",
+          "oklch(40% 0.003 80)",
+          "oklch(50% 0.003 80)",
+          "oklch(65% 0.003 80)",
+          "oklch(80% 0.003 80)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero h1 only. Two lines max. Set in a single solid color, never gradient text."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section h2. Carries weight without shouting."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card h3, list headings, content titles."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Default copy. Max line length 65-75ch."
+      },
+      "body-large": {
+        "displayName": "Body Large",
+        "purpose": "Hero subtitle, lead paragraph."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Geist Mono. Five jobs: kicker above the section h2, HUD readout for the seniority signal, terminal microcopy near status / CTA, nav and footer treatment, role metadata and date stamps. Never on body copy. Never decorative."
+      }
+    },
+    "shadows": [
+      {
+        "name": "ambient-cta",
+        "value": "0 0 0 1px rgba(240, 64, 0, 0.40), 0 1px 2px rgba(0, 0, 0, 0.50)",
+        "purpose": "Only permitted shadow. Used on the primary CTA at rest to lift it from the bench. Forbidden on cards, inputs, and the lined button."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-quart",
+        "value": "cubic-bezier(0.25, 1, 0.5, 1)",
+        "purpose": "Default easing for entrance motion and state transitions."
+      },
+      {
+        "name": "duration-fast",
+        "value": "200ms",
+        "purpose": "Hover and focus state changes."
+      },
+      {
+        "name": "duration-medium",
+        "value": "500-700ms",
+        "purpose": "Entrance fades, image scale on hover."
+      },
+      {
+        "name": "stagger-tight",
+        "value": "50ms",
+        "purpose": "Per-item stagger for list reveals and section choreography."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single committed accent CTA. Squared, tactile, the lead voice. The only element that carries the ambient CTA shadow.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Agenda una reunión</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist', system-ui, -apple-system, sans-serif; font-weight: 500; font-size: 1rem; background-color: #F04000; color: #FFFFFF; padding: 16px 24px; border: none; border-radius: 2px; box-shadow: 0 0 0 1px rgba(240, 64, 0, 0.40), 0 1px 2px rgba(0, 0, 0, 0.50); transition: background-color 200ms cubic-bezier(0.25, 1, 0.5, 1), transform 200ms cubic-bezier(0.25, 1, 0.5, 1), box-shadow 200ms cubic-bezier(0.25, 1, 0.5, 1); cursor: pointer; text-decoration: none; } .ds-btn-primary:hover { background-color: #D63800; } .ds-btn-primary:focus-visible { outline: 2px solid #F04000; outline-offset: 2px; } .ds-btn-primary:active { transform: scale(0.97); box-shadow: none; }"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Secondary action. 1px border that shifts to Bench Orange on hover.",
+      "html": "<a class=\"ds-btn-outline\" href=\"#\">Ver proyectos</a>",
+      "css": ".ds-btn-outline { display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist', system-ui, -apple-system, sans-serif; font-weight: 500; font-size: 1rem; background-color: transparent; color: #D6D3CE; padding: 12px 20px; border: 1px solid rgba(214, 211, 206, 0.18); border-radius: 2px; transition: border-color 200ms cubic-bezier(0.25, 1, 0.5, 1), color 200ms cubic-bezier(0.25, 1, 0.5, 1); cursor: pointer; text-decoration: none; } .ds-btn-outline:hover { border-color: #F04000; color: #F04000; } .ds-btn-outline:focus-visible { outline: 2px solid #F04000; outline-offset: 2px; }"
+    },
+    {
+      "name": "Lined Button",
+      "kind": "button",
+      "refersTo": "button-lined",
+      "description": "The brand device for secondary / tertiary actions. 1px frame, squared, Geist Mono uppercase tracked label, optional brackets or pipes. No shadow. The frame and the shadow are mutually exclusive on a button.",
+      "html": "<a class=\"ds-btn-lined\" href=\"#\">[ AGENDA ]</a>",
+      "css": ".ds-btn-lined { display: inline-flex; align-items: center; justify-content: center; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; background-color: transparent; color: #D6D3CE; padding: 12px 20px; border: 1px solid rgba(214, 211, 206, 0.18); border-radius: 0; text-decoration: none; transition: border-color 200ms cubic-bezier(0.25, 1, 0.5, 1), color 200ms cubic-bezier(0.25, 1, 0.5, 1), transform 200ms cubic-bezier(0.25, 1, 0.5, 1); cursor: pointer; } .ds-btn-lined:hover { border-color: #F04000; color: #F04000; } .ds-btn-lined:focus-visible { outline: 2px solid #F04000; outline-offset: 2px; } .ds-btn-lined:active { transform: scale(0.97); }"
+    },
+    {
+      "name": "Status Badge",
+      "kind": "chip",
+      "refersTo": "status-badge",
+      "description": "Disponible para proyectos. Mono label, Bench Orange dot, reduced-motion aware.",
+      "html": "<div class=\"ds-status-badge\"><span class=\"ds-status-dot\" aria-hidden=\"true\"></span>Disponible para proyectos</div>",
+      "css": ".ds-status-badge { display: inline-flex; align-items: center; gap: 8px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: #F04000; border: 1px solid rgba(214, 211, 206, 0.10); border-radius: 9999px; padding: 6px 16px; } .ds-status-dot { position: relative; display: inline-flex; width: 6px; height: 6px; } .ds-status-dot::before, .ds-status-dot::after { content: ''; position: absolute; inset: 0; border-radius: 9999px; } .ds-status-dot::before { background-color: #F04000; } .ds-status-dot::after { background-color: #F04000; animation: ds-status-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; } @keyframes ds-status-ping { 0% { transform: scale(1); opacity: 0.75; } 75%, 100% { transform: scale(2); opacity: 0; } } @media (prefers-reduced-motion: reduce) { .ds-status-dot::after { animation: none; opacity: 0; } }"
+    },
+    {
+      "name": "Project Card",
+      "kind": "card",
+      "refersTo": "card-project",
+      "description": "Entry into a case study. Image bleeds to the card edge; meta sits below. The 1px line between cards (line-grid frame) is the layout grammar.",
+      "html": "<a class=\"ds-card-project\" href=\"/proyectos/example\"><div class=\"ds-card-image\"></div><div class=\"ds-card-body\"><div class=\"ds-card-row\"><h3 class=\"ds-card-title\">Project Name</h3><span class=\"ds-card-year\">2024</span></div><p class=\"ds-card-description\">One-line description of the project.</p></div></a>",
+      "css": ".ds-card-project { display: block; background-color: #181818; border: 1px solid rgba(214, 211, 206, 0.10); border-radius: 8px; overflow: hidden; text-decoration: none; color: #D6D3CE; transition: background-color 300ms cubic-bezier(0.25, 1, 0.5, 1); } .ds-card-project:hover { background-color: rgba(255, 255, 255, 0.025); } .ds-card-project:hover .ds-card-title { color: #F04000; } .ds-card-project:hover .ds-card-image-inner { transform: scale(1.05); } .ds-card-image { aspect-ratio: 3 / 2; background-color: rgba(255, 255, 255, 0.05); overflow: hidden; border-bottom: 1px solid rgba(214, 211, 206, 0.10); } .ds-card-image-inner { width: 100%; height: 100%; object-fit: cover; transition: transform 700ms cubic-bezier(0.25, 1, 0.5, 1); } .ds-card-body { padding: 24px; } .ds-card-row { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 8px; } .ds-card-title { font-family: 'Geist', system-ui, -apple-system, sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: -0.01em; color: #D6D3CE; margin: 0; transition: color 200ms cubic-bezier(0.25, 1, 0.5, 1); } .ds-card-year { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; color: #8A847C; } .ds-card-description { font-family: 'Geist', system-ui, -apple-system, sans-serif; font-size: 0.875rem; line-height: 1.5; color: #8A847C; margin: 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }"
+    },
+    {
+      "name": "Kicker + Section Heading",
+      "kind": "custom",
+      "refersTo": "kicker",
+      "description": "The mono kicker carries information (date, count, discipline) — never an empty section name. The h2 follows. Two lines: value above, voice below.",
+      "html": "<div class=\"ds-section-heading\"><p class=\"ds-section-kicker\">35+ PROYECTOS — 8 INDUSTRIAS</p><h2 class=\"ds-section-title\">Últimos proyectos</h2></div>",
+      "css": ".ds-section-heading { display: flex; flex-direction: column; gap: 8px; } .ds-section-kicker { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: #F04000; margin: 0; } .ds-section-title { font-family: 'Geist', system-ui, -apple-system, sans-serif; font-size: clamp(1.875rem, 3.5vw, 2.5rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.03em; color: #D6D3CE; margin: 0; text-wrap: balance; }"
+    },
+    {
+      "name": "HUD Readout",
+      "kind": "custom",
+      "refersTo": "hud-readout",
+      "description": "The disciplined version of the seniority signal. Mono key/value column, no icon, no tile, no gradient. The hero-metric template's restraint-mode.",
+      "html": "<dl class=\"ds-hud\" aria-label=\"Trayectoria profesional\"><div class=\"ds-hud-row\"><dt>EXPERIENCIA</dt><dd>14+ AÑOS</dd></div><div class=\"ds-hud-row\"><dt>PROYECTOS</dt><dd>50+</dd></div><div class=\"ds-hud-row\"><dt>INDUSTRIAS</dt><dd>8+</dd></div><div class=\"ds-hud-row\"><dt>PÁVLOV</dt><dd>2015</dd></div></dl>",
+      "css": ".ds-hud { display: flex; flex-direction: column; gap: 4px; margin: 0; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; } .ds-hud-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 4px 0; border-bottom: 1px solid rgba(214, 211, 206, 0.06); } .ds-hud-row:last-child { border-bottom: none; } .ds-hud dt { color: #8A847C; } .ds-hud dd { color: #D6D3CE; margin: 0; }"
+    },
+    {
+      "name": "Mono Microcopy",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Terminal-style status line. Two or three per page. Names a real state. Decorative microcopy is forbidden.",
+      "html": "<p class=\"ds-microcopy\">// BOOT SEQUENCE COMPLETE</p>",
+      "css": ".ds-microcopy { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.6875rem; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: #8A847C; margin: 0; line-height: 1.4; }"
+    },
+    {
+      "name": "Top Nav",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Fixed top, blurred surface, logo + mono nav + Bench Orange CTA. Mobile collapses to a drawer.",
+      "html": "<header class=\"ds-nav\"><a class=\"ds-nav-logo\" href=\"/\"><img src=\"/assets/arturojofre_logo.svg\" alt=\"Arturo Jofré\" /></a><nav class=\"ds-nav-links\"><a class=\"ds-nav-link is-active\" href=\"/\">INICIO</a><a class=\"ds-nav-link\" href=\"/proyectos\">PROYECTOS</a><a class=\"ds-nav-link\" href=\"/sobre-mi\">SOBRE MÍ</a></nav><a class=\"ds-nav-cta\" href=\"#\">TRABAJEMOS JUNTOS</a></header>",
+      "css": ".ds-nav { position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; padding: 0 24px; background-color: rgba(24, 24, 24, 0.90); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(214, 211, 206, 0.10); } .ds-nav-logo img { width: 32px; height: 32px; display: block; } .ds-nav-links { display: flex; gap: 32px; } .ds-nav-link { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: #8A847C; text-decoration: none; transition: color 200ms cubic-bezier(0.25, 1, 0.5, 1); } .ds-nav-link:hover, .ds-nav-link.is-active { color: #D6D3CE; } .ds-nav-cta { display: inline-flex; align-items: center; gap: 8px; font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; background-color: #F04000; color: #FFFFFF; padding: 8px 16px; text-decoration: none; transition: background-color 200ms cubic-bezier(0.25, 1, 0.5, 1); } .ds-nav-cta:hover { background-color: #D63800; } @media (max-width: 767px) { .ds-nav-links { display: none; } }"
+    },
+    {
+      "name": "Job Position Row",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "Single role inside the CV. Company, title, period (mono uppercase). 1px Border Quiet bottom rule separates rows.",
+      "html": "<div class=\"ds-job\"><div class=\"ds-job-row\"><h3 class=\"ds-job-title\">Diseñador UX Senior</h3><span class=\"ds-job-period\">SEP 2022 — ACTUALIDAD</span></div><p class=\"ds-job-company\">Cleverit</p></div>",
+      "css": ".ds-job { display: flex; flex-direction: column; gap: 4px; padding: 16px 0; border-bottom: 1px solid rgba(214, 211, 206, 0.10); } .ds-job:last-child { border-bottom: none; } .ds-job-row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; } .ds-job-title { font-family: 'Geist', system-ui, -apple-system, sans-serif; font-size: 1rem; font-weight: 700; color: #D6D3CE; margin: 0; } .ds-job-period { font-family: 'Geist Mono', ui-monospace, monospace; font-size: 0.625rem; letter-spacing: 0.12em; text-transform: uppercase; color: #8A847C; } .ds-job-company { font-family: 'Geist', system-ui, -apple-system, sans-serif; font-size: 0.875rem; color: #8A847C; margin: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Senior Designer's Terminal",
+    "overview": "The system reads as a working interface a 14-year senior would actually use: NERV-style labeled readouts, Nihei restraint, terminal grammar, Vercel-engineering discipline. The orange is the work light. The dark surface is the bench. The mono labels are the labels on the instruments. The 1px lines are the layout grammar, not the decoration. The chrome is the system; the discipline is what keeps it from being a costume. The reference set, in priority order: NERV interface panels (Evangelion, 1995–) for the way a status is labeled and given room to breathe; Tsutomu Nihei's industrial restraint (Knights of Sidonia, 2014) for the way a single piece of information gets a thin rule and breathing room; Vercel / OpenDesign / Tailwind for the engineering-grade precision of the 1px border, the focus ring, and the grid; cathode-era and modern terminal interfaces for the `PROJECTS  35+` column discipline. The site is not a literal anime prop and not a 2024–2026 Tailwind.com template — it is the disciplined intersection. The aesthetic philosophy is calibration over performance. We do not decorate; we set values. We do not announce; we commit. A visitor should leave thinking \"this person has been doing this for a long time and is still paying attention\", not \"look at this portfolio template\". The system serves two audiences from one hierarchy: founders and design leads evaluating Arturo for a UX or product engagement, and hiring managers and recruiters evaluating him for a senior in-house role. The case studies prove fit for the first; the case studies plus the experience trajectory prove fit for the second. The site does not split into a \"for clients\" version and a \"for recruiters\" version.",
+    "keyCharacteristics": [
+      "The frame is the system. Corner brackets, 1px rails, mono kickers, line-grid cards, and HUD readouts are a named brand system, not chrome. Each device earns its place by carrying information: a date, a count, a section ID, a status, a label. The discipline is the difference between this site and a template that uses the same devices as empty grammar.",
+      "Committed accent. Bench Orange carries status, the active navigation state, the primary CTA, the project year markers, the kicker, and the signature orbital satellites. It is not scattered. It appears on ≤ 15% of any given screen; its rarity is the point.",
+      "Mono for labels, not for voice. Geist Mono appears on dates, file types, version strings, role metadata, status indicators, the kicker, the HUD readout, the nav, the microcopy, and the footer. It is never used for body copy, never used for 'I help ambitious companies' prose, never used as decoration.",
+      "Tactile state response. Buttons press, cards lift on hover (a 2% Chalk overlay, not a shadow), focus rings are crisp and committed. The interaction is part of the brand.",
+      "Flat surfaces, state-only elevation. Depth is conveyed exclusively as a state response or as the single permitted focal shadow on the primary CTA. No decorative shadows, no ghost cards.",
+      "Signature, not spectacle. The 3D orbital is a contained signature (UX / DEV / BUSINESS as orbiting forces around a center of craft) with a full reduced-motion fallback, not the centerpiece of the page."
+    ],
+    "rules": [
+      { "name": "The One Voice Rule", "body": "Bench Orange appears on ≤ 15% of any given screen. Its rarity is the point. Where it carries text, it sits on a sufficiently dark surface; orange text on Chalk is forbidden.", "section": "colors" },
+      { "name": "The Tonal Rule", "body": "Iron, Scribe, and the border tokens are all in the same warm-neutral hue family as Chalk and Workbench Black. They never diverge into pure grey, pure blue, or pure warm. The orange is the only saturated hue; everything else is the bench.", "section": "colors" },
+      { "name": "The Mono Label Rule", "body": "Geist Mono is reserved for actual labels: dates, file types, version, role metadata, status, kicker values, HUD readouts, microcopy, nav, footer. The mono earns its place by labelling something real. Never on body copy, never as decoration.", "section": "typography" },
+      { "name": "The Negative Space Rule", "body": "Display and Headline use tight line-heights (0.95, 1.1) and tight letter-spacing (-0.03em). Body and Body Large use generous line-heights (1.6+).", "section": "typography" },
+      { "name": "The Wrap Rule", "body": "Display and Headline use text-wrap: balance; long prose uses text-wrap: pretty. Test hero H1s at every breakpoint with the actual copy — long Spanish words plus large clamp scales plus narrow grids cause overflow on tablet/mobile.", "section": "typography" },
+      { "name": "The Kicker Content Rule", "body": "The kicker is not a section name; it is information that earns the section. `35+ PROYECTOS — 8 INDUSTRIAS`, `SEP 2011 — PRESENTE`, `DISCIPLINAS // UX — RESEARCH — WEB — BRAND`. Empty kickers are the template; valued kickers are the brand.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat at rest. Shadows appear only as a state response (hover, focus, active) or on the one permitted focal element (the primary CTA).", "section": "elevation" },
+      { "name": "The No-Soft-Glow Rule", "body": "Forbidden: 1px border + soft wide drop shadow on the same element. Pick one. The 'ghost-card' pattern is prohibited.", "section": "elevation" },
+      { "name": "The Frame-Shadow Divorce", "body": "The lined button and the section frame use a 1px Border Strong frame, no shadow. The primary CTA uses the ambient CTA shadow, no extra frame. The two are mutually exclusive. A button that has both a 1px border and a shadow-lg is the codex tell; refuse and rewrite.", "section": "elevation" },
+      { "name": "The No-3D-Card Rule", "body": "No card carries rounded-2xl (16px) combined with a soft shadow. Cards top out at rounded-xl (12px).", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep Bench Orange on ≤ 15% of any given screen. The One Voice Rule.",
+      "Do use Geist Mono for actual labels only — dates, file types, version, role metadata, status, kicker values, HUD readouts, microcopy, nav, footer. The Mono Label Rule.",
+      "Do give the kicker information to carry. `35+ PROYECTOS — 8 INDUSTRIAS` is voice; `PORTFOLIO` is template. The Kicker Content Rule.",
+      "Do use the Section Frame device on the hero, the CV, and at most one other section per page. The frame earns its place by the section that carries it.",
+      "Do use the HUD Readout for the seniority signal — mono, no gradient, no tile background, no icon. The disciplined version of the stat tile.",
+      "Do use the Lined Button (1px frame, squared, mono label) as the brand button for secondary / tertiary actions.",
+      "Do test hero H1s at every breakpoint with the actual copy. Long Spanish words + large clamp scales + narrow grids cause overflow on tablet/mobile.",
+      "Do use text-wrap: balance on h1–h3 and text-wrap: pretty on long prose.",
+      "Do give every interactive element a visible focus ring (2px Bench Orange, 2px offset, contrast-safe).",
+      "Do keep the 3D orbital to one contained section with a full reduced-motion fallback. The work leads; the 3D does not.",
+      "Do pair color with text, position, or icon for any status indicator. Color is never the only carrier of meaning.",
+      "Do subscribe every motion script to astro:page-load (init) and astro:after-swap (teardown). Teardown disposes geometries, materials, controls, and label renderers."
+    ],
+    "donts": [
+      "Don't use gradient text (background-clip: text on a gradient). Decorative, never meaningful. Use a single solid color; emphasis through weight or size.",
+      "Don't use empty kickers. A kicker that says only `PORTFOLIO`, `SERVICES`, or `ABOUT` is the 2024–2026 template; the kicker must carry information.",
+      "Don't apply the Section Frame device to every section. The corner bracket is voice on the hero / CV / project detail; it is chrome on the Sobre mí teaser and the contact section.",
+      "Don't use the hero-metric template (4-up stat tile grid with gradient numbers, big-number / small-label / supporting-stats / gradient accent). The HUD Readout is the disciplined version of the same information; use that.",
+      "Don't use identical 3-up service-tile cards (icon + heading + paragraph) under a `SERVICES` heading. The most common 2024–2026 template. Replace with a single-typography discipline list, a 3-paragraph process narrative, or fold the disciplines into the Sobre mí page.",
+      "Don't use border: 1px solid X + a soft wide drop shadow on the same element. The 'ghost-card' pattern; the Frame-Shadow Divorce rule.",
+      "Don't use rounded-2xl (16px) or larger on cards or sections. Cards top out at 12px (rounded-xl). The No-3D-Card Rule.",
+      "Don't use repeating-linear-gradient stripe patterns as background decoration — not on body:before, not in section margins, not as a 'scan-line' texture across the page. The stripes are the literal-cosplay anti-pattern; the discipline of the system is the voice. A single restrained scan-line on the hero orbital frame is permitted if it earns its place; the page background is not.",
+      "Don't use glassmorphism as the default surface. A single contained glass card for the CV panel is permitted; glass on every other element is decorative, not meaningful.",
+      "Don't use literal anime cosplay — full hex-frame overlays, ASCII-art decorations, fictional status strings (`AT FIELD ACTIVE`, `LCL O2 78%`) that don't correspond to a real piece of information. The restraint is the voice; the cosplay is the failure.",
+      "Don't animate CSS layout properties (height, width, padding) for state transitions. Animate transform and opacity only.",
+      "Don't rely on the 3D orbital as the centerpiece of the page. A portfolio is not a tech demo.",
+      "Don't use placeholder Lorem Ipsum or 'I help ambitious companies' copy. The voice is direct, present-tense, first-person, restrained. The Voice Contract in PRODUCT.md is the enforcement.",
+      "Don't use the warm-cream / sand / bone / parchment body background. The dark surface is the bench; the warmth is the orange and the typography, not the body bg."
+    ]
+  }
+}

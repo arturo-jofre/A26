@@ -18,8 +18,8 @@ const { company, jobtitle, period, companylogo } = Astro.props;
   <div>
     <h3 class="text-lg font-semibold text-foreground group-hover:text-accent transition-colors">{jobtitle}</h3>
     <div class="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 text-sm text-muted mt-1">
-      <span class="font-medium text-white">{company}</span>
-      <span class="hidden sm:inline text-border">&bull;</span>
+      <span class="font-medium text-foreground">{company}</span>
+      <span class="hidden sm:inline text-muted" aria-hidden="true">·</span>
       <span class="font-mono text-xs">{period}</span>
     </div>
   </div>
