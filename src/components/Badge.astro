@@ -1,0 +1,45 @@
+---
+interface Props {
+  variant?: "status" | "tag" | "count" | "online";
+  class?: string;
+}
+const {
+  variant = "status",
+  class: className = "",
+  ...attrs
+} = Astro.props;
+
+const variantClasses = {
+  status:
+    "inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 font-mono text-[0.625rem] uppercase tracking-widest text-muted",
+  online:
+    "inline-flex items-center gap-2 border border-accent/50 px-3 py-1.5 font-mono text-[0.625rem] uppercase tracking-widest text-accent",
+  tag: "inline-flex items-center border border-border px-2.5 py-1.5 font-mono text-[0.625rem] uppercase tracking-widest text-muted",
+  count:
+    "inline-flex items-center justify-center font-mono text-[0.625rem] uppercase tracking-widest px-2 py-1",
+} as const;
+---
+
+{
+  variant === "status" || variant === "online" ? (
+    <span
+      {...attrs}
+      class:list={[variantClasses[variant], className]}
+    >
+      <span class="relative flex h-1.5 w-1.5" aria-hidden="true">
+        <span
+          class:list={[
+            "animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75",
+            variant === "status" && "motion-reduce:animate-none",
+          ]}
+        ></span>
+        <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent"></span>
+      </span>
+      <slot />
+    </span>
+  ) : (
+    <span {...attrs} class:list={[variantClasses[variant], className]}>
+      <slot />
+    </span>
+  )
+}

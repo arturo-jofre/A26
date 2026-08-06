@@ -9,6 +9,7 @@ import SectionFrame from "../components/SectionFrame.astro";
 import Kicker from "../components/Kicker.astro";
 import HudReadout from "../components/HudReadout.astro";
 import MonoMicrocopy from "../components/MonoMicrocopy.astro";
+import Badge from "../components/Badge.astro";
 
 import { getCollection } from "astro:content";
 
@@ -48,25 +49,18 @@ const hudRows = [
 			<div class="hero-glow" aria-hidden="true"></div>
 
 			<div class="relative z-10">
-				<SectionFrame tone="strong" size="md" class="p-8 sm:p-10">
+				<SectionFrame tone="accent" size="md" class="p-8 sm:p-10">
 					<div class="max-w-3xl space-y-8">
 						<!-- Status badge: availability signal, mono label + Bench Orange dot.
 						     role="status" + aria-live="polite" announces the state to screen readers. -->
-						<div
-							class="hero-animate inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 text-xs font-mono text-muted tracking-widest uppercase"
+						<Badge
+							variant="status"
+							class="hero-animate"
 							role="status"
 							aria-live="polite"
 						>
-							<span class="relative flex h-1.5 w-1.5" aria-hidden="true">
-								<span
-									class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"
-								></span>
-								<span
-									class="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent"
-								></span>
-							</span>
 							Disponible para proyectos
-						</div>
+						</Badge>
 
 						<h1
 							class="hero-animate text-[clamp(2.25rem,6.5vw,4.5rem)] font-bold leading-[0.95]"
@@ -93,8 +87,8 @@ const hudRows = [
 							>
 								Agenda una reunión
 							</Button>
-							<Button variant="lined" size="md" href="/proyectos">
-								[ VER PROYECTOS ]
+							<Button variant="secondary" size="md" href="/proyectos">
+								Ver proyectos
 							</Button>
 						</div>
 
@@ -116,13 +110,13 @@ const hudRows = [
 							Últimos proyectos
 						</h2>
 					</div>
-					<Button variant="lined" size="md" href="/proyectos">
-						[ VER TODOS ]
+					<Button variant="secondary" size="md" href="/proyectos">
+						Ver todos
 					</Button>
 				</div>
 
 				<div
-					class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10"
+					class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"
 				>
 					{
 						projectsByTag.map((project) => (
@@ -208,8 +202,8 @@ const hudRows = [
 									Universidad Central.
 								</p>
 							</div>
-							<Button variant="lined" size="md" href="/sobre-mi">
-								[ LEER CV COMPLETO ]
+							<Button variant="secondary" size="md" href="/sobre-mi">
+								Leer CV completo
 							</Button>
 						</div>
 

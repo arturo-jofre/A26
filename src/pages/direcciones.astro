@@ -1,0 +1,822 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Direcciones — A26">
+	<main class="min-h-screen px-4 sm:px-8 lg:px-12 py-16 sm:py-20">
+		<div class="mx-auto max-w-7xl">
+			<!-- ─── Header ─── -->
+			<header class="mb-12 sm:mb-16 space-y-4 max-w-3xl">
+				<p class="text-xs font-mono tracking-widest uppercase text-accent">
+					// A26.DIRECTIONS · CANDIDATA 01
+				</p>
+				<h1
+					class="text-[clamp(2rem,5vw,3.25rem)] font-bold leading-[1.05] tracking-tight text-balance"
+				>
+					Workbench + NERV.
+				</h1>
+				<p
+					class="text-base sm:text-lg text-muted leading-relaxed text-pretty max-w-2xl"
+				>
+					La grid y la precisión de ingeniería como esqueleto, con
+					bordes de acento a la NERV donde marcan algo, y botones
+					livianos (solo borde, relleno al hover). Abajo quedan las
+					tres fuentes para comparar.
+				</p>
+			</header>
+
+			<!-- ════════════════════════════════════════════
+			     CANDIDATA · FUSED  (Workbench + NERV)
+			     ════════════════════════════════════════════ -->
+			<section
+				class="mb-20 p-6 sm:p-8 border border-accent/40 bg-background relative"
+			>
+				<!-- Corner brackets: accent (NERV) -->
+				<span
+					class="absolute -top-px -left-px w-3.5 h-3.5 border-t border-l border-accent"
+				></span>
+				<span
+					class="absolute -top-px -right-px w-3.5 h-3.5 border-t border-r border-accent"
+				></span>
+				<span
+					class="absolute -bottom-px -left-px w-3.5 h-3.5 border-b border-l border-accent"
+				></span>
+				<span
+					class="absolute -bottom-px -right-px w-3.5 h-3.5 border-b border-r border-accent"
+				></span>
+
+				<!-- Candidate label -->
+				<div
+					class="flex items-center justify-between mb-6 pb-4 border-b border-border"
+				>
+					<div class="flex items-center gap-3">
+						<span
+							class="inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-accent border border-accent/50 px-2.5 py-1"
+						>
+							<span
+								class="w-1.5 h-1.5 rounded-full bg-accent"
+							></span>
+							CANDIDATA
+						</span>
+						<span
+							class="font-mono text-[10px] uppercase tracking-widest text-muted"
+							>WORKBENCH + NERV</span
+						>
+					</div>
+					<div
+						class="font-mono text-[10px] uppercase tracking-widest text-muted hidden sm:block"
+					>
+						<span class="tabular-nums">v0.3.0</span>
+						<span class="mx-1.5">·</span>
+						<span class="tabular-nums">A26-241</span>
+					</div>
+				</div>
+
+				<!-- ═══ HERO (full-scale, workbench structure + nerv accents) ═══ -->
+				<div class="grid lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
+					<div class="lg:col-span-8 space-y-6">
+						<div
+							class="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-foreground"
+						>
+							<span class="text-accent tabular-nums">[001]</span>
+							<span class="text-muted">// HERO.IDX</span>
+						</div>
+
+						<h2
+							class="text-[clamp(2.25rem,6vw,3.75rem)] font-bold leading-[1.0] tracking-[-0.03em] text-balance"
+						>
+							Arturo Jofré López
+							<span class="text-muted font-normal">/</span>
+							Product Designer
+						</h2>
+
+						<p
+							class="text-lg text-muted leading-relaxed text-pretty max-w-xl"
+						>
+							14 años diseñando productos digitales para gobierno,
+							salud, finanzas, retail y logística.
+						</p>
+
+						<!-- CTAs: primary + secondary, outline only, fill on hover -->
+						<div class="flex flex-wrap gap-3 pt-2">
+							<a
+								href="#"
+								class="inline-flex items-center justify-center text-sm font-medium px-6 py-2.5 border border-accent text-accent hover:bg-accent hover:text-background transition-colors"
+								>Agenda una reunión</a
+							>
+							<a
+								href="#"
+								class="inline-flex items-center justify-center text-sm font-medium px-6 py-2.5 border border-border-strong text-foreground hover:border-accent hover:text-accent hover:bg-white/5 transition-colors"
+								>Ver proyectos</a
+							>
+						</div>
+					</div>
+
+					<!-- Status panel: workbench layout, nerv accent border -->
+					<div
+						class="lg:col-span-4 border border-accent/30 p-4 self-start"
+					>
+						<div
+							class="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest pb-3 border-b border-border"
+						>
+							<span
+								class="w-1.5 h-1.5 rounded-full bg-accent"
+							></span>
+							<span class="text-foreground"
+								>Status: Available</span
+							>
+						</div>
+						<div
+							class="font-mono text-[10px] uppercase tracking-widest text-muted leading-relaxed pt-3"
+						>
+							<div class="flex justify-between py-1">
+								<span>REPLY</span>
+								<span class="text-foreground">&lt; 24H</span>
+							</div>
+							<div class="flex justify-between py-1">
+								<span>BASE</span>
+								<span class="text-foreground">SANTIAGO, CL</span>
+							</div>
+							<div class="flex justify-between py-1">
+								<span>UTC</span>
+								<span class="text-foreground tabular-nums"
+									>−3</span
+								>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- ═══ HUD readout (the seniority signal) ═══ -->
+				<div
+					class="grid grid-cols-2 md:grid-cols-4 gap-px bg-foreground/10 border-t border-border pt-1 mb-12"
+				>
+					<div class="py-3 bg-background">
+						<div
+							class="font-mono text-[10px] uppercase tracking-widest text-muted"
+						>
+							EXPERIENCIA
+						</div>
+						<div
+							class="font-mono text-2xl font-bold text-foreground tabular-nums mt-1"
+						>
+							14+
+						</div>
+					</div>
+					<div class="py-3 bg-background">
+						<div
+							class="font-mono text-[10px] uppercase tracking-widest text-muted"
+						>
+							PROYECTOS
+						</div>
+						<div
+							class="font-mono text-2xl font-bold text-foreground tabular-nums mt-1"
+						>
+							50+
+						</div>
+					</div>
+					<div class="py-3 bg-background">
+						<div
+							class="font-mono text-[10px] uppercase tracking-widest text-muted"
+						>
+							INDUSTRIAS
+						</div>
+						<div
+							class="font-mono text-2xl font-bold text-foreground tabular-nums mt-1"
+						>
+							8+
+						</div>
+					</div>
+					<div class="py-3 bg-background">
+						<div
+							class="font-mono text-[10px] uppercase tracking-widest text-muted"
+						>
+							PÁVLOV
+						</div>
+						<div
+							class="font-mono text-2xl font-bold text-accent tabular-nums mt-1"
+						>
+							2015
+						</div>
+					</div>
+				</div>
+
+				<!-- ═══ SOBRE-MÍ preview ═══ -->
+				<div class="grid lg:grid-cols-12 gap-8 lg:gap-12 mb-12">
+					<div class="lg:col-span-5 space-y-4">
+						<p
+							class="font-mono text-[10px] uppercase tracking-widest text-accent"
+						>
+							[ EXP // 2011—PRESENTE ]
+						</p>
+						<h3
+							class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-[1.05] tracking-tight text-balance"
+						>
+							14 años diseñando productos digitales
+						</h3>
+						<p class="text-base text-muted leading-relaxed text-pretty">
+							Diseñador UX senior en Cleverit. Antes: Lead UX en
+							Aureolab, diseñador UI/UX en Agencia Land, diseñador
+							web en PVW. Cofundador de Pávlov en 2015.
+						</p>
+						<a
+							href="#"
+							class="inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent transition-colors"
+						>
+							Leer CV completo <span class="text-accent">→</span>
+						</a>
+					</div>
+
+					<div class="lg:col-span-7 border border-border bg-background">
+						<div
+							class="border-b border-border px-4 py-2.5 font-mono text-[10px] uppercase tracking-widest text-muted flex items-center justify-between"
+						>
+							<span>Rol</span>
+							<span class="text-foreground">SENIOR PRODUCT DESIGNER</span>
+						</div>
+						<div class="divide-y divide-border">
+							<div
+								class="flex items-baseline justify-between px-4 py-3 font-mono text-[10px] uppercase tracking-widest"
+							>
+								<span class="text-foreground"
+									>Cleverit · Senior UX</span
+								>
+								<span class="text-muted tabular-nums"
+									>2022—ACT</span
+								>
+							</div>
+							<div
+								class="flex items-baseline justify-between px-4 py-3 font-mono text-[10px] uppercase tracking-widest"
+							>
+								<span class="text-foreground"
+									>Aureolab · Lead UX</span
+								>
+								<span class="text-muted tabular-nums"
+									>2020—21</span
+								>
+							</div>
+							<div
+								class="flex items-baseline justify-between px-4 py-3 font-mono text-[10px] uppercase tracking-widest"
+							>
+								<span class="text-foreground"
+									>Agencia Land · UI/UX</span
+								>
+								<span class="text-muted tabular-nums"
+									>2017—19</span
+								>
+							</div>
+							<div
+								class="flex items-baseline justify-between px-4 py-3 font-mono text-[10px] uppercase tracking-widest"
+							>
+								<span class="text-foreground"
+									>Pávlov · Co-founder</span
+								>
+								<span class="text-muted tabular-nums">2015</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- ═══ PROJECT GRID preview (real thumbs) ═══ -->
+				<div class="grid sm:grid-cols-3 gap-3 mb-12">
+					<a
+						href="#"
+						class="group block bg-background border border-border hover:border-accent transition-colors"
+					>
+						<div class="aspect-[3/2] bg-white/5 overflow-hidden relative">
+							<img
+								src="/assets/img/portafolio/thumbs/autofin-web.png"
+								alt=""
+								loading="lazy"
+								decoding="async"
+								class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+							/>
+						</div>
+						<div class="p-4 border-t border-border">
+							<div
+								class="flex items-baseline justify-between mb-1.5"
+							>
+								<h4
+									class="text-sm font-bold group-hover:text-accent transition-colors"
+								>
+									Nuevo sitio Autofin
+								</h4>
+								<span
+									class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums ml-2"
+									>2019</span
+								>
+							</div>
+							<p class="text-xs text-muted leading-relaxed line-clamp-2">
+								Rediseño y un nuevo simulador de crédito
+								automotriz.
+							</p>
+						</div>
+					</a>
+					<a
+						href="#"
+						class="group block bg-background border border-border hover:border-accent transition-colors"
+					>
+						<div class="aspect-[3/2] bg-white/5 overflow-hidden relative">
+							<img
+								src="/assets/img/portafolio/thumbs/cuprum-apv-tu-bono.png"
+								alt=""
+								loading="lazy"
+								decoding="async"
+								class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+							/>
+						</div>
+						<div class="p-4 border-t border-border">
+							<div
+								class="flex items-baseline justify-between mb-1.5"
+							>
+								<h4
+									class="text-sm font-bold group-hover:text-accent transition-colors"
+								>
+									Cuprum · Tu bono al 100%
+								</h4>
+								<span
+									class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums ml-2"
+									>2018</span
+								>
+							</div>
+							<p class="text-xs text-muted leading-relaxed line-clamp-2">
+								Landing de campaña APV para Cuprum AFP.
+							</p>
+						</div>
+					</a>
+					<a
+						href="#"
+						class="group block bg-background border border-border hover:border-accent transition-colors"
+					>
+						<div class="aspect-[3/2] bg-white/5 overflow-hidden relative">
+							<img
+								src="/assets/img/portafolio/thumbs/autofin-crm.png"
+								alt=""
+								loading="lazy"
+								decoding="async"
+								class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+							/>
+						</div>
+						<div class="p-4 border-t border-border">
+							<div
+								class="flex items-baseline justify-between mb-1.5"
+							>
+								<h4
+									class="text-sm font-bold group-hover:text-accent transition-colors"
+								>
+									Autofin CRM
+								</h4>
+								<span
+									class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums ml-2"
+									>2019</span
+								>
+							</div>
+							<p class="text-xs text-muted leading-relaxed line-clamp-2">
+								CRM a medida para la gestión comercial de Autofin.
+							</p>
+						</div>
+					</a>
+				</div>
+
+				<!-- ═══ Discipline checklist ═══ -->
+				<div
+					class="font-mono text-[10px] uppercase tracking-widest space-y-1.5 pt-4 border-t border-border"
+				>
+					<p class="text-accent mb-2">
+						// DISCIPLINA · LAS REGLAS DE LA CANDIDATA
+					</p>
+					<p class="text-foreground">
+						+ Workbench como esqueleto: metadata row, grid 8/4, tabular nums
+					</p>
+					<p class="text-foreground">
+						+ Bordes de acento (NERV) SOLO donde marcan: frame hero, status
+						panel, CTA primario, dot
+					</p>
+					<p class="text-foreground">
+						+ Botones: solo borde, sin relleno; hover → relleno
+						(primario accent, secundario white/5)
+					</p>
+					<p class="text-foreground">
+						+ Section frame en hero (acento) y CV (strong), no en cada sección
+					</p>
+					<p class="text-foreground">
+						+ HUD readout mono, sin tiles, sin gradiente
+					</p>
+					<p class="text-foreground">
+						+ Naranja ≤ 15% de la pantalla; el resto es la bench
+					</p>
+					<p class="text-muted">
+						− sin lined buttons con relleno sólido, sin shadow en
+						hover, sin corner brackets vacíos
+					</p>
+				</div>
+			</section>
+
+			<!-- ─── Reference lanes ─── -->
+			<header class="mb-8 space-y-2">
+				<p class="text-xs font-mono tracking-widest uppercase text-muted">
+					// FUENTES · PARA COMPARAR
+				</p>
+				<h2
+					class="text-2xl font-bold tracking-tight"
+				>
+					Las tres lecturas originales
+				</h2>
+			</header>
+
+			<!-- ════════════════════════════════════════════
+			     LANE 01 · NERV  (MAGI Console)
+			     ════════════════════════════════════════════ -->
+			<div class="grid lg:grid-cols-3 gap-px bg-foreground/10">
+				<article class="bg-background p-6 sm:p-8 space-y-8">
+					<header class="space-y-3">
+						<div class="flex items-baseline gap-3">
+							<span
+								class="font-mono text-xs text-muted tracking-widest"
+								>01</span
+							>
+							<h2
+								class="text-xl font-bold tracking-tight"
+								>NERV — MAGI Console</h2
+							>
+						</div>
+						<p class="text-sm text-muted leading-relaxed">
+							El chrome trabaja. Cada dispositivo lleva un dato, una
+							etiqueta, un ID. La estructura se ve.
+						</p>
+					</header>
+
+					<div
+						class="relative border border-accent/60 p-5 bg-background"
+					>
+						<span
+							class="absolute -top-px -left-px w-2.5 h-2.5 border-t border-l border-accent"
+						></span>
+						<span
+							class="absolute -top-px -right-px w-2.5 h-2.5 border-t border-r border-accent"
+						></span>
+						<span
+							class="absolute -bottom-px -left-px w-2.5 h-2.5 border-b border-l border-accent"
+						></span>
+						<span
+							class="absolute -bottom-px -right-px w-2.5 h-2.5 border-b border-r border-accent"
+						></span>
+
+						<div class="space-y-4">
+							<div
+								class="flex items-center justify-between border-b border-border pb-3"
+							>
+								<div
+									class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest"
+								>
+									<span class="text-muted">SECTOR</span>
+									<span class="text-foreground tabular-nums"
+										>01-HERO</span
+									>
+								</div>
+								<div
+									class="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-accent"
+								>
+									<span
+										class="w-1.5 h-1.5 rounded-full bg-accent"
+									></span>
+									ONLINE
+								</div>
+							</div>
+
+							<h3
+								class="text-[clamp(1.5rem,3vw,2rem)] font-bold leading-[1.05] tracking-tight"
+							>
+								Arturo Jofré<span class="text-muted"
+									>·</span
+								>
+								<span class="text-muted">Product Designer</span>
+							</h3>
+
+							<p
+								class="font-mono text-[11px] uppercase tracking-widest text-muted leading-relaxed"
+							>
+								<span class="text-accent">01.04</span> · 14 AÑOS ·
+								GOBIERNO · SALUD · FINANZAS · RETAIL
+							</p>
+
+							<div class="flex flex-wrap gap-2">
+								<a
+									href="#"
+									class="inline-flex items-center justify-center border border-border-strong hover:border-accent hover:text-accent font-mono text-[10px] uppercase tracking-widest px-4 py-2.5 transition-colors"
+									>[ AGENDA ]</a
+								>
+								<a
+									href="#"
+									class="inline-flex items-center justify-center border border-border-strong hover:border-accent hover:text-accent font-mono text-[10px] uppercase tracking-widest px-4 py-2.5 transition-colors"
+									>[ PROYECTOS ]</a
+								>
+							</div>
+
+							<div
+								class="grid grid-cols-4 gap-3 pt-3 border-t border-border font-mono text-[10px] uppercase tracking-widest"
+							>
+								<div>
+									<div class="text-muted">FPS</div>
+									<div class="text-foreground tabular-nums">
+										60
+									</div>
+								</div>
+								<div>
+									<div class="text-muted">HDG</div>
+									<div class="text-foreground tabular-nums">
+										N
+									</div>
+								</div>
+								<div>
+									<div class="text-muted">RNG</div>
+									<div class="text-foreground tabular-nums">
+										0.00u
+									</div>
+								</div>
+								<div>
+									<div class="text-muted">SEC</div>
+									<div class="text-foreground tabular-nums">
+										00:00
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="font-mono text-[10px] uppercase tracking-widest space-y-1.5 pt-4 border-t border-border"
+					>
+						<p class="text-muted mb-2">
+							// DISCIPLINA · CHROME TRABAJA
+						</p>
+						<p class="text-foreground">
+							+ Corner brackets en hero / cv / detail
+						</p>
+						<p class="text-foreground">
+							+ Kicker con sector id o número
+						</p>
+						<p class="text-foreground">+ HUD readout para stats</p>
+						<p class="text-foreground">
+							+ CTAs lined con brackets
+						</p>
+						<p class="text-muted">− sin cards con rounded</p>
+						<p class="text-muted">− sin glow fuera del hero</p>
+					</div>
+				</article>
+
+				<!-- ════════════════════════════════════════════
+				     LANE 02 · NIHEI  (Silent Frame)
+				     ════════════════════════════════════════════ -->
+				<article class="bg-background p-6 sm:p-8 space-y-8">
+					<header class="space-y-3">
+						<div class="flex items-baseline gap-3">
+							<span
+								class="font-mono text-xs text-muted tracking-widest"
+								>02</span
+							>
+							<h2
+								class="text-xl font-bold tracking-tight"
+								>Nihei — Silent Frame</h2
+							>
+						</div>
+						<p class="text-sm text-muted leading-relaxed">
+							El cromo es la ausencia. Un elemento por panel, una
+							regla fina, mucho aire. La firma es el silencio.
+						</p>
+					</header>
+
+					<div class="space-y-6 py-2">
+						<div class="h-px bg-foreground/10"></div>
+
+						<p
+							class="font-mono text-[10px] uppercase tracking-widest text-muted"
+						>
+							14 años · santiago, cl
+						</p>
+
+						<h3
+							class="text-[clamp(1.875rem,3.8vw,2.5rem)] font-bold leading-[0.95] tracking-[-0.04em] text-balance"
+						>
+							Arturo Jofré<span class="text-accent">.</span>
+						</h3>
+
+						<p
+							class="text-sm text-muted leading-relaxed max-w-xs text-pretty"
+						>
+							Diseño productos digitales para gobierno, salud,
+							finanzas y retail.
+						</p>
+
+						<div class="pt-2">
+							<a
+								href="#"
+								class="inline-flex items-center gap-2 text-sm text-foreground border-b border-foreground/40 hover:border-accent hover:text-accent pb-0.5 transition-colors"
+							>
+								Agenda <span class="text-accent">→</span>
+							</a>
+						</div>
+
+						<div class="h-px bg-foreground/10"></div>
+					</div>
+
+					<div class="space-y-5 py-2">
+						<div class="h-px bg-foreground/10"></div>
+
+						<p
+							class="font-mono text-[10px] uppercase tracking-widest text-muted"
+						>
+							Trayectoria
+						</p>
+
+						<h4
+							class="text-[clamp(1.5rem,3vw,2rem)] font-bold leading-[0.95] tracking-[-0.04em] text-balance"
+						>
+							2011<span class="text-muted"> —</span> presente<span
+								class="text-accent">.</span
+							>
+						</h4>
+
+						<p
+							class="text-xs text-muted leading-relaxed max-w-xs"
+						>
+							Diseñador UX senior en Cleverit. Co-fundador de Pávlov
+							en 2015.
+						</p>
+
+						<div
+							class="flex flex-wrap gap-x-6 gap-y-1 font-mono text-[10px] uppercase tracking-widest text-muted pt-2"
+						>
+							<span>14+ años</span>
+							<span>50+ proyectos</span>
+							<span>8+ industrias</span>
+						</div>
+
+						<div class="h-px bg-foreground/10"></div>
+					</div>
+
+					<div
+						class="font-mono text-[10px] uppercase tracking-widest space-y-1.5 pt-4 border-t border-border"
+					>
+						<p class="text-muted mb-2">
+							// DISCIPLINA · CROMO COMO AUSENCIA
+						</p>
+						<p class="text-foreground">
+							+ Hairlines 1px separando secciones
+						</p>
+						<p class="text-foreground">
+							+ Mono kicker con un valor real
+						</p>
+						<p class="text-foreground">
+							+ Un solo momento naranja por superficie
+						</p>
+						<p class="text-foreground">
+							+ CTA como texto con hairline underline
+						</p>
+						<p class="text-muted">− sin corner brackets</p>
+						<p class="text-muted">− sin status badge</p>
+						<p class="text-muted">− sin glow</p>
+						<p class="text-muted">− sin cards</p>
+					</div>
+				</article>
+
+				<!-- ════════════════════════════════════════════
+				     LANE 03 · VERCEL  (Workbench)
+				     ════════════════════════════════════════════ -->
+				<article class="bg-background p-6 sm:p-8 space-y-8">
+					<header class="space-y-3">
+						<div class="flex items-baseline gap-3">
+							<span
+								class="font-mono text-xs text-muted tracking-widest"
+								>03</span
+							>
+							<h2
+								class="text-xl font-bold tracking-tight"
+								>Vercel — Workbench</h2
+							>
+						</div>
+						<p class="text-sm text-muted leading-relaxed">
+							La grid es el diseño. 1px borders que cargan
+							información, focus ring committed, columnas visibles.
+						</p>
+					</header>
+
+					<div class="border border-border p-5 bg-background">
+						<div
+							class="flex items-center justify-between font-mono text-[10px] uppercase tracking-widest pb-4 border-b border-border mb-4"
+						>
+							<div class="flex items-center gap-3 text-muted">
+								<span class="text-foreground tabular-nums"
+									>[001]</span
+								>
+								<span>// HERO.IDX</span>
+							</div>
+							<div class="flex items-center gap-2 text-muted">
+								<span class="tabular-nums">v0.2.4</span>
+								<span>·</span>
+								<span class="tabular-nums">A26-240</span>
+							</div>
+						</div>
+
+						<div class="grid grid-cols-12 gap-3">
+							<div class="col-span-12 sm:col-span-8 space-y-3">
+								<h3
+									class="text-[clamp(1.5rem,3vw,1.875rem)] font-bold leading-[1.05] tracking-[-0.03em] text-balance"
+								>
+									Arturo Jofré López
+									<span class="text-muted font-normal"
+										>/</span
+									>
+									Product Designer
+								</h3>
+								<p
+									class="text-sm text-muted leading-relaxed text-pretty"
+								>
+									14 años diseñando productos digitales para
+									gobierno, salud, finanzas y retail.
+								</p>
+							</div>
+
+							<div
+								class="col-span-12 sm:col-span-4 border-l border-border pl-3 space-y-2"
+							>
+								<div
+									class="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest"
+								>
+									<span
+										class="w-1.5 h-1.5 rounded-full bg-accent"
+									></span>
+									<span class="text-foreground"
+										>Status: Available</span
+									>
+								</div>
+								<p
+									class="font-mono text-[10px] uppercase tracking-widest text-muted leading-relaxed"
+								>
+									Reply &lt; 24h<br />
+									Santiago, CL<br />
+									UTC−3
+								</p>
+							</div>
+						</div>
+
+						<div class="flex flex-wrap gap-2 pt-4 mt-4 border-t border-border">
+							<a
+								href="#"
+								class="inline-flex items-center justify-center bg-accent text-white text-xs font-medium px-4 py-2 hover:bg-accent-hover transition-colors"
+								style="box-shadow: 0 0 0 1px rgba(240,64,0,0.4), 0 1px 2px rgba(0,0,0,0.5);"
+							>
+								Agenda una reunión
+							</a>
+							<a
+								href="#"
+								class="inline-flex items-center justify-center border border-border-strong text-foreground text-xs font-medium px-4 py-2 hover:border-accent hover:text-accent transition-colors"
+							>
+								Ver proyectos
+							</a>
+						</div>
+					</div>
+
+					<div
+						class="font-mono text-[10px] uppercase tracking-widest space-y-1.5 pt-4 border-t border-border"
+					>
+						<p class="text-muted mb-2">
+							// DISCIPLINA · GRID ES EL DISEÑO
+						</p>
+						<p class="text-foreground">
+							+ 1px borders en cada celda, con función
+						</p>
+						<p class="text-foreground">
+							+ Section frame solo en hero + cv
+						</p>
+						<p class="text-foreground">
+							+ CTA sólido con ambient shadow
+						</p>
+						<p class="text-foreground">
+							+ Tabular nums en todos los números
+						</p>
+						<p class="text-muted">− sin lined buttons (sólido u outline)</p>
+						<p class="text-muted">− sin shadow en hover</p>
+					</div>
+				</article>
+			</div>
+
+			<!-- ─── Footer note ─── -->
+			<footer
+				class="mt-16 sm:mt-20 pt-8 border-t border-border space-y-3"
+			>
+				<p
+					class="font-mono text-[10px] uppercase tracking-widest text-muted"
+				>
+					// A26.DIRECTIONS · CANDIDATA 01 · WORKBENCH + NERV
+				</p>
+				<p class="text-sm text-muted leading-relaxed max-w-2xl">
+					La candidata usa los mismos tokens del proyecto. El naranja
+					queda reservado para los bordes que marcan (frame, status,
+					CTA primario), y los botones pierden peso: solo borde al
+					reposo, relleno al hover.
+				</p>
+			</footer>
+		</div>
+	</main>
+</Layout>

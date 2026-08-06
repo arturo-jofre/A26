@@ -1,6 +1,6 @@
 ---
 interface Props {
-	tone?: "quiet" | "strong" | "accent";
+	tone?: "quiet" | "strong" | "accent" | "foreground" | "muted";
 	size?: "sm" | "md" | "lg";
 	class?: string;
 }
@@ -21,6 +21,8 @@ const toneMap = {
 	quiet: "border-border",
 	strong: "border-border-strong",
 	accent: "border-accent",
+	foreground: "border-foreground",
+	muted: "border-muted",
 };
 const borderClass = toneMap[tone];
 ---

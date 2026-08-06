@@ -1,0 +1,499 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="UI Kit — A26">
+	<main class="min-h-screen px-4 sm:px-8 lg:px-12 py-16 sm:py-20">
+		<div class="mx-auto max-w-6xl space-y-24">
+			<!-- ─── Header ─── -->
+			<header class="space-y-4 max-w-3xl">
+				<p class="text-xs font-mono tracking-widest uppercase text-accent">
+					// A26.UIKIT · WORKBENCH + NERV · v0.3.0
+				</p>
+				<h1
+					class="text-[clamp(2rem,5vw,3.25rem)] font-bold leading-[1.05] tracking-tight text-balance"
+				>
+					UI Kit — Workbench + NERV.
+				</h1>
+				<p class="text-base sm:text-lg text-muted leading-relaxed text-pretty">
+					Componentes listos para desarrollo. Misma disciplina que la
+					candidata: 1px borders que cargan información, mono solo
+					para labels, naranja ≤15% reservado para lo que marca,
+					botones livianos (borde al reposo, relleno al hover).
+				</p>
+			</header>
+
+			<!-- ═══════════ 01 · BUTTONS ═══════════ -->
+			<section class="space-y-6">
+				<header class="flex items-baseline justify-between border-b border-border pb-3">
+					<h2 class="text-xl font-bold tracking-tight">Buttons</h2>
+					<span class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums">01</span>
+				</header>
+
+				<!-- Primary -->
+				<div class="space-y-3">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// PRIMARY · TEXTO + BORDE ACENTO · HOVER: RELLENO ACENTO + TEXTO COLOR DE FONDO</p>
+					<div class="flex flex-wrap items-center gap-3">
+						<a href="#" class="inline-flex items-center justify-center gap-2 text-xs font-medium px-4 py-2 border border-accent text-accent hover:bg-accent hover:text-background transition-colors">Primary sm</a>
+						<a href="#" class="inline-flex items-center justify-center gap-2 text-sm font-medium px-6 py-2.5 border border-accent text-accent hover:bg-accent hover:text-background transition-colors">Primary md</a>
+						<a href="#" class="inline-flex items-center justify-center gap-2 text-base font-medium px-8 py-3.5 border border-accent text-accent hover:bg-accent hover:text-background transition-colors">Primary lg</a>
+						<a href="#" class="inline-flex items-center justify-center gap-2 text-sm font-medium px-6 py-2.5 border border-dashed border-border text-muted/50 cursor-not-allowed bg-transparent">Disabled</a>
+					</div>
+				</div>
+
+				<!-- Secondary -->
+				<div class="space-y-3">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// SECONDARY · BORDE QUIET · HOVER ACENTO + FILL WHITE/5</p>
+					<div class="flex flex-wrap items-center gap-3">
+						<a href="#" class="inline-flex items-center justify-center gap-2 text-xs font-medium px-4 py-2 border border-border-strong text-foreground hover:border-accent hover:text-accent hover:bg-white/5 transition-colors">Secondary sm</a>
+						<a href="#" class="inline-flex items-center justify-center gap-2 text-sm font-medium px-6 py-2.5 border border-border-strong text-foreground hover:border-accent hover:text-accent hover:bg-white/5 transition-colors">Secondary md</a>
+						<a href="#" class="inline-flex items-center justify-center gap-2 text-base font-medium px-8 py-3.5 border border-border-strong text-foreground hover:border-accent hover:text-accent hover:bg-white/5 transition-colors">Secondary lg</a>
+						<a href="#" class="inline-flex items-center justify-center gap-2 text-sm font-medium px-6 py-2.5 border border-dashed border-border text-muted/50 cursor-not-allowed bg-transparent">Disabled</a>
+					</div>
+				</div>
+
+				<!-- Link -->
+				<div class="space-y-3">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// LINK · TEXTO + FLECHA · HOVER ACENTO</p>
+					<div class="flex flex-wrap items-center gap-6">
+						<a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent transition-colors">Link normal <span class="text-accent">→</span></a>
+						<a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent transition-colors">Agenda <span class="text-accent">→</span></a>
+						<a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-foreground border-b border-foreground/30 hover:border-accent hover:text-accent transition-colors pb-0.5">Underlined</a>
+						<a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-muted/50 cursor-not-allowed">Link disabled</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- ═══════════ 02 · TYPOGRAPHY ═══════════ -->
+			<section class="space-y-6">
+				<header class="flex items-baseline justify-between border-b border-border pb-3">
+					<h2 class="text-xl font-bold tracking-tight">Typography</h2>
+					<span class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums">02</span>
+				</header>
+
+				<div class="space-y-4">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// DISPLAY</p>
+					<p class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.0] tracking-[-0.03em] text-balance">Arturo Jofré López</p>
+				</div>
+				<div class="space-y-2">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// HEADLINE</p>
+					<p class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-[1.05] tracking-[-0.03em] text-balance">Últimos proyectos</p>
+				</div>
+				<div class="space-y-2">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// TITLE</p>
+					<p class="text-base font-bold tracking-[-0.01em]">Nuevo sitio Autofin</p>
+				</div>
+				<div class="space-y-2">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// BODY</p>
+					<p class="text-base text-muted leading-relaxed text-pretty max-w-2xl">14 años diseñando productos digitales para gobierno, salud, finanzas, retail y logística. Cada proyecto llevado desde la investigación hasta el lanzamiento.</p>
+				</div>
+				<div class="space-y-2">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// KICKER</p>
+					<p class="text-xs font-mono tracking-widest uppercase text-accent">[ 35+ PROYECTOS // 8 INDUSTRIAS ]</p>
+				</div>
+				<div class="space-y-2">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// MICROCOPY</p>
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// STATUS: AVAILABLE · REPLY &lt; 24H</p>
+				</div>
+			</section>
+
+			<!-- ═══════════ 03 · FORM CONTROLS ═══════════ -->
+			<section class="space-y-6">
+				<header class="flex items-baseline justify-between border-b border-border pb-3">
+					<h2 class="text-xl font-bold tracking-tight">Form controls</h2>
+					<span class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums">03</span>
+				</header>
+
+				<div class="grid md:grid-cols-2 gap-8">
+					<div class="space-y-3">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// TEXT INPUT</p>
+						<div class="space-y-1.5">
+							<label class="font-mono text-[10px] uppercase tracking-widest text-muted">Nombre</label>
+							<input type="text" placeholder="Arturo Jofré" class="w-full bg-transparent border border-border px-3 py-2 text-sm text-foreground placeholder:text-muted/50 focus:border-accent focus:outline-none transition-colors" />
+						</div>
+						<div class="space-y-1.5">
+							<label class="font-mono text-[10px] uppercase tracking-widest text-muted">Email</label>
+							<input type="email" placeholder="hola@arturojofre.cl" class="w-full bg-transparent border border-border px-3 py-2 text-sm text-foreground placeholder:text-muted/50 focus:border-accent focus:outline-none transition-colors" />
+							<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// FORMATO: nombre@dominio.cl</p>
+						</div>
+						<div class="space-y-1.5">
+							<label class="font-mono text-[10px] uppercase tracking-widest text-muted">Proyecto</label>
+							<input type="text" value="Autofin" disabled class="w-full bg-white/[0.03] border border-border px-3 py-2 text-sm text-muted focus:border-accent focus:outline-none transition-colors" />
+						</div>
+					</div>
+
+					<div class="space-y-3">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// TEXTAREA</p>
+						<textarea rows="3" placeholder="Cuéntame sobre tu proyecto…" class="w-full bg-transparent border border-border px-3 py-2 text-sm text-foreground placeholder:text-muted/50 focus:border-accent focus:outline-none transition-colors resize-y"></textarea>
+
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted pt-4">// SELECT</p>
+						<select class="w-full bg-transparent border border-border px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none transition-colors">
+							<option class="bg-background">Gobierno</option>
+							<option class="bg-background">Salud</option>
+							<option class="bg-background">Finanzas</option>
+							<option class="bg-background">Retail</option>
+						</select>
+					</div>
+				</div>
+
+				<!-- Checkbox / radio / toggle / range -->
+				<div class="grid md:grid-cols-2 gap-8">
+					<div class="space-y-3">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// CHECKBOX & RADIO</p>
+						<div class="flex items-center gap-2">
+							<input type="checkbox" checked class="h-4 w-4 accent-accent bg-transparent border border-border rounded-none" />
+							<label class="text-sm text-foreground">Gobierno</label>
+						</div>
+						<div class="flex items-center gap-2">
+							<input type="checkbox" class="h-4 w-4 accent-accent bg-transparent border border-border rounded-none" />
+							<label class="text-sm text-foreground">Finanzas</label>
+						</div>
+						<div class="flex items-center gap-2 pt-2">
+							<input type="radio" name="sector" checked class="h-4 w-4 accent-accent bg-transparent border border-border" />
+							<label class="text-sm text-foreground">UX</label>
+						</div>
+						<div class="flex items-center gap-2">
+							<input type="radio" name="sector" class="h-4 w-4 accent-accent bg-transparent border border-border" />
+							<label class="text-sm text-foreground">DEV</label>
+						</div>
+					</div>
+
+					<div class="space-y-4">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// TOGGLE SWITCH</p>
+						<label class="inline-flex items-center gap-3 cursor-pointer group">
+							<input type="checkbox" checked class="peer sr-only" />
+							<span class="relative w-10 h-5 border border-border peer-checked:border-accent bg-transparent transition-colors">
+								<span class="absolute top-0.5 left-0.5 h-3 w-3 bg-muted peer-checked:bg-accent peer-checked:translate-x-5 transition-all"></span>
+							</span>
+							<span class="text-sm text-foreground">Auto-rotate</span>
+						</label>
+
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted pt-2">// RANGE</p>
+						<input type="range" min="0" max="2" step="0.05" value="1" class="w-48 accent-accent" />
+						<div class="flex justify-between w-48 font-mono text-[10px] uppercase tracking-widest text-muted">
+							<span>MIN</span>
+							<span class="text-foreground tabular-nums">1.00</span>
+							<span>MAX</span>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ═══════════ 04 · BADGES & STATUS ═══════════ -->
+			<section class="space-y-6">
+				<header class="flex items-baseline justify-between border-b border-border pb-3">
+					<h2 class="text-xl font-bold tracking-tight">Badges & status</h2>
+					<span class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums">04</span>
+				</header>
+
+				<div class="flex flex-wrap items-center gap-3">
+					<span class="inline-flex items-center gap-2 border border-border rounded-full px-4 py-1.5 font-mono text-[10px] uppercase tracking-widest text-muted">
+						<span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+						Disponible para proyectos
+					</span>
+					<span class="inline-flex items-center gap-2 border border-accent/50 px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-accent">
+						<span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+						Online
+					</span>
+					<span class="inline-flex items-center border border-border px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-widest text-muted">TAG · UX</span>
+					<span class="inline-flex items-center border border-border px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-widest text-muted">TAG · RESEARCH</span>
+					<span class="inline-flex items-center justify-center bg-accent text-white font-mono text-[10px] uppercase tracking-widest px-2 py-1">3</span>
+					<span class="inline-flex items-center justify-center border border-border text-muted font-mono text-[10px] uppercase tracking-widest px-2 py-1">12</span>
+				</div>
+			</section>
+
+			<!-- ═══════════ 05 · CARDS ═══════════ -->
+			<section class="space-y-6">
+				<header class="flex items-baseline justify-between border-b border-border pb-3">
+					<h2 class="text-xl font-bold tracking-tight">Cards</h2>
+					<span class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums">05</span>
+				</header>
+
+				<div class="grid sm:grid-cols-3 gap-3">
+					<a href="#" class="group block bg-background border border-border hover:border-accent transition-colors">
+						<div class="aspect-[3/2] bg-white/5 overflow-hidden relative">
+							<img src="/assets/img/portafolio/thumbs/autofin-web.png" alt="" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
+						</div>
+						<div class="p-4 border-t border-border">
+							<div class="flex items-baseline justify-between mb-1.5">
+								<h3 class="text-sm font-bold group-hover:text-accent transition-colors">Nuevo sitio Autofin</h3>
+								<span class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums ml-2">2019</span>
+							</div>
+							<p class="text-xs text-muted leading-relaxed line-clamp-2">Rediseño y un nuevo simulador de crédito automotriz.</p>
+						</div>
+					</a>
+					<div class="border border-border p-5 bg-background">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-accent mb-2">[ META // CARD ]</p>
+						<h3 class="text-base font-bold mb-1.5">Card simple</h3>
+						<p class="text-sm text-muted leading-relaxed">Para bloques de contenido que no son navegables. Sin hover, sin escala, borde quiet.</p>
+					</div>
+					<div class="border border-border p-5 bg-white/[0.02]">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted mb-2">[ HIGHLIGHT ]</p>
+						<h3 class="text-base font-bold mb-1.5">Card raised</h3>
+						<p class="text-sm text-muted leading-relaxed">Uso puntual para destacar. Fondo white/2 en vez de shadow — flat by default.</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ═══════════ 06 · DATA ═══════════ -->
+			<section class="space-y-6">
+				<header class="flex items-baseline justify-between border-b border-border pb-3">
+					<h2 class="text-xl font-bold tracking-tight">Data readouts</h2>
+					<span class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums">06</span>
+				</header>
+
+				<div class="grid md:grid-cols-2 gap-8">
+					<div class="space-y-2">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// HUD READOUT</p>
+						<div class="border border-border-strong p-4">
+							<p class="font-mono text-[10px] uppercase tracking-widest text-accent mb-3">[ TELEMETRY ]</p>
+							<dl class="font-mono text-xs uppercase tracking-widest">
+								<div class="flex justify-between items-baseline py-2 border-b border-border/40">
+									<dt class="text-muted">EXPERIENCIA</dt>
+									<dd class="text-foreground tabular-nums">14+ AÑOS</dd>
+								</div>
+								<div class="flex justify-between items-baseline py-2 border-b border-border/40">
+									<dt class="text-muted">PROYECTOS</dt>
+									<dd class="text-foreground tabular-nums">50+</dd>
+								</div>
+								<div class="flex justify-between items-baseline py-2 border-b border-border/40">
+									<dt class="text-muted">INDUSTRIAS</dt>
+									<dd class="text-foreground tabular-nums">8+</dd>
+								</div>
+								<div class="flex justify-between items-baseline py-2">
+									<dt class="text-muted">PÁVLOV</dt>
+									<dd class="text-accent tabular-nums">2015</dd>
+								</div>
+							</dl>
+						</div>
+					</div>
+
+					<div class="space-y-2">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// TABLE</p>
+						<table class="w-full font-mono text-[10px] uppercase tracking-widest border-collapse">
+							<thead>
+								<tr class="border-b border-border">
+									<th class="text-left text-muted font-normal py-2 pr-4">CLIENTE</th>
+									<th class="text-left text-muted font-normal py-2 pr-4">ROL</th>
+									<th class="text-right text-muted font-normal py-2 tabular-nums">AÑO</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="border-b border-border/40 hover:bg-white/[0.02]">
+									<td class="py-2 pr-4 text-foreground">Cleverit</td>
+									<td class="py-2 pr-4 text-muted">Senior UX</td>
+									<td class="py-2 text-right text-muted tabular-nums">2022</td>
+								</tr>
+								<tr class="border-b border-border/40 hover:bg-white/[0.02]">
+									<td class="py-2 pr-4 text-foreground">Aureolab</td>
+									<td class="py-2 pr-4 text-muted">Lead UX</td>
+									<td class="py-2 text-right text-muted tabular-nums">2020</td>
+								</tr>
+								<tr class="hover:bg-white/[0.02]">
+									<td class="py-2 pr-4 text-foreground">Pávlov</td>
+									<td class="py-2 pr-4 text-muted">Co-founder</td>
+									<td class="py-2 text-right text-muted tabular-nums">2015</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+
+			<!-- ═══════════ 07 · NAVIGATION ═══════════ -->
+			<section class="space-y-6">
+				<header class="flex items-baseline justify-between border-b border-border pb-3">
+					<h2 class="text-xl font-bold tracking-tight">Navigation</h2>
+					<span class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums">07</span>
+				</header>
+
+				<div class="space-y-2">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// TABS</p>
+					<div class="inline-flex border border-border divide-x divide-border">
+						<button class="px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-accent bg-white/5">Todos</button>
+						<button class="px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-muted hover:text-foreground transition-colors">UX</button>
+						<button class="px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-muted hover:text-foreground transition-colors">DEV</button>
+						<button class="px-4 py-2 font-mono text-[10px] uppercase tracking-widest text-muted hover:text-foreground transition-colors">Brand</button>
+					</div>
+				</div>
+
+				<div class="space-y-2">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// BREADCRUMB</p>
+					<nav class="flex items-center gap-2 font-mono text-[10px] uppercase tracking-widest text-muted">
+						<a href="#" class="hover:text-foreground transition-colors">Inicio</a>
+						<span>/</span>
+						<a href="#" class="hover:text-foreground transition-colors">Proyectos</a>
+						<span>/</span>
+						<span class="text-foreground">Autofin</span>
+					</nav>
+				</div>
+
+				<div class="space-y-2">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// PAGINATION</p>
+					<div class="inline-flex border border-border divide-x divide-border font-mono text-[10px] uppercase tracking-widest">
+						<a href="#" class="px-3 py-2 text-muted hover:text-foreground transition-colors">‹</a>
+						<a href="#" class="px-3 py-2 text-accent bg-white/5">1</a>
+						<a href="#" class="px-3 py-2 text-muted hover:text-foreground transition-colors">2</a>
+						<a href="#" class="px-3 py-2 text-muted hover:text-foreground transition-colors">3</a>
+						<a href="#" class="px-3 py-2 text-muted hover:text-foreground transition-colors">›</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- ═══════════ 08 · FEEDBACK ═══════════ -->
+			<section class="space-y-6">
+				<header class="flex items-baseline justify-between border-b border-border pb-3">
+					<h2 class="text-xl font-bold tracking-tight">Feedback</h2>
+					<span class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums">08</span>
+				</header>
+
+				<div class="space-y-3">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// ALERTS</p>
+					<div class="border border-accent/40 p-4">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-accent mb-1">[ INFO ]</p>
+						<p class="text-sm text-foreground leading-relaxed">Disponible para nuevos proyectos desde agosto 2026.</p>
+					</div>
+					<div class="border border-border p-4">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted mb-1">[ NOTA ]</p>
+						<p class="text-sm text-muted leading-relaxed">Algunos proyectos antiguos no están publicados por confidencialidad.</p>
+					</div>
+					<div class="border border-red-400/40 p-4">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-red-400 mb-1">[ ERROR ]</p>
+						<p class="text-sm text-foreground leading-relaxed">No se pudo cargar el proyecto. Intenta de nuevo.</p>
+					</div>
+				</div>
+
+				<div class="grid md:grid-cols-2 gap-8">
+					<div class="space-y-2">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// EMPTY STATE</p>
+						<div class="border border-dashed border-border p-8 text-center">
+							<p class="font-mono text-[10px] uppercase tracking-widest text-accent mb-2">[ 0 RESULTS ]</p>
+							<p class="text-sm text-muted">No hay proyectos en esta categoría todavía.</p>
+						</div>
+					</div>
+					<div class="space-y-2">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// LOADING</p>
+						<div class="flex items-center gap-3 border border-border p-8">
+							<span class="w-4 h-4 border border-accent border-t-transparent animate-spin"></span>
+							<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// CARGANDO</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ═══════════ 09 · FRAMES & DIVIDERS ═══════════ -->
+			<section class="space-y-6">
+				<header class="flex items-baseline justify-between border-b border-border pb-3">
+					<h2 class="text-xl font-bold tracking-tight">Frames & dividers</h2>
+					<span class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums">09</span>
+				</header>
+
+				<div class="space-y-2">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// SECTION FRAME · VARIANTES DE TONO</p>
+
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— ACENTO (HERO/CV)</p>
+					<div class="relative border border-accent/40 p-5">
+						<span class="absolute -top-px -left-px w-3.5 h-3.5 border-t border-l border-accent"></span>
+						<span class="absolute -top-px -right-px w-3.5 h-3.5 border-t border-r border-accent"></span>
+						<span class="absolute -bottom-px -left-px w-3.5 h-3.5 border-b border-l border-accent"></span>
+						<span class="absolute -bottom-px -right-px w-3.5 h-3.5 border-b border-r border-accent"></span>
+						<p class="text-sm text-muted">Sección que se gana el frame: hero, CV, project detail. Máximo 2 por página.</p>
+					</div>
+
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— FOREGROUND (BLANCO / CHALK)</p>
+					<div class="relative border border-foreground/40 p-5">
+						<span class="absolute -top-px -left-px w-3.5 h-3.5 border-t border-l border-foreground"></span>
+						<span class="absolute -top-px -right-px w-3.5 h-3.5 border-t border-r border-foreground"></span>
+						<span class="absolute -bottom-px -left-px w-3.5 h-3.5 border-b border-l border-foreground"></span>
+						<span class="absolute -bottom-px -right-px w-3.5 h-3.5 border-b border-r border-foreground"></span>
+						<p class="text-sm text-muted">Variante clara: para secciones que piden definición sin color. Sin accent.</p>
+					</div>
+
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— MUTED (GRIS / IRON)</p>
+					<div class="relative border border-muted/40 p-5">
+						<span class="absolute -top-px -left-px w-3.5 h-3.5 border-t border-l border-muted"></span>
+						<span class="absolute -top-px -right-px w-3.5 h-3.5 border-t border-r border-muted"></span>
+						<span class="absolute -bottom-px -left-px w-3.5 h-3.5 border-b border-l border-muted"></span>
+						<span class="absolute -bottom-px -right-px w-3.5 h-3.5 border-b border-r border-muted"></span>
+						<p class="text-sm text-muted">Variante gris: definición estructural, la más discreta de las tres.</p>
+					</div>
+
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— DASHED (TRANSIENT / PLACEHOLDER)</p>
+					<div class="relative border border-dashed border-foreground/30 p-5">
+						<span class="absolute -top-px -left-px w-3.5 h-3.5 border-t border-l border-dashed border-foreground/30"></span>
+						<span class="absolute -top-px -right-px w-3.5 h-3.5 border-t border-r border-dashed border-foreground/30"></span>
+						<span class="absolute -bottom-px -left-px w-3.5 h-3.5 border-b border-l border-dashed border-foreground/30"></span>
+						<span class="absolute -bottom-px -right-px w-3.5 h-3.5 border-b border-r border-dashed border-foreground/30"></span>
+						<p class="text-sm text-muted">Variante dashed: zonas en construcción, drop zones, contenedores vacíos. Nunca en secciones finalizadas.</p>
+					</div>
+				</div>
+
+				<div class="space-y-2">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// SECTION HEADER (KICKER + H2)</p>
+					<div class="flex items-end justify-between gap-4 flex-wrap">
+						<div>
+							<p class="text-xs font-mono tracking-widest uppercase text-accent mb-2">[ 35+ PROYECTOS // 8 INDUSTRIAS ]</p>
+							<h3 class="text-3xl font-bold tracking-tight text-balance">Últimos proyectos</h3>
+						</div>
+					</div>
+				</div>
+
+				<div class="space-y-2">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// DIVIDERS</p>
+					<div class="space-y-4">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— SOLID · HAIRLINE</p>
+						<div class="h-px bg-foreground/10"></div>
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— SOLID · CENTERED</p>
+						<div class="flex items-center gap-3">
+							<div class="h-px bg-foreground/10 flex-1"></div>
+							<span class="font-mono text-[10px] uppercase tracking-widest text-muted">·</span>
+							<div class="h-px bg-foreground/10 flex-1"></div>
+						</div>
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— SOLID · ACCENT</p>
+						<div class="h-px bg-accent/40"></div>
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— DASHED · HAIRLINE</p>
+						<div class="border-t border-dashed border-foreground/25"></div>
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— DASHED · CENTERED</p>
+						<div class="flex items-center gap-3">
+							<div class="border-t border-dashed border-foreground/25 flex-1"></div>
+							<span class="font-mono text-[10px] uppercase tracking-widest text-muted">·</span>
+							<div class="border-t border-dashed border-foreground/25 flex-1"></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="space-y-2">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// LINE BACKGROUND · 1PX · DIAGONAL 45°</p>
+					<div class="space-y-4">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— FOREGROUND / BLANCO</p>
+						<div class="h-24 border border-border" style="background-image: repeating-linear-gradient(45deg, rgba(214, 211, 206, 0.08) 0px, rgba(214, 211, 206, 0.08) 1px, transparent 1px, transparent 16px);"></div>
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— ACCENT / NARANJO</p>
+						<div class="h-24 border border-border" style="background-image: repeating-linear-gradient(45deg, rgba(240, 64, 0, 0.14) 0px, rgba(240, 64, 0, 0.14) 1px, transparent 1px, transparent 16px);"></div>
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— MUTED / GRIS</p>
+						<div class="h-24 border border-border" style="background-image: repeating-linear-gradient(45deg, rgba(138, 132, 124, 0.14) 0px, rgba(138, 132, 124, 0.14) 1px, transparent 1px, transparent 16px);"></div>
+						<p class="text-xs text-muted leading-relaxed">
+							Líneas de 1px a 45°, espaciadas a 16px. Las tres usan los colores
+							de borde del sistema (chalk / accent / iron). Uso: telón de fondo
+							para secciones hero o zonas de datos, nunca sobre texto. Con
+							<code class="font-mono text-foreground">prefers-reduced-motion</code>
+							no aplica movimiento (el fondo es estático).
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<!-- ─── Footer note ─── -->
+			<footer class="pt-8 border-t border-border space-y-3">
+				<p class="font-mono text-[10px] uppercase tracking-widest text-muted">
+					// A26.UIKIT · WORKBENCH + NERV · TODOS LOS TOKENS DE GLOBAL.CSS
+				</p>
+				<p class="text-sm text-muted leading-relaxed max-w-2xl">
+					Estos componentes mapean al sistema de tokens existente
+					(accent, background, foreground, muted, border, border-strong).
+					El siguiente paso es portarlos a componentes Astro reales
+					(Button, Input, Badge, Alert, etc.) y aplicarlos en las páginas.
+				</p>
+			</footer>
+		</div>
+	</main>
+</Layout>

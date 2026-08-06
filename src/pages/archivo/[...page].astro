@@ -30,7 +30,7 @@ const { page } = Astro.props;
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-foreground/10 mb-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mb-12">
         {
           page.data.map((project) => (
             <ProjectCard
@@ -52,14 +52,14 @@ const { page } = Astro.props;
         <div class="flex gap-4">
           {
             page.url.prev && (
-              <Button variant="outline" size="sm" href={page.url.prev}>
+              <Button variant="secondary" size="sm" href={page.url.prev}>
                 &larr; Anterior
               </Button>
             )
           }
           {
             page.url.next && (
-              <Button variant="outline" size="sm" href={page.url.next}>
+              <Button variant="secondary" size="sm" href={page.url.next}>
                 Siguiente &rarr;
               </Button>
             )

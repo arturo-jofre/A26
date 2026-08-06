@@ -121,16 +121,41 @@ import Kicker from "./Kicker.astro";
 					<div
 						class="grid grid-cols-[auto_1fr] gap-x-3 gap-y-2 font-mono text-[10px] uppercase tracking-widest min-w-[230px]"
 					>
-						<span class="text-muted self-center">AUTO</span>
+						<span class="text-muted self-center">CAM</span>
 						<label class="orbital-hud-switch">
-							<input type="checkbox" data-config="autoRotate" checked />
+							<input
+								type="checkbox"
+								data-config="cameraOrbit"
+								checked
+							/>
 							<span></span>
 						</label>
 
 						<span class="text-muted self-center">SPD</span>
 						<input
 							type="range"
-							data-config="rotationSpeed"
+							data-config="cameraOrbitSpeed"
+							min="0"
+							max="2"
+							step="0.05"
+							value="1"
+							class="orbital-hud-range"
+						/>
+
+						<span class="text-muted self-center">PLT</span>
+						<label class="orbital-hud-switch">
+							<input
+								type="checkbox"
+								data-config="planetSpin"
+								checked
+							/>
+							<span></span>
+						</label>
+
+						<span class="text-muted self-center">RAT</span>
+						<input
+							type="range"
+							data-config="planetSpinSpeed"
 							min="0"
 							max="2"
 							step="0.05"
@@ -855,6 +880,7 @@ import Kicker from "./Kicker.astro";
 		startTime: number;
 		duration: number;
 	} | null = null;
+	let lastFrameTime = 0;
 
 	// === Readout state ===
 	let fpsFrames = 0;
@@ -868,8 +894,10 @@ import Kicker from "./Kicker.astro";
 	type GridResolution = 10 | 20 | 30 | 45;
 
 	interface Config {
-		autoRotate: boolean;
-		rotationSpeed: number;
+		cameraOrbit: boolean;
+		cameraOrbitSpeed: number;
+		planetSpin: boolean;
+		planetSpinSpeed: number;
 		gridResolution: GridResolution;
 		satelliteShape: SatelliteShape;
 		satelliteSize: number;
@@ -879,8 +907,10 @@ import Kicker from "./Kicker.astro";
 	}
 
 	const config: Config = {
-		autoRotate: true,
-		rotationSpeed: 1.0,
+		cameraOrbit: true,
+		cameraOrbitSpeed: 1.0,
+		planetSpin: true,
+		planetSpinSpeed: 1.0,
 		gridResolution: 20,
 		satelliteShape: "triangle",
 		satelliteSize: 0.12,
@@ -996,13 +1026,17 @@ import Kicker from "./Kicker.astro";
 		shape: SatelliteShape,
 		size: number,
 	): THREE.BufferGeometry {
+		// All flat shapes live in the XY plane (z=0) so they sit face-on to
+		// the camera when the mesh is oriented via lookAt(camera.position).
+		// lookAt aligns local -Z with the camera direction, so any shape in
+		// the YZ plane would be edge-on and effectively invisible.
 		if (shape === "triangle") {
-			// Dart pointing -Z, lying in the YZ plane (so silhouette is visible)
+			// Dart pointing up (+Y) in the XY plane
 			const s = size;
 			const vertices = new Float32Array([
-				0, 0, -s, // tip
-				0, s * 0.45, s * 0.6, // back-up
-				0, -s * 0.45, s * 0.6, // back-down
+				0, s, 0, // tip up
+				-s * 0.6, -s * 0.5, 0, // back-left
+				s * 0.6, -s * 0.5, 0, // back-right
 			]);
 			const geometry = new THREE.BufferGeometry();
 			geometry.setAttribute(
@@ -1014,19 +1048,21 @@ import Kicker from "./Kicker.astro";
 			return geometry;
 		}
 		if (shape === "diamond") {
+			// Flat diamond in the XY plane: top / right / bottom / left
 			const s = size;
 			const vertices = new Float32Array([
 				0, s, 0, // top
-				0, 0, -s, // front
+				s, 0, 0, // right
 				0, -s, 0, // bottom
-				0, 0, s, // back
+				-s, 0, 0, // left
 			]);
 			const geometry = new THREE.BufferGeometry();
 			geometry.setAttribute(
 				"position",
 				new THREE.BufferAttribute(vertices, 3),
 			);
-			geometry.setIndex([0, 1, 2, 3, 0, 3, 1, 2]);
+			// Two triangles: top-right-bottom and top-bottom-left
+			geometry.setIndex([0, 1, 2, 0, 2, 3]);
 			geometry.computeVertexNormals();
 			return geometry;
 		}
@@ -1252,6 +1288,103 @@ import Kicker from "./Kicker.astro";
 			planetGroup.add(line);
 		}
 
+		// Earth reference lines — independent of gridResolution, always
+		// at their specific terrestrial values. Three tiers of material:
+		//   tropics  → accent dashed
+		//   polar    → foreground dashed
+		//   meridians → accent solid (prime) / foreground solid (antimeridian)
+		const earthTropicsMat = dashed
+			? new THREE.LineDashedMaterial({
+					color: 0xf04000,
+					transparent: true,
+					opacity: 0.75,
+					dashSize: 0.05,
+					gapSize: 0.03,
+				})
+			: new THREE.LineBasicMaterial({
+					color: 0xf04000,
+					transparent: true,
+					opacity: 0.65,
+				});
+
+		const earthPolarMat = dashed
+			? new THREE.LineDashedMaterial({
+					color: 0xd6d3ce,
+					transparent: true,
+					opacity: 0.6,
+					dashSize: 0.05,
+					gapSize: 0.03,
+				})
+			: new THREE.LineBasicMaterial({
+					color: 0xd6d3ce,
+					transparent: true,
+					opacity: 0.55,
+				});
+
+		const earthMeridianMat = dashed
+			? new THREE.LineDashedMaterial({
+					color: 0xf04000,
+					transparent: true,
+					opacity: 0.7,
+					dashSize: 0.05,
+					gapSize: 0.03,
+				})
+			: new THREE.LineBasicMaterial({
+					color: 0xf04000,
+					transparent: true,
+					opacity: 0.6,
+				});
+
+		const earthAntimeridianMat = dashed
+			? new THREE.LineDashedMaterial({
+					color: 0xd6d3ce,
+					transparent: true,
+					opacity: 0.5,
+					dashSize: 0.05,
+					gapSize: 0.03,
+				})
+			: new THREE.LineBasicMaterial({
+					color: 0xd6d3ce,
+					transparent: true,
+					opacity: 0.45,
+				});
+
+		// Tropics of Cancer (23.5° N) and Capricorn (23.5° S)
+		for (const lat of [23.5, -23.5]) {
+			const line = new THREE.LineLoop(
+				createParallelGeometry(r, lat, 128),
+				earthTropicsMat,
+			);
+			if (dashed) line.computeLineDistances();
+			planetGroup.add(line);
+		}
+
+		// Arctic Circle (66.5° N) and Antarctic Circle (66.5° S)
+		for (const lat of [66.5, -66.5]) {
+			const line = new THREE.LineLoop(
+				createParallelGeometry(r, lat, 128),
+				earthPolarMat,
+			);
+			if (dashed) line.computeLineDistances();
+			planetGroup.add(line);
+		}
+
+		// Prime Meridian (0°) — the reference longitude
+		const primeLine = new THREE.LineLoop(
+			createMeridianGeometry(r, 0, 128),
+			earthMeridianMat,
+		);
+		if (dashed) primeLine.computeLineDistances();
+		planetGroup.add(primeLine);
+
+		// Antimeridian (180°)
+		const antiLine = new THREE.LineLoop(
+			createMeridianGeometry(r, 180, 128),
+			earthAntimeridianMat,
+		);
+		if (dashed) antiLine.computeLineDistances();
+		planetGroup.add(antiLine);
+
 		lastGridDashed = dashed;
 
 		// Re-attach the planet marker if a planet point is currently selected
@@ -1312,18 +1445,19 @@ import Kicker from "./Kicker.astro";
 		controls.minDistance = 4;
 		controls.maxDistance = 15;
 		controls.addEventListener("start", () => {
-			config.autoRotate = false;
+			// Drag pauses only the camera orbit, not the planet spin
+			config.cameraOrbit = false;
 			const toggle = document.querySelector<HTMLInputElement>(
-				'input[data-config="autoRotate"]',
+				'input[data-config="cameraOrbit"]',
 			);
 			if (toggle) toggle.checked = false;
 			clearTimeout(interactionTimeout);
 		});
 		controls.addEventListener("end", () => {
 			interactionTimeout = setTimeout(() => {
-				config.autoRotate = true;
+				config.cameraOrbit = true;
 				const toggle = document.querySelector<HTMLInputElement>(
-					'input[data-config="autoRotate"]',
+					'input[data-config="cameraOrbit"]',
 				);
 				if (toggle) toggle.checked = true;
 			}, 3000);
@@ -1412,6 +1546,7 @@ import Kicker from "./Kicker.astro";
 		fpsLastUpdate = performance.now();
 		scanStart = performance.now();
 		lastReadoutUpdate = 0;
+		lastFrameTime = performance.now();
 		animate();
 
 		function onResize(): void {
@@ -1429,14 +1564,40 @@ import Kicker from "./Kicker.astro";
 	function animate(): void {
 		animationId = requestAnimationFrame(animate);
 
-		if (config.autoRotate) {
-			orbitalGroup.rotation.y += 0.003 * config.rotationSpeed;
-			planetGroup.rotation.y += 0.008 * config.rotationSpeed;
+		const now = performance.now();
+		const dt =
+			lastFrameTime === 0
+				? 0
+				: Math.min((now - lastFrameTime) / 1000, 0.1);
+		lastFrameTime = now;
+
+		// Camera orbit: rotates the camera around the planet's Y axis at
+		// the current distance and elevation (both preserved). Independent
+		// from the planet's own self-rotation.
+		if (config.cameraOrbit) {
+			const camPos = camera.position;
+			const distance = camPos.length();
+			if (distance > 0) {
+				const elevation = Math.asin(camPos.y / distance);
+				const azimuth = Math.atan2(camPos.x, camPos.z);
+				const azIncrement =
+					0.2 * config.cameraOrbitSpeed * dt;
+				const newAzimuth = azimuth + azIncrement;
+				const horizR = distance * Math.cos(elevation);
+				camera.position.set(
+					horizR * Math.sin(newAzimuth),
+					distance * Math.sin(elevation),
+					horizR * Math.cos(newAzimuth),
+				);
+			}
 		}
 
-		const currentWorld = new THREE.Vector3();
-		const targetWorld = new THREE.Vector3();
-		const localAhead = new THREE.Vector3();
+		// Planet self-rotation: spins planetGroup on its own Y axis. Fully
+		// independent from the camera orbit — the user can drag the camera
+		// while the planet keeps spinning.
+		if (config.planetSpin) {
+			planetGroup.rotation.y += 0.5 * config.planetSpinSpeed * dt;
+		}
 
 		satellites.forEach((sat) => {
 			sat.orbitGroup.rotation.y += sat.orbitSpeed * 0.015;
@@ -1444,16 +1605,10 @@ import Kicker from "./Kicker.astro";
 			sat.mesh.position.x = Math.cos(sat.angle) * sat.radius;
 			sat.mesh.position.z = Math.sin(sat.angle) * sat.radius;
 
-			// Tangent orientation: look at a point ahead in the local orbit
-			localAhead
-				.set(
-					Math.cos(sat.angle + 0.05) * sat.radius,
-					0,
-					Math.sin(sat.angle + 0.05) * sat.radius,
-				);
-			targetWorld.copy(localAhead);
-			sat.orbitGroup.localToWorld(targetWorld);
-			sat.mesh.lookAt(targetWorld);
+			// Billboard: satellite always faces the camera. lookAt uses
+			// world space, so the parent orbitGroup's rotation is
+			// accounted for automatically.
+			sat.mesh.lookAt(camera.position);
 		});
 
 		// Update camera ray: line from origin to camera world position
@@ -1839,14 +1994,22 @@ import Kicker from "./Kicker.astro";
 		const localPoint = planetGroup.worldToLocal(worldPoint.clone());
 		const r = localPoint.length();
 		const lat = (Math.asin(localPoint.y / r) * 180) / Math.PI;
-		const lon = (Math.atan2(localPoint.x, localPoint.z) * 180) / Math.PI;
+		const lonRaw = (Math.atan2(localPoint.x, localPoint.z) * 180) / Math.PI;
+		// Earth convention: longitude in -180..+180, 0 at the prime meridian
+		const lon = lonRaw > 180 ? lonRaw - 360 : lonRaw;
 		planetMarkerLat = lat;
 		planetMarkerLon = lon;
 		createPlanetMarker(lat, lon);
 
+		// Format with hemisphere indicator (terrestrial convention)
+		const latHemi = lat >= 0 ? "N" : "S";
+		const lonHemi = lon >= 0 ? "E" : "W";
+		const latStr = Math.abs(lat).toFixed(1) + "°" + latHemi;
+		const lonStr = Math.abs(lon).toFixed(1) + "°" + lonHemi;
+
 		setTargetPanel("planet", {
-			lat: lat.toFixed(1) + "°",
-			lon: (((lon + 360) % 360)).toFixed(1) + "°",
+			lat: latStr,
+			lon: lonStr,
 		});
 	}
 
@@ -1955,7 +2118,8 @@ import Kicker from "./Kicker.astro";
 		if (!key) return;
 
 		if (input.type === "checkbox") {
-			if (key === "autoRotate") config.autoRotate = input.checked;
+			if (key === "cameraOrbit") config.cameraOrbit = input.checked;
+			else if (key === "planetSpin") config.planetSpin = input.checked;
 			else if (key === "dashed") {
 				config.dashed = input.checked;
 				applyConfig();
@@ -1964,9 +2128,13 @@ import Kicker from "./Kicker.astro";
 		}
 
 		if (input.type === "range" || input.type === "color") {
-			if (key === "rotationSpeed") {
-				config.rotationSpeed = parseFloat(input.value);
+			if (key === "cameraOrbitSpeed") {
+				config.cameraOrbitSpeed = parseFloat(input.value);
 				return; // no geometry rebuild
+			}
+			if (key === "planetSpinSpeed") {
+				config.planetSpinSpeed = parseFloat(input.value);
+				return;
 			}
 			if (key === "satelliteSize") {
 				config.satelliteSize = parseFloat(input.value);
@@ -2077,6 +2245,7 @@ import Kicker from "./Kicker.astro";
 		}
 		pointerDownInfo = null;
 		cameraResetAnim = null;
+		lastFrameTime = 0;
 	}
 
 	document.addEventListener("astro:after-swap", destroyScene);

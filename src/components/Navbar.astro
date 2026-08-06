@@ -1,4 +1,6 @@
 ---
+import Button from "./Button.astro";
+
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1);
 
@@ -37,13 +39,16 @@ const navLinks = [
         ))
       }
     </nav>
-    <a
+    <Button
+      variant="primary"
+      size="sm"
       href="https://calendar.app.google/ZE6YQWLGgc8WUZSDA"
       target="_blank"
-      class="hidden md:inline-flex items-center gap-2 text-xs font-mono uppercase bg-accent hover:bg-accent-hover text-white px-4 py-2 transition-colors"
+      rel="noopener"
+      class="hidden md:inline-flex"
     >
       Trabajemos juntos
-    </a>
+    </Button>
     <button
       id="mobile-menu-toggle"
       type="button"
@@ -78,13 +83,16 @@ const navLinks = [
           </a>
         ))
       }
-      <a
+      <Button
+        variant="primary"
+        size="md"
         href="https://calendar.app.google/ZE6YQWLGgc8WUZSDA"
         target="_blank"
-        class="mt-2 inline-flex items-center justify-center gap-2 text-xs font-mono uppercase bg-accent hover:bg-accent-hover text-white px-4 py-3 transition-colors"
+        rel="noopener"
+        class="mt-2 w-full"
       >
         Trabajemos juntos
-      </a>
+      </Button>
     </nav>
   </div>
 </header>

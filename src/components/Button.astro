@@ -1,8 +1,9 @@
 ---
 interface Props {
   href?: string;
-  variant?: "primary" | "outline" | "ghost" | "lined";
+  variant?: "primary" | "secondary" | "link";
   size?: "sm" | "md" | "lg";
+  disabled?: boolean;
   class?: string;
 }
 
@@ -10,45 +11,68 @@ const {
   href,
   variant = "primary",
   size = "md",
+  disabled = false,
   class: className = "",
+  ...attrs
 } = Astro.props;
 
 const baseClasses =
-  "inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-95";
+  "inline-flex items-center justify-center gap-2 font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]";
 
 const variants = {
   primary:
-    "bg-accent text-white hover:bg-accent-hover shadow-[0_0_0_1px_rgba(240,64,0,0.40),0_1px_2px_rgba(0,0,0,0.50)] active:shadow-none rounded-sm",
-  outline:
-    "border border-border-strong hover:border-accent hover:text-accent bg-transparent text-foreground rounded-sm",
-  ghost: "hover:bg-white/5 text-foreground hover:text-accent rounded-sm",
-  lined:
-    "border border-border-strong hover:border-accent hover:text-accent bg-transparent text-foreground rounded-none font-mono uppercase tracking-widest text-xs",
+    "border border-accent text-accent hover:bg-accent hover:text-background",
+  secondary:
+    "border border-border-strong text-foreground hover:border-accent hover:text-accent hover:bg-white/5",
+  link: "text-foreground hover:text-accent",
 };
 
 const sizes = {
-  sm: "px-4 py-2 text-sm",
-  md: "px-6 py-3 text-base",
-  lg: "px-8 py-4 text-lg",
+  sm: "px-4 py-2 text-xs",
+  md: "px-6 py-2.5 text-sm",
+  lg: "px-8 py-3.5 text-base",
 };
 
-const linedSizes = {
-  sm: "px-4 py-2",
-  md: "px-6 py-3",
-  lg: "px-8 py-4",
+const linkSizes = {
+  sm: "text-xs",
+  md: "text-sm",
+  lg: "text-base",
 };
+
+const disabledClasses =
+  "border border-dashed border-border text-muted/50 cursor-not-allowed active:scale-100";
 
 const Element = href ? "a" : "button";
+
+const resolvedClasses = disabled
+  ? [baseClasses, sizes[size], disabledClasses, className]
+  : [
+      baseClasses,
+      variants[variant],
+      variant === "link" ? linkSizes[size] : sizes[size],
+      className,
+    ];
 ---
 
-<Element
-  href={href}
-  class:list={[
-    baseClasses,
-    variants[variant],
-    variant === "lined" ? linedSizes[size] : sizes[size],
-    className,
-  ]}
->
-  <slot />
-</Element>
+{
+  href ? (
+    <a
+      href={href}
+      aria-disabled={disabled || undefined}
+      tabindex={disabled ? -1 : undefined}
+      {...attrs}
+      class:list={resolvedClasses}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      type="button"
+      disabled={disabled}
+      {...attrs}
+      class:list={resolvedClasses}
+    >
+      <slot />
+    </button>
+  )
+}
