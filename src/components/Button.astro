@@ -17,7 +17,7 @@ const {
 } = Astro.props;
 
 const baseClasses =
-  "inline-flex items-center justify-center gap-2 font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]";
+  "inline-flex items-center justify-center gap-2 font-mono uppercase tracking-widest text-xs font-medium transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background active:scale-[0.98]";
 
 const variants = {
   primary:
@@ -28,15 +28,9 @@ const variants = {
 };
 
 const sizes = {
-  sm: "px-4 py-2 text-xs",
-  md: "px-6 py-2.5 text-sm",
-  lg: "px-8 py-3.5 text-base",
-};
-
-const linkSizes = {
-  sm: "text-xs",
-  md: "text-sm",
-  lg: "text-base",
+  sm: "px-4 py-2",
+  md: "px-6 py-2.5",
+  lg: "px-8 py-3.5",
 };
 
 const disabledClasses =
@@ -49,7 +43,7 @@ const resolvedClasses = disabled
   : [
       baseClasses,
       variants[variant],
-      variant === "link" ? linkSizes[size] : sizes[size],
+      variant === "link" ? "" : sizes[size],
       className,
     ];
 ---

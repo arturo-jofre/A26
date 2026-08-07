@@ -47,6 +47,11 @@ const hudRows = [
 		>
 			<!-- Hero glow: the signature accent. The only atmospheric decoration on the page. -->
 			<div class="hero-glow" aria-hidden="true"></div>
+			<!-- Line background: named backdrop for the hero. Static, masked toward the fold edge. -->
+			<div
+				class="line-bg-foreground absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent_90%)]"
+				aria-hidden="true"
+			></div>
 
 			<div class="relative z-10">
 				<SectionFrame tone="accent" size="md" class="p-8 sm:p-10">
@@ -63,15 +68,15 @@ const hudRows = [
 						</Badge>
 
 						<h1
-							class="hero-animate text-[clamp(2.25rem,6.5vw,4.5rem)] font-bold leading-[0.95]"
+							class="hero-animate text-[clamp(2.75rem,6.5vw,4.5rem)] font-bold leading-[0.95]"
 						>
 							Arturo Jofré López
 							<br />
-							<span class="text-accent">Product Designer</span>
+							Product Designer
 						</h1>
 
 						<p
-							class="hero-animate text-lg md:text-xl text-muted max-w-2xl leading-relaxed text-pretty"
+							class="hero-animate text-lg leading-[1.6] text-muted max-w-2xl text-pretty"
 						>
 							14 años diseñando productos digitales para gobierno,
 							salud, finanzas, retail, logística y recursos humanos.
@@ -87,7 +92,7 @@ const hudRows = [
 							>
 								Agenda una reunión
 							</Button>
-							<Button variant="secondary" size="md" href="/proyectos">
+							<Button variant="secondary" size="lg" href="/proyectos">
 								Ver proyectos
 							</Button>
 						</div>
@@ -100,24 +105,29 @@ const hudRows = [
 			</div>
 		</section>
 
+		<div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12" aria-hidden="true">
+			<div class="h-px bg-foreground/10"></div>
+		</div>
+
 		<!-- ────────────────────────── PROYECTOS DESTACADOS ───────────────────── -->
 		<section class="relative py-24">
 			<div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
 				<div class="flex items-end justify-between mb-12 gap-4 flex-wrap">
 					<div>
 						<Kicker class="mb-2">35+ PROYECTOS // 8 INDUSTRIAS</Kicker>
-						<h2 class="text-4xl font-bold tracking-tight text-balance">
+						<h2
+							class="text-[clamp(1.875rem,3.5vw,2.5rem)] font-bold leading-[1.1]"
+						>
 							Últimos proyectos
 						</h2>
 					</div>
-					<Button variant="secondary" size="md" href="/proyectos">
+					<Button variant="link" size="md" href="/proyectos">
 						Ver todos
+						<span class="text-accent" aria-hidden="true">→</span>
 					</Button>
 				</div>
 
-				<div
-					class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"
-				>
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
 					{
 						projectsByTag.map((project) => (
 							<ProjectCard
@@ -133,6 +143,10 @@ const hudRows = [
 			</div>
 		</section>
 
+		<div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12" aria-hidden="true">
+			<div class="h-px bg-foreground/10"></div>
+		</div>
+
 		<!-- ────── CÓMO TRABAJO ────── -->
 		<section class="relative py-24">
 			<div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
@@ -141,14 +155,14 @@ const hudRows = [
 						DISCIPLINAS // RESEARCH — DESIGN — SYSTEMS
 					</Kicker>
 					<h2
-						class="text-4xl font-bold tracking-tight text-balance"
+						class="text-[clamp(1.875rem,3.5vw,2.5rem)] font-bold leading-[1.1]"
 					>
 						Cómo trabajo
 					</h2>
 				</div>
 
 				<div
-					class="max-w-3xl space-y-6 text-lg text-muted leading-relaxed text-pretty"
+					class="max-w-2xl space-y-6 text-base leading-[1.65] text-muted text-pretty"
 				>
 					<p>
 						Investigo, diseño y entrego. Empiezo con research para
@@ -171,51 +185,63 @@ const hudRows = [
 			</div>
 		</section>
 
+		<div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12" aria-hidden="true">
+			<div class="h-px bg-foreground/10"></div>
+		</div>
+
 		<!-- ──── SOBRE MÍ ─── -->
 		<section class="relative py-24">
 			<div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
-				<SectionFrame tone="strong" size="md" class="p-8 sm:p-10">
-					<div class="grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-16 items-center">
-						<div class="space-y-6">
-							<Kicker>
-								SEP 2011 — PRESENTE // 7 ROLES · 4 EMPRESAS
-							</Kicker>
-							<h2
-								class="text-4xl font-bold tracking-tight text-balance"
-							>
-								14 años diseñando productos digitales
-							</h2>
-							<div class="space-y-4 text-muted leading-relaxed text-pretty">
-								<p>
-									Diseñador UX Senior en Cleverit. Antes: Lead
-									UX en Aureolab, Diseñador UI/UX en Agencia
-									Land, diseñador web en PVW Publicidad. He
-									llevado productos desde la investigación
-									hasta el lanzamiento en gobierno, salud,
-									finanzas, retail, logística y recursos
-									humanos.
-								</p>
-								<p>
-									En 2015 cofundé Pávlov, una consultora de
-									diseño. Diseño gráfico en Duoc UC; Arquitectura
-									de Información y Experiencia de Usuario en
-									Universidad Central.
-								</p>
-							</div>
-							<Button variant="secondary" size="md" href="/sobre-mi">
-								Leer CV completo
-							</Button>
+				<div
+					class="grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-16 items-start"
+				>
+					<div class="space-y-6">
+						<Kicker>
+							SEP 2011 — PRESENTE // 7 ROLES · 4 EMPRESAS
+						</Kicker>
+						<h2
+							class="text-[clamp(1.875rem,3.5vw,2.5rem)] font-bold leading-[1.1]"
+						>
+							14 años diseñando productos digitales
+						</h2>
+						<div
+							class="space-y-4 text-base leading-[1.65] text-muted text-pretty"
+						>
+							<p>
+								Diseñador UX Senior en Cleverit. Antes: Lead
+								UX en Aureolab, Diseñador UI/UX en Agencia
+								Land, diseñador web en PVW Publicidad. He
+								llevado productos desde la investigación
+								hasta el lanzamiento en gobierno, salud,
+								finanzas, retail, logística y recursos
+								humanos.
+							</p>
+							<p>
+								En 2015 cofundé Pávlov, una consultora de
+								diseño. Diseño gráfico en Duoc UC; Arquitectura
+								de Información y Experiencia de Usuario en
+								Universidad Central.
+							</p>
 						</div>
-
-						<HudReadout
-							rows={hudRows}
-							label="Trayectoria profesional"
-							class="lg:self-start"
-						/>
+						<Button variant="secondary" size="md" href="/sobre-mi">
+							Leer CV completo
+						</Button>
 					</div>
-				</SectionFrame>
+
+					<HudReadout
+						rows={hudRows}
+						label="Trayectoria profesional"
+						framed
+						class="lg:self-start"
+					/>
+				</div>
 			</div>
 		</section>
+
+		<!-- Signature section break: the accent divider, used once. -->
+		<div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12" aria-hidden="true">
+			<div class="h-px bg-accent/40"></div>
+		</div>
 
 		<!-- ────────────────────────── ORBITAL (signature) ────────────────────────── -->
 		<OrbitalSection />

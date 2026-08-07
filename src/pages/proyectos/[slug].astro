@@ -2,101 +2,131 @@
 import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
+import Button from "../../components/Button.astro";
+import Kicker from "../../components/Kicker.astro";
+import MonoMicrocopy from "../../components/MonoMicrocopy.astro";
+import HudReadout from "../../components/HudReadout.astro";
+import Badge from "../../components/Badge.astro";
+
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
   const isDev = import.meta.env.DEV;
   const projects = await getCollection("proyectos");
   return projects
-    .filter((p) => isDev ? true : !p.data.draft)
+    .filter((p) => (isDev ? true : !p.data.draft))
     .map((project) => ({
-    params: { slug: project.id },
-    props: { project },
-  }));
+      params: { slug: project.id },
+      props: { project },
+    }));
 }
 
 const { project } = Astro.props;
 const { Content } = await render(project);
+
+const meta = [
+  project.data.rol && { key: "ROL", value: project.data.rol },
+  project.data.type && { key: "TIPO", value: project.data.type },
+  project.data.duration && { key: "DURACIÓN", value: project.data.duration },
+  project.data.year && { key: "AÑO", value: String(project.data.year) },
+].filter(Boolean) as { key: string; value: string }[];
+
+if (project.data.url) {
+  meta.push({
+    key: "ENLACE",
+    value: "VER PROYECTO →",
+    href: project.data.url,
+    external: true,
+  });
+}
+
+const tags = project.data.tags ?? [];
 ---
 
-<Layout title={`${project.data.title} - Arturo Jofré`}>
+<Layout title={`${project.data.title} — Arturo Jofré`}>
   <Navbar />
   <main id="main" class="pt-24 pb-10 flex-grow">
-    <article class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 py-16">
-      <!-- Header -->
-      <header class="mb-16">
-        <div class="flex items-center gap-4 text-sm text-accent font-mono mb-6">
-          <span>{project.data.year}</span>
-          <span class="w-1 h-1 rounded-full bg-accent"></span>
-          <span>{project.data.client}</span>
-        </div>
-        <h1 class="text-5xl font-bold mb-6">{project.data.title}</h1>
-        <p class="text-xl text-muted leading-relaxed">
+    <article class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 py-16 sm:py-20">
+      <!-- ─── HEADER (sin chrome: sin frame, sin kicker) ─── -->
+      <header class="mb-16 max-w-3xl project-header space-y-6">
+        <MonoMicrocopy>
+          {project.data.year} · {project.data.client}
+          {project.data.type ? ` · ${project.data.type}` : ""}
+        </MonoMicrocopy>
+
+        <h1
+          class="text-[clamp(2.25rem,5.5vw,3.75rem)] font-bold leading-[0.98] tracking-[-0.03em] text-balance"
+        >
+          {project.data.title}
+        </h1>
+
+        <p
+          class="text-base sm:text-lg text-muted leading-[1.6] text-pretty"
+        >
           {project.data.description}
         </p>
 
         {
-          project.data.image && (
-            <div class="mt-12 rounded-xl overflow-hidden glass border border-border aspect-[21/9]">
-              <img
-                src={project.data.image}
-                alt={project.data.title}
-                class="w-full h-full object-cover"
-              />
+          tags.length > 0 && (
+            <div class="flex flex-wrap gap-2 pt-2">
+              {tags.map((t) => (
+                <Badge variant="tag">{t}</Badge>
+              ))}
+              {project.data.private && (
+                <Badge variant="tag">PRIVATE</Badge>
+              )}
             </div>
           )
         }
       </header>
 
-      <!-- Meta Info -->
-      <div
-        class="grid grid-cols-2 md:grid-cols-4 gap-6 py-8 border-y border-border mb-16 text-sm"
-      >
-        {
-          project.data.rol && (
-            <div>
-              <h4 class="text-muted font-medium mb-1">Rol</h4>
-              <p class="text-foreground">{project.data.rol}</p>
-            </div>
-          )
-        }
-        {
-          project.data.type && (
-            <div>
-              <h4 class="text-muted font-medium mb-1">Tipo</h4>
-              <p class="text-foreground">{project.data.type}</p>
-            </div>
-          )
-        }
-        {
-          project.data.duration && (
-            <div>
-              <h4 class="text-muted font-medium mb-1">Duración</h4>
-              <p class="text-foreground">{project.data.duration}</p>
-            </div>
-          )
-        }
-        {
-          project.data.url && (
-            <div>
-              <h4 class="text-muted font-medium mb-1">Enlace</h4>
-              <a
-                href={project.data.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-accent hover:underline"
-              >
-                Ver proyecto
-              </a>
-            </div>
-          )
-        }
-      </div>
+      <!-- ─── HERO IMAGE ─── -->
+      {
+        project.data.image && (
+          <div class="mb-16 border border-border aspect-[21/9] overflow-hidden bg-white/5">
+            <img
+              src={project.data.image}
+              alt={`Cover del proyecto ${project.data.title}`}
+              loading="eager"
+              decoding="async"
+              class="w-full h-full object-cover"
+            />
+          </div>
+        )
+      }
 
-      <!-- Content -->
-      <div class="prose-custom">
+      <!-- ─── META (HUD readout, sin card) ─── -->
+      <section
+        class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 py-10 border-y border-border mb-16"
+      >
+        <div>
+          <Kicker tone="muted" class="mb-3">METADATA</Kicker>
+          <p class="text-sm text-muted leading-[1.6] text-pretty max-w-xs">
+            Información del proyecto, rol y vínculo.
+          </p>
+        </div>
+        <HudReadout
+          rows={meta}
+          label={`${project.data.title} — metadata`}
+        />
+      </section>
+
+      <!-- ─── CONTENT ─── -->
+      <section class="prose-custom">
         <Content />
-      </div>
+      </section>
+
+      <!-- ─── FOOTER DEL PROYECTO ─── -->
+      <div class="h-px bg-foreground/10 my-16" aria-hidden="true"></div>
+
+      <footer class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <MonoMicrocopy>
+          // END_OF_FILE · {project.id}
+        </MonoMicrocopy>
+        <Button variant="secondary" size="sm" href="/proyectos">
+          ← Volver a proyectos
+        </Button>
+      </footer>
     </article>
   </main>
   <Footer />
@@ -122,9 +152,9 @@ const { Content } = await render(project);
     destroyAnimations();
     if (prefersReducedMotion) return;
     currentAnimator = animate(
-      "header > *, .grid > *, .prose > *",
+      ".project-header > *, .prose-custom > *",
       { opacity: [0, 1], y: [10, 0] },
-      { delay: stagger(0.05), duration: 0.5 },
+      { delay: stagger(0.05), duration: 0.5 }
     );
   }
 

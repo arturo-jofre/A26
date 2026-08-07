@@ -48,11 +48,12 @@ typography:
     textTransform: "uppercase"
 rounded:
   none: "0px"
-  sm: "2px"
-  md: "4px"
-  lg: "8px"
-  xl: "12px"
+  sm: "0px"
+  md: "0px"
+  lg: "0px"
+  xl: "0px"
   full: "9999px"
+  note: "Surfaces are sharp. The rounded scale (none–xl) is 0. The status indicator container is a sharp rectangle; the 1.5px dot and its pulse halo use `full` (9999px) as indicator shapes — not as a surface corner."
 spacing:
   xs: "4px"
   sm: "8px"
@@ -203,7 +204,7 @@ The system is **flat by default**. Surfaces do not carry shadows. Depth is conve
 For each component, character line first, then shape, color assignment, states, and any distinctive behavior.
 
 ### Buttons
-- **Shape:** Small radius (`2px`). No fill at rest — a 1px border is the whole weight. No brackets in button labels (brackets belong to the kicker and the frames).
+- **Shape:** No radius (sharp). The 1px border is the whole weight. No fill at rest. No brackets in button labels (brackets belong to the kicker and the frames).
 - **Primary:** 1px Bench Orange border, Bench Orange text, transparent background. Hover: background fills Bench Orange, text turns the bench color (`#181818`) — the stamp effect. Focus: 2px Bench Orange ring, 2px offset. This is the main action on the page.
 - **Secondary:** 1px Border Strong border, Chalk text, transparent background. Hover: border and text shift to Bench Orange, background lifts to `bg-white/[0.05]`. Focus: 2px Bench Orange ring, 2px offset.
 - **Link:** Text with a trailing arrow (`→`), Chalk at rest. Hover: text shifts to Bench Orange, arrow stays Bench Orange. No border, no padding. Used for tertiary actions and in-context navigation.
@@ -233,7 +234,7 @@ For each component, character line first, then shape, color assignment, states, 
 - **Content rule:** Microcopy names a real state. A microcopy that doesn't correspond to a real piece of information is decoration and gets cut. The restraint is the voice.
 
 ### Status Indicator (the pulse badge)
-- **Style:** Border Quiet border, `rounded-full`, `px-4 py-1.5`. Mono label, Bench Orange dot + Bench Orange text. The label is "Disponible para proyectos".
+- **Style:** Border Quiet border, `px-4 py-1.5` (sharp rectangle, no pill). Mono label, Bench Orange dot + Bench Orange text. The label is "Disponible para proyectos".
 - **Active pulse:** A 1.5px Bench Orange dot with a Tailwind `animate-ping` halo. The dot pairs with the text — the badge is a status, not an animation.
 - **Reduced motion:** The pulse animation is replaced with a static Bench Orange dot. The label still carries the meaning.
 
@@ -250,13 +251,13 @@ For each component, character line first, then shape, color assignment, states, 
 - **Anti-pattern:** random scan-line textures across the whole page, `body:before` stripes, or diagonal lines used as decoration without a section that earns them. The device is a named tool, not a texture.
 
 ### Cards / Containers
-- **Corner Style:** `rounded-lg` (8px) for project cards; `rounded-xl` (12px) for the CV card. **Never** `rounded-2xl` (16px) or larger.
+- **Corner Style:** No radius. Surfaces are sharp; the 1px border is the only frame. The only `rounded-full` in the system is the 1.5px status indicator dot/halo, used as an indicator shape, not a surface corner.
 - **Background:** Workbench Black, no tonal lift at rest.
 - **Shadow Strategy:** None. State-only elevation: the card border shifts to Bench Orange on hover.
 - **Border:** 1px Border Quiet as the default frame; Border Strong on focus.
 
 ### Project Card (signature)
-- **Shape:** `rounded-lg` (8px) on the outer card. No rounded corners on the image — it bleeds to the card edge.
+- **Shape:** No radius on the outer card. The image bleeds to the card edge.
 - **Structure:** 3:2 image on top (with a `bg-white/5` fallback for missing thumbnails), then a 16px padding block below with the title (Title, 700), the year (Label, Iron, mono), an optional lock icon for private projects, and a 2-line clamped description (Body, Iron, `line-clamp-2`).
 - **Hover:** The image scales `1.05` over 700ms ease-out; the card border shifts to Bench Orange; the title shifts to Bench Orange.
 - **Private projects:** A 12×12 lock icon next to the year; the icon is Iron, never Bench Orange.
@@ -314,7 +315,7 @@ Concrete, forceful guardrails. Every anti-reference in PRODUCT.md carries throug
 - **Don't** use the hero-metric template (4-up stat tile grid with gradient numbers, big-number / small-label / supporting-stats / gradient accent). The HUD Readout is the disciplined version of the same information; use that.
 - **Don't** use identical 3-up service-tile cards (icon + heading + paragraph) under a `SERVICES` heading. The most common 2024–2026 template. Replace with a single-typography discipline list, a 3-paragraph process narrative, or fold the disciplines into the Sobre mí page.
 - **Don't** use `border: 1px solid X` + a soft wide drop shadow on the same element. The "ghost-card" pattern; the Frame-Shadow Divorce rule.
-- **Don't** use `rounded-2xl` (16px) or larger on cards or sections. Cards top out at 12px (`rounded-xl`). The No-3D-Card Rule.
+- **Don't** use rounded corners on cards, sections, buttons, or interactive surfaces. The system is sharp; the 1px border is the only frame. The Sharp-Edge Rule.
 - **Don't** use random scan-line or stripe textures across the whole page, `body:before` stripes, or the Line Background as decoration without a section that earns it. The named device is a tool, not a texture.
 - **Don't** use glassmorphism as the default surface. A single contained glass card for the CV panel is permitted; glass on every other element is decorative, not meaningful.
 - **Don't** use literal anime cosplay — full hex-frame overlays, ASCII-art decorations, fictional status strings (`AT FIELD ACTIVE`, `LCL O2 78%`) that don't correspond to a real piece of information. The restraint is the voice; the cosplay is the failure.

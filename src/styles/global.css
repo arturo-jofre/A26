@@ -60,6 +60,33 @@
 }
 
 /* ——————————————————————————————————————————————
+   LINE BACKGROUND (diagonal 45°, 1px, spaced 16px)
+   Named backdrop for heroes and data zones. Static.
+   Never over text, never animated.
+—————————————————————————————— */
+.line-bg-foreground,
+.line-bg-accent,
+.line-bg-muted {
+  background-image: repeating-linear-gradient(45deg,
+      var(--line-bg-color) 0,
+      var(--line-bg-color) 1px,
+      transparent 1px,
+      transparent 16px);
+}
+
+.line-bg-foreground {
+  --line-bg-color: rgba(214, 211, 206, 0.08);
+}
+
+.line-bg-accent {
+  --line-bg-color: rgba(240, 64, 0, 0.14);
+}
+
+.line-bg-muted {
+  --line-bg-color: rgba(138, 132, 124, 0.14);
+}
+
+/* ——————————————————————————————————————————————
    HERO GLOW (radial from top-center)
    The signature accent. The only atmospheric decoration on the page.
 —————————————————————————————— */

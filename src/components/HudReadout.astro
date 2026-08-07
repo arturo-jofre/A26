@@ -1,29 +1,89 @@
 ---
+import SectionFrame from "./SectionFrame.astro";
+import Kicker from "./Kicker.astro";
+
 interface Row {
 	key: string;
 	value: string;
+	href?: string;
+	external?: boolean;
 }
 interface Props {
 	rows: Row[];
 	label?: string;
+	framed?: boolean;
 	class?: string;
 }
-const { rows, label, class: className = "" } = Astro.props;
+const {
+	rows,
+	label,
+	framed = false,
+	class: className = "",
+} = Astro.props;
 ---
 
-<dl
-	class:list={[
-		"font-mono text-xs uppercase tracking-widest",
-		className,
-	]}
-	aria-label={label}
->
-	{
-		rows.map(({ key, value }) => (
-			<div class="flex justify-between items-baseline gap-4 py-1.5 border-b border-border/40 last:border-0">
-				<dt class="text-muted">{key}</dt>
-				<dd class="text-foreground m-0">{value}</dd>
-			</div>
-		))
-	}
-</dl>
+{
+	framed ? (
+		<SectionFrame
+			tone="strong"
+			class:list={[
+				"border border-border-strong p-5",
+				className,
+			]}
+		>
+			<Kicker class="mb-3">TELEMETRY</Kicker>
+			<dl
+				class="font-mono text-xs uppercase tracking-widest m-0"
+				aria-label={label}
+			>
+				{rows.map(({ key, value, href, external }) => (
+					<div class="flex justify-between items-baseline gap-4 py-1.5 border-b border-border/40 last:border-0">
+						<dt class="text-muted">{key}</dt>
+						<dd class="text-foreground tabular-nums m-0">
+							{href ? (
+								<a
+									href={href}
+									target={external ? "_blank" : undefined}
+									rel={external ? "noopener noreferrer" : undefined}
+									class="hover:text-accent transition-colors"
+								>
+									{value}
+								</a>
+							) : (
+								value
+							)}
+						</dd>
+					</div>
+				))}
+			</dl>
+		</SectionFrame>
+	) : (
+		<dl
+			class:list={[
+				"font-mono text-xs uppercase tracking-widest m-0",
+				className,
+			]}
+			aria-label={label}
+		>
+			{rows.map(({ key, value, href, external }) => (
+				<div class="flex justify-between items-baseline gap-4 py-1.5 border-b border-border/40 last:border-0">
+					<dt class="text-muted">{key}</dt>
+					<dd class="text-foreground tabular-nums m-0">
+						{href ? (
+							<a
+								href={href}
+								target={external ? "_blank" : undefined}
+								rel={external ? "noopener noreferrer" : undefined}
+								class="hover:text-accent transition-colors"
+							>
+								{value}
+							</a>
+						) : (
+							value
+						)}
+					</dd>
+				</div>
+			))}
+		</dl>
+	)
+}

@@ -1,7 +1,7 @@
 ---
 
 # =========================================================================
-# 📝 CONFIGURACIÓN DE PORTAFOLIO: CAMPOS FRONTMATTER
+# CONFIGURACIÓN DE PORTAFOLIO: CAMPOS FRONTMATTER
 # =========================================================================
 # Esta es la configuración obligatoria para tu proyecto. 
 # Recuerda remover o actualizar estos valores al duplicar esta plantilla.
@@ -27,7 +27,7 @@ draft: true                                         # true para guardarlo como b
 
 <!-- 
     =========================================================================
-    🖼️ RECETA 1: GRILLA DE IMÁGENES RESPONSIVA (MOCKUPS & SCREENS)
+    RECETA 1: GRILLA DE IMÁGENES RESPONSIVA (MOCKUPS & SCREENS)
     =========================================================================
     Usa esta estructura para mostrar múltiples pantallas simultáneamente con 
     excelente responsividad. Se adapta automáticamente en móviles y escritorio.
@@ -49,11 +49,11 @@ draft: true                                         # true para guardarlo como b
 
 ---
 
-## 🚀 El Desafío
+## El Desafío
 
 Describe el **problema central** del negocio o los usuarios en un lenguaje enérgico. Enfócate en el dolor del usuario y la oportunidad de diseño.
 
-> **💡 Consejo de redacción:** Empieza con una frase impactante y añade datos concretos si los tienes. Explica por qué era difícil resolver el problema antes de que tú intervinieras.
+> **Consejo de redacción:** Empieza con una frase impactante y añade datos concretos si los tienes. Explica por qué era difícil resolver el problema antes de que tú intervinieras.
 
 ### Ejemplo de caso real
 
@@ -61,7 +61,7 @@ Durante el auge del comercio digital, los negocios locales en zonas aisladas enf
 
 ---
 
-## 🎯 Objetivos Clave
+## Objetivos Clave
 
 Define metas concretas para tu diseño, tanto para el negocio como para la experiencia del usuario.
 
@@ -72,7 +72,7 @@ Define metas concretas para tu diseño, tanto para el negocio como para la exper
 
 ---
 
-## 🔍 Investigación y Estrategia
+## Investigación y Estrategia
 
 Aquí es donde demuestras tu pensamiento estratégico y de UX Research. Explica la metodología de investigación que usaste y los hallazgos clave.
 
@@ -82,13 +82,13 @@ Aquí es donde demuestras tu pensamiento estratégico y de UX Research. Explica 
 2. **Shadowing en Ruta:** Acompañamos a repartidores en Magallanes para entender el uso de la app bajo temperaturas extremas y guantes puestos.
 3. **Evaluación Heurística:** Análisis del estado del arte en aplicaciones de delivery de última milla a nivel global.
 
-> ### 💡 Hallazgo Clave (Insight)
+> ### Hallazgo Clave (Insight)
 >
 > "Los despachos no fallaban porque el GPS estuviera apagado, sino porque las indicaciones escritas para condominios complejos no estaban visibles durante la navegación del mapa."
 
 ---
 
-## 🎨 Decisiones de Diseño y UX
+## Decisiones de Diseño y UX
 
 Explica el proceso creativo y las soluciones UI que implementaste. Puedes incluir detalles técnicos de accesibilidad o diseño visual.
 
@@ -99,7 +99,7 @@ Para este reto, diseñamos un sistema modular enfocado en la usabilidad en movim
 * **Modo de Navegación Simplificado:** Un mapa limpio que oculta elementos innecesarios al iniciar la ruta.
 
 <div class="cell p-6 rounded-2xl border border-border bg-white/[0.01] my-8">
-  <h4 class="text-accent font-mono text-xs uppercase tracking-wider mb-2">💡 Nota técnica: Accesibilidad AAA</h4>
+  <h4 class="text-accent font-mono text-xs uppercase tracking-wider mb-2">Nota técnica: Accesibilidad AAA</h4>
   <p class="text-xs text-muted leading-relaxed">
     Toda la gama cromática y las interfaces de despacho fueron rediseñadas para garantizar un ratio de contraste de 7:1 (nivel AAA de WCAG), garantizando su lectura total bajo la luz directa del sol.
   </p>
@@ -109,13 +109,13 @@ Para este reto, diseñamos un sistema modular enfocado en la usabilidad en movim
 
 <!-- 
     =========================================================================
-    🕹️ RECETA 2: CONTENEDOR DE PROTOTIPO INTERACTIVO (FIGMA / MARVEL)
+    RECETA 2: CONTENEDOR DE PROTOTIPO INTERACTIVO (FIGMA / MARVEL)
     =========================================================================
     Utiliza esta envoltura para empotrar tus prototipos de alta fidelidad 
     y permitir al visitante jugar con tu app directamente desde el portfolio.
 -->
 
-## 🕹️ Prototipo Interactivo
+## Prototipo Interactivo
 
 Prueba la experiencia de usuario interactiva y en tiempo real navegando el flujo principal del producto a continuación:
 
@@ -123,11 +123,11 @@ Prueba la experiencia de usuario interactiva y en tiempo real navegando el flujo
   <iframe style="border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 16px;" width="100%" height="640" src="https://marvelapp.com/prototype/b0gc69i?emb=1&iosapp=false&frameless=false" allowfullscreen></iframe>
 </div>
 
-> **💡 Nota:** Cambia la URL del `src` por el link embebido de tu Figma o Marvel App. Asegúrate de conservar el `width="100%"` para que sea 100% responsive.
+> **Nota:** Cambia la URL del `src` por el link embebido de tu Figma o Marvel App. Asegúrate de conservar el `width="100%"` para que sea 100% responsive.
 
 ---
 
-## 📈 Impacto y Resultados
+## Impacto y Resultados
 
 Muestra con orgullo los números y el éxito de tu diseño. El diseño no es solo estética, es resolver problemas de negocio.
 
@@ -140,13 +140,13 @@ Muestra con orgullo los números y el éxito de tu diseño. El diseño no es sol
 
 <!-- 
     =========================================================================
-    📥 RECETA 3: ENLACES A STORES Y DESCARGAS
+    RECETA 3: ENLACES A STORES Y DESCARGAS
     =========================================================================
     Si el producto está publicado en producción, inserta los badges 
     oficiales del App Store y Google Play con este layout alineado al centro.
 -->
 
-## 📥 Disponibilidad del Producto
+## Disponibilidad del Producto
 
 El ecosistema digital se encuentra totalmente desplegado y disponible para el público general:
 

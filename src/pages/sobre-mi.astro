@@ -2,9 +2,55 @@
 import Layout from "../layouts/Layout.astro";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
-import JobPosition from "../components/JobPosition.astro";
 import Kicker from "../components/Kicker.astro";
 import MonoMicrocopy from "../components/MonoMicrocopy.astro";
+import SectionFrame from "../components/SectionFrame.astro";
+
+interface Job {
+  period: string;
+  company: string;
+  role: string;
+  current?: boolean;
+}
+
+const experience: Job[] = [
+  {
+    period: "SEP 2022 — ACTUALIDAD",
+    company: "Cleverit",
+    role: "Diseñador UX Senior",
+    current: true,
+  },
+  {
+    period: "OCT 2021 — JUN 2022",
+    company: "Multiplica",
+    role: "Diseñador UX Senior",
+  },
+  {
+    period: "AGO 2020 — OCT 2021",
+    company: "Aureolab",
+    role: "Lead UX",
+  },
+  {
+    period: "ENE 2019 — AGO 2020",
+    company: "Aureolab",
+    role: "Diseñador UX",
+  },
+  {
+    period: "JUN 2017 — ENE 2019",
+    company: "Agencia Land",
+    role: "Diseñador UI/UX — Front-End",
+  },
+  {
+    period: "ENE 2012 — JUN 2015",
+    company: "PVW Publicidad",
+    role: "Diseñador Web",
+  },
+  {
+    period: "JUL 2011 — ENE 2012",
+    company: "PVW Publicidad",
+    role: "Diseñador gráfico",
+  },
+];
 ---
 
 <Layout title="Sobre mí - Arturo Jofré">
@@ -39,59 +85,98 @@ import MonoMicrocopy from "../components/MonoMicrocopy.astro";
         class="grid lg:grid-cols-[1fr_2fr] gap-12 py-20 border-t border-border mt-8"
       >
         <div>
-          <Kicker class="mb-2">SEP 2011 — PRESENTE · 7 ROLES</Kicker>
+          <Kicker class="mb-2">SEP 2011 — PRESENTE // 7 ROLES · 4 EMPRESAS</Kicker>
           <h2 class="text-3xl sm:text-4xl font-bold sticky top-24">
             Experiencia<br />Laboral
           </h2>
         </div>
-        <div class="flex flex-col gap-6">
-          <div class="glass p-8 rounded-xl border border-border">
-            <div class="flex flex-col gap-6">
-              <JobPosition
-                companylogo="/"
-                company="Cleverit"
-                jobtitle="Diseñador UX Senior"
-                period="SEP 2022 - ACTUALIDAD"
-              />
-              <JobPosition
-                companylogo="/"
-                company="Multiplica"
-                jobtitle="Diseñador UX Senior"
-                period="OCT 2021 - JUN 2022"
-              />
-              <JobPosition
-                companylogo="/"
-                company="Aureolab"
-                jobtitle="Lead UX"
-                period="AGO 2020 - OCT 2021"
-              />
-              <JobPosition
-                companylogo="/"
-                company="Aureolab"
-                jobtitle="Diseñador UX"
-                period="ENE 2019 - AGO 2020"
-              />
-              <JobPosition
-                companylogo="/"
-                company="Agencia Land"
-                jobtitle="Diseñador UI/UX - Front-End"
-                period="JUN 2017 - ENE 2019"
-              />
-              <JobPosition
-                companylogo="/"
-                company="PVW Publicidad"
-                jobtitle="Diseñador Web"
-                period="ENE 2012 - JUN 2015"
-              />
-              <JobPosition
-                companylogo="/"
-                company="PVW Publicidad"
-                jobtitle="Diseñador gráfico"
-                period="JUL 2011 - ENE 2012"
-              />
-            </div>
+
+        <SectionFrame
+          tone="accent"
+          size="md"
+          class="border border-accent/40 p-0"
+        >
+          <div
+            class="px-5 sm:px-6 py-3 border-b border-border flex items-center justify-between gap-3 flex-wrap"
+          >
+            <p
+              class="font-mono text-[0.625rem] uppercase tracking-widest text-accent"
+            >
+              [ EXPERIENCIA.LOG // N=7 ]
+            </p>
+            <p
+              class="font-mono text-[0.625rem] uppercase tracking-widest text-muted"
+            >
+              // ORDENADO DESCENDENTE
+            </p>
           </div>
-        </div>
+
+          <div class="overflow-x-auto">
+            <table
+              class="w-full font-mono text-[0.6875rem] uppercase tracking-widest border-collapse"
+            >
+              <thead>
+                <tr class="border-b border-border">
+                  <th
+                    scope="col"
+                    class="text-right text-muted font-normal py-3 pl-5 sm:pl-6 pr-3 w-12 tabular-nums"
+                  >
+                    #
+                  </th>
+                  <th
+                    scope="col"
+                    class="text-left text-muted font-normal py-3 pr-4"
+                  >
+                    Periodo
+                  </th>
+                  <th
+                    scope="col"
+                    class="text-left text-muted font-normal py-3 pr-4"
+                  >
+                    Empresa
+                  </th>
+                  <th
+                    scope="col"
+                    class="text-left text-muted font-normal py-3 pr-5 sm:pr-6"
+                  >
+                    Rol
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  experience.map((job, i) => (
+                    <tr class="border-b border-border/40 last:border-0 hover:bg-white/[0.02]">
+                      <td class="py-3 pl-5 sm:pl-6 pr-3 text-right text-muted tabular-nums align-top">
+                        {String(i + 1).padStart(2, "0")}
+                      </td>
+                      <td class="py-3 pr-4 text-muted align-top whitespace-nowrap">
+                        <span class="inline-flex items-center gap-2">
+                          {job.current && (
+                            <span
+                              class="relative flex h-1.5 w-1.5"
+                              aria-hidden="true"
+                            >
+                              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75 motion-reduce:animate-none" />
+                              <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent" />
+                            </span>
+                          )}
+                          {job.period}
+                        </span>
+                      </td>
+                      <td class="py-3 pr-4 text-foreground align-top">
+                        {job.company}
+                      </td>
+                      <td class="py-3 pr-5 sm:pr-6 text-muted align-top">
+                        {job.role}
+                      </td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+          </div>
+        </SectionFrame>
       </section>
     </div>
   </main>
@@ -121,7 +206,9 @@ import MonoMicrocopy from "../components/MonoMicrocopy.astro";
         section,
         (info) => {
           animate(
-            info.target.querySelectorAll("h1, h2, p, .glass > *"),
+            info.target.querySelectorAll(
+              "h1, h2, p, table thead tr, table tbody tr",
+            ),
             { opacity: [0, 1], y: [15, 0] },
             { delay: stagger(0.05), duration: 0.5 },
           );
