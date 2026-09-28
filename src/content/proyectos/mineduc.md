@@ -13,7 +13,7 @@ tags: ["Public"]
 ---
 
 <div class="grid grid-cols-1">
-  <img class="rounded-2xl" src="/assets/img/portafolio/p-mineduc.png" alt="Diseño de Toliv market página de inicio" loading="lazy">
+  <img class="" src="/assets/img/portafolio/p-mineduc.png" alt="Diseño de Toliv market página de inicio" loading="lazy">
 </div>
 
 <div class="intro">
@@ -21,4 +21,4 @@ El Consejo es una instancia asesora del Ministerio de Educación que tiene por o
 </div>
 
 
-<img class="rounded-2xl" src="/assets/img/portafolio/p-mineduc.png">
+<img class="" src="/assets/img/portafolio/p-mineduc.png">

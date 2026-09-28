@@ -1,6 +1,6 @@
 ---
 name: A26 Portafolio
-description: Senior product designer portfolio. Workbench + NERV — Vercel-engineering skeleton with NERV accent borders, lightweight outline buttons, mono labels, named HUD system. Engineering is the brand.
+description: Senior product designer portfolio. Workbench + NERV — Vercel-engineering skeleton with NERV accent borders, lightweight outline buttons, mono labels, named HUD system, bracketed list markers. Engineering is the brand. Live visual reference at /ui-kit.
 colors:
   bench-orange: "#F04000"
   accent-hover: "#D63800"
@@ -103,23 +103,138 @@ components:
       accent: "{colors.bench-orange}"
       foreground: "{colors.chalk}"
       muted: "{colors.iron}"
+    note: "Component renders only the four corner L-marks; the surrounding border and padding are supplied by the consumer via the `class` prop."
   kicker:
     textColor: "{colors.bench-orange}"
     typography: "{typography.label}"
     padding: "0 0 8px 0"
     brackets: "true"
+    tones:
+      accent: "{colors.bench-orange}"
+      muted: "{colors.iron}"
+      foreground: "{colors.chalk}"
+  badge:
+    typography: "{typography.label}"
+    variants:
+      status:
+        border: "1px solid {colors.border-quiet}"
+        textColor: "{colors.iron}"
+        dotColor: "{colors.bench-orange}"
+        pulse: "true"
+      online:
+        border: "1px solid rgba(240, 64, 0, 0.50)"
+        textColor: "{colors.bench-orange}"
+        dotColor: "{colors.bench-orange}"
+        pulse: "true"
+      tag:
+        border: "1px solid {colors.border-quiet}"
+        textColor: "{colors.iron}"
+      count:
+        padding: "4px 8px"
+        backgroundColor: "transparent"
+        note: "Background and color are supplied by the consumer (e.g. `bg-accent text-white` for a filled count, `border border-border text-muted` for a quiet one)."
+  alert:
+    typography: "{typography.label}"
+    padding: "16px"
+    variants:
+      info:
+        border: "1px solid rgba(240, 64, 0, 0.40)"
+        labelColor: "{colors.bench-orange}"
+        label: "[ INFO ]"
+      note:
+        border: "1px solid {colors.border-quiet}"
+        labelColor: "{colors.iron}"
+        label: "[ NOTA ]"
+      error:
+        border: "1px solid rgba(248, 113, 113, 0.40)"
+        labelColor: "rgb(248, 113, 113)"
+        label: "[ ERROR ]"
+  mono-microcopy:
+    typography:
+      fontFamily: "Geist Mono, ui-monospace, monospace"
+      fontSize: "0.6875rem"
+      letterSpacing: "0.12em"
+      textTransform: "uppercase"
+    tones:
+      muted: "{colors.iron}"
+      accent: "{colors.bench-orange}"
   hud-readout:
     textColor: "{colors.iron}"
     typography: "{typography.label}"
     padding: "0"
+  card:
+    border: "1px solid {colors.border-quiet}"
+    backgroundColor: "{colors.workbench-black}"
+    rounded: "{rounded.none}"
+    hover:
+      border: "1px solid {colors.bench-orange}"
   line-background:
     angle: "45deg"
     lineWidth: "1px"
     spacing: "16px"
+    utilityClasses:
+      foreground: ".line-bg-foreground"
+      accent: ".line-bg-accent"
+      muted: ".line-bg-muted"
     tones:
       foreground: "rgba(214, 211, 206, 0.08)"
       accent: "rgba(240, 64, 0, 0.14)"
       muted: "rgba(138, 132, 124, 0.14)"
+  section-divider:
+    wrapper: "mx-auto max-w-6xl px-4 sm:px-8 lg:px-12"
+    hairline:
+      height: "1px"
+      backgroundColor: "rgba(214, 211, 206, 0.10)"
+    signature:
+      height: "1px"
+      backgroundColor: "rgba(240, 64, 0, 0.40)"
+      use: "Once per page, between the Sobre mí and the Orbital sections"
+  ui-kit:
+    path: "/ui-kit"
+    version: "v0.5.0"
+    sections:
+      - "01 · Buttons"
+      - "02 · Typography"
+      - "03 · Form controls"
+      - "04 · Badges & status"
+      - "05 · Cards"
+      - "06 · Data readouts"
+      - "07 · Navigation"
+      - "08 · Feedback"
+      - "09 · Frames & dividers"
+      - "10 · Composition (interactive contact form)"
+      - "11 · Lists (bracketed markers)"
+    note: "Each section renders the real Astro component from src/components/. Section 10 validates composition by wiring Button + Alert + Badge + Kicker + MonoMicrocopy + SectionFrame into a working form with client-side validation. Section 11 documents the bracketed list markers that apply to all prose content. Visual source of truth for the entire system."
+  lists:
+    markers:
+      ordered:
+        content: "[NN]"
+        counter: "decimal-leading-zero"
+        scope: "ol"
+        auto: ".prose-custom ol"
+        manual: "ol.list-bracket"
+      unordered:
+        content: "[•]"
+        scope: "ul"
+        auto: ".prose-custom ul"
+        manual: "ul.list-bracket"
+      checklist:
+        content: "[✓]"
+        scope: "ul"
+        auto: ".prose-custom ul.list-check / [data-marker=\"check\"]"
+        manual: "ul.list-check / [data-marker=\"check\"]"
+    markerStyle:
+      fontFamily: "Geist Mono, ui-monospace, monospace"
+      fontSize: "0.75rem"
+      letterSpacing: "0.12em"
+      color: "{colors.bench-orange}"
+      position: "absolute"
+      align: "top"
+      indent: "2.5rem"
+    nested:
+      counterReset: "per-level"
+      note: "The CSS counter `bracket-ol` resets on each new <ol>, so nested ordered lists restart at [01] instead of continuing the parent count."
+    antiPattern: "Never pair bracketed list markers with default Tailwind list utilities (`list-disc`, `list-decimal`) — the system uses custom counters, not browser defaults."
 ---
 
 # Design System: A26 Portafolio
@@ -203,54 +318,88 @@ The system is **flat by default**. Surfaces do not carry shadows. Depth is conve
 
 For each component, character line first, then shape, color assignment, states, and any distinctive behavior.
 
+> **Visual source of truth: [`/ui-kit`](/ui-kit) (v0.5.0).** Each component documented below is rendered live on that page as the real Astro component from `src/components/`. Section 10 of the UI Kit wires Button + Alert + Badge + Kicker + MonoMicrocopy + SectionFrame into a working contact form with client-side validation — that is the canonical reference for component composition. Section 11 documents the bracketed list markers. When this document and the UI Kit disagree, the UI Kit wins.
+
 ### Buttons
+- **Component:** `src/components/Button.astro` · props: `href?`, `variant: "primary" | "secondary" | "link"`, `size: "sm" | "md" | "lg"`, `type: "button" | "submit" | "reset"` (default `"button"`), `disabled?`.
 - **Shape:** No radius (sharp). The 1px border is the whole weight. No fill at rest. No brackets in button labels (brackets belong to the kicker and the frames).
 - **Primary:** 1px Bench Orange border, Bench Orange text, transparent background. Hover: background fills Bench Orange, text turns the bench color (`#181818`) — the stamp effect. Focus: 2px Bench Orange ring, 2px offset. This is the main action on the page.
 - **Secondary:** 1px Border Strong border, Chalk text, transparent background. Hover: border and text shift to Bench Orange, background lifts to `bg-white/[0.05]`. Focus: 2px Bench Orange ring, 2px offset.
 - **Link:** Text with a trailing arrow (`→`), Chalk at rest. Hover: text shifts to Bench Orange, arrow stays Bench Orange. No border, no padding. Used for tertiary actions and in-context navigation.
 - **Disabled:** 1px dashed Border Quiet border, `text-muted/50`, `cursor: not-allowed`, transparent background. Identifiable at a glance — the dashed border signals non-interactive. Same treatment across primary and secondary; a disabled link is `text-muted/50`.
 - **Sizes (consistent scale):** `sm` = `px-4 py-2`, `text-xs`; `md` = `px-6 py-2.5`, `text-sm`; `lg` = `px-8 py-3.5`, `text-base`. The horizontal padding scales 4 → 6 → 8. Vertical scales 2 → 2.5 → 3.5.
+- **Inside a form:** Pass `type="submit"` or `type="reset"` explicitly. The component defaults to `type="button"` to prevent accidental form submission when used as a regular button.
 
 ### Section Frame (the corner bracket)
+- **Component:** `src/components/SectionFrame.astro` · props: `tone: "quiet" | "strong" | "accent" | "foreground" | "muted"` (default `"strong"`), `size: "sm" | "md" | "lg"` (default `"md"`), `class?`. **The component renders only the four corner L-marks**; the surrounding border, padding, and any background are supplied by the consumer via the `class` prop. This decoupling lets a single frame tone serve as the visual signature on different border treatments.
 - **Device:** 1px L-marks at the four corners of a section. Two 12–16px segments per corner.
 - **Tones:** `accent` (Bench Orange — hero / CV / project detail), `strong` (Border Strong — default structural), `quiet` (Border Quiet), `foreground` (Chalk — clear definition without color), `muted` (Iron — the most discreet). The `accent` tone is the NERV mark; the `foreground` and `muted` tones are the alternatives when a frame needs to define without color.
-- **Dashed variant:** A dashed border (Chalk at 30%) signals transient zones — drop zones, empty containers, sections under construction. Never on finished sections.
+- **Dashed variant:** A dashed border (Chalk at 30%) signals transient zones — drop zones, empty containers, sections under construction. Never on finished sections. The dashed look is built by hand (border-dashed on the consumer-supplied border + dashed corner marks) — there is no `tone="dashed"` because dashed is a border treatment, not a tone.
 - **Where it appears:** The hero, the CV panel, and at most one other section per page. A corner bracket on a section that doesn't earn the frame is decoration; a corner bracket on the hero, the CV, or the project detail is voice. Never on every section.
 
 ### Kicker (the section label)
-- **Style:** Geist Mono, 0.75rem, uppercase, letter-spacing `0.12em`, wrapped in brackets (`[ … ]`). Color: Bench Orange by default; Iron for the HUD-readout variant; Chalk for the inverted (on dark-with-orange elements) variant.
+- **Component:** `src/components/Kicker.astro` · props: `tone: "accent" | "muted" | "foreground"` (default `"accent"`), `class?`.
+- **Style:** Geist Mono, 0.75rem, uppercase, letter-spacing `0.12em`, wrapped in brackets (`[ … ]`). The component renders the brackets itself — pass only the label text as slot content.
+- **Tones:** Bench Orange (`accent`, default), Iron (`muted`, used inside HUD readouts and HUD-toned contexts), Chalk (`foreground`, used when the kicker sits inside a Bench Orange container and the orange would clash).
 - **Position:** Above the section h2, with 8px gap (`mb-2`).
 - **Content rule:** The kicker carries information. `[ 35+ PROYECTOS // 8 INDUSTRIAS ]`, `[ SEP 2011 — PRESENTE ]`, `[ DISCIPLINAS // UX — RESEARCH — WEB — BRAND ]`. Never an empty section name. See The Kicker Content Rule.
 
 ### HUD Readout (the seniority signal)
+- **Component:** `src/components/HudReadout.astro` · props: `rows: { key, value, href?, external? }[]`, `label?`, `framed?: boolean` (default `false`).
 - **Style:** Geist Mono, 0.75rem, uppercase, letter-spacing `0.12em`. Color: Iron labels, Chalk values. Set as a single column or a single line; the values and the labels share a single mono rhythm.
-- **Format:** `[ TELEMETRY ]` header, then `EXPERIENCIA / 14+ AÑOS`, `PROYECTOS / 50+`, `INDUSTRIAS / 8+`, `PÁVLOV / 2015`. Mono column alignment, no icon, no tile background, no gradient on the numbers.
-- **Container:** Optional 1px L-mark frame (Section Frame device). Sits at the foot of the "Sobre mí" teaser or the hero, framed by the section corner brackets.
+- **Format:** `[ TELEMETRY ]` header (only when `framed`), then `EXPERIENCIA / 14+ AÑOS`, `PROYECTOS / 50+`, `INDUSTRIAS / 8+`, `PÁVLOV / 2015`. Mono column alignment, no icon, no tile background, no gradient on the numbers.
+- **Container:** When `framed={true}`, the readout wraps itself in a `SectionFrame tone="strong"` with `border border-border-strong p-5` and a `[ TELEMETRY ]` kicker — use this for the "Sobre mí" CV side panel. When `framed={false}`, it renders bare — use this when embedding inside another layout.
 - **Anti-pattern:** The hero-metric template (4-up gradient-numbers-on-tiles) is forbidden. The HUD readout is the disciplined version of the same information; it is voice where the template is chrome.
 
 ### Mono Microcopy (the terminal status line)
-- **Style:** Geist Mono, 0.625rem–0.75rem, uppercase, letter-spacing `0.12em`. Color: Iron or Bench Orange depending on whether the microcopy is a status (Iron) or a call to action (Bench Orange).
-- **Where it appears:** Two or three per page, never more. Near the calendar CTA: `STATUS: AVAILABLE // REPLY < 24H`. At the foot of the hero: `// BOOT SEQUENCE COMPLETE`. At the head of the project listing: `[ SECTION_ID: PROJECTS ]`.
+- **Component:** `src/components/MonoMicrocopy.astro` · props: `tone: "muted" | "accent"` (default `"muted"`), `class?`.
+- **Style:** Geist Mono, 0.6875rem, uppercase, letter-spacing `0.12em`. Color: Iron (default, status readouts) or Bench Orange (CTA-adjacent).
+- **Where it appears:** Two or three per page, never more. Near the calendar CTA: `// STATUS: AVAILABLE · REPLY < 24H`. Inside the orbital HUD panels. At the foot of in-form microcopy (char counters, validation hints).
 - **Content rule:** Microcopy names a real state. A microcopy that doesn't correspond to a real piece of information is decoration and gets cut. The restraint is the voice.
 
-### Status Indicator (the pulse badge)
-- **Style:** Border Quiet border, `px-4 py-1.5` (sharp rectangle, no pill). Mono label, Bench Orange dot + Bench Orange text. The label is "Disponible para proyectos".
-- **Active pulse:** A 1.5px Bench Orange dot with a Tailwind `animate-ping` halo. The dot pairs with the text — the badge is a status, not an animation.
-- **Reduced motion:** The pulse animation is replaced with a static Bench Orange dot. The label still carries the meaning.
+### Status Indicator / Badge
+- **Component:** `src/components/Badge.astro` · props: `variant: "status" | "online" | "tag" | "count"` (default `"status"`), `class?`. The slot is the label.
+- **`status`:** Border Quiet border, `px-4 py-1.5` (sharp rectangle, no pill). Mono label, Iron text, Bench Orange dot with `animate-ping` halo. The default availability signal. Use `role="status"` + `aria-live="polite"` on the consumer's wrapper so screen readers announce state changes.
+- **`online`:** Bench Orange-tinted border (`border-accent/50`), Bench Orange text, Bench Orange dot with `animate-ping`. A louder presence than `status` for confirmed-active states.
+- **`tag`:** Border Quiet border, Iron text, no dot. For metadata labels (sectors, disciplines, project types).
+- **`count`:** No border, no dot. The base provides padding (`px-2 py-1`) and mono typography only; the consumer supplies the visual treatment via `class` — `bg-accent text-white` for a filled count, `border border-border text-muted` for a quiet one.
+- **Reduced motion:** The pulse animation on `status` is replaced with a static Bench Orange dot via `motion-reduce:animate-none`. The `online` variant keeps the animation (it's an always-on signal).
+
+### Alert (the feedback block)
+- **Component:** `src/components/Alert.astro` · props: `variant: "info" | "note" | "error"` (default `"info"`), `label?`, `class?`. The slot is the body copy.
+- **`info`:** 1px `rgba(240, 64, 0, 0.40)` border (Bench Orange at 40%), Bench Orange label `[ INFO ]`. The default positive/neutral feedback tone. Used for availability notices and form success.
+- **`note`:** 1px Border Quiet border, Iron label `[ NOTA ]`. Quiet context — supplementary information that doesn't require a tone shift.
+- **`error`:** 1px `rgba(248, 113, 113, 0.40)` border (red-400 at 40%), `red-400` label `[ ERROR ]`. The only red in the system; reserved for validation failure and load errors.
+- **Shape:** 1px border, `p-4`, sharp corners. The body is Body (`text-sm text-foreground leading-relaxed`); the label is the system Label type.
+- **Usage:** One per surface at a time, never stacked. When wired into a form (see §10 of the UI Kit), alerts are pre-rendered with `hidden` and toggled by client-side validation; the consumer passes validation copy as the slot.
 
 ### Dividers
-- **Solid hairline:** `h-px bg-foreground/10`. The default section divider.
-- **Solid centered:** A hairline on each side of a mono dot (`·`). For paired blocks.
-- **Solid accent:** `h-px bg-accent/40`. For the signature section break, sparingly.
+- **Section divider (between page sections):** A wrapper `<div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12" aria-hidden="true">` containing `<div class="h-px bg-foreground/10"></div>`. The wrapper matches the page's outer content gutter so the divider sits flush with the section edges. Use between every adjacent top-level section.
+- **Signature section break:** Same wrapper, `<div class="h-px bg-accent/40"></div>`. Use once per page — typically between the "Sobre mí" / CV section and the Orbital signature. The accent is the one-voice rule honored: it marks the single visual punctuation of the page.
+- **Solid hairline (inline):** `h-px bg-foreground/10`. For in-flow content separation inside a single section.
+- **Solid centered:** A hairline on each side of a mono dot (`·`). For paired blocks (key / value rows, list pairs).
 - **Dashed hairline / dashed centered:** `border-t border-dashed border-foreground/25`. For transient zones, in-progress sections, or to visually separate pending content.
 
 ### Line Background (diagonal)
+- **Utility classes:** `.line-bg-foreground`, `.line-bg-accent`, `.line-bg-muted` (defined in `global.css`). These replace the old inline `repeating-linear-gradient` declarations — always reach for the utility class, never inline the gradient.
 - **Device:** `repeating-linear-gradient(45deg, color 0, color 1px, transparent 1px, transparent 16px)`. 1px diagonal lines at 45°, spaced 16px. Static — no motion, so `prefers-reduced-motion` needs no exception.
 - **Tones:** foreground (Chalk at 0.08), accent (Bench Orange at 0.14), muted (Iron at 0.14). Same colors as the border tokens.
-- **Where it appears:** As a backdrop for a hero or a data zone, behind content with sufficient contrast. Never over text, never as a body-wide texture, never animated.
+- **Where it appears:** As a backdrop for a hero or a data zone, behind content with sufficient contrast. The hero on `index.astro` uses `.line-bg-foreground` masked with `[mask-image:linear-gradient(to_bottom,black,transparent_90%)]` so the lines fade toward the fold. Never over text, never as a body-wide texture, never animated.
 - **Anti-pattern:** random scan-line textures across the whole page, `body:before` stripes, or diagonal lines used as decoration without a section that earns them. The device is a named tool, not a texture.
 
+### Lists (bracketed markers)
+- **Location:** All list styles live in `global.css` (`@layer utilities`). No Astro component — the styles are CSS-only, applied to the native `<ol>` and `<ul>` elements so markdown content picks them up automatically through `.prose-custom`.
+- **Ordered (`<ol>`):** Counter marker in `decimal-leading-zero`, wrapped in brackets → `[01] [02] [03] …`. The CSS counter `bracket-ol` is `counter-reset` on each `<ol>`, so nested lists restart at `[01]` instead of continuing the parent count. The counter is named and scoped to a single property so it never collides with custom counters.
+- **Unordered (`<ul>`):** Default marker is the bracketed bullet `[•]`. A `list-style: none` reset removes the browser default before the pseudo-element takes over.
+- **Checklist (`<ul>` with `.list-check` or `data-marker="check"`):** Marker is the bracketed checkmark `[✓]`. Same visual weight as `[•]`, but the symbol signals completion / presence rather than membership.
+- **Marker shape:** `::before` pseudo-element, `position: absolute; left: 0; top: 0;`. Indent: `padding-left: 2.5rem` on the `<li>`. Font: Geist Mono, 0.75rem, letter-spacing 0.12em, color Bench Orange. The `font-feature-settings: "tnum"` keeps the bracketed numbers column-aligned when the list wraps.
+- **Where it applies:**
+  - **Auto:** All `<ol>` and `<ul>` inside `.prose-custom` (every markdown content surface — project case studies, sobre-mi, etc.). One mental model: if it's coming from a `.md` file, it gets the brackets.
+  - **Manual:** Outside markdown, opt in with `ol.list-bracket` (numbered), `ul.list-bracket` (default bullet), or `ul.list-check` / `ul[data-marker="check"]` (checklist). The utility classes are exposed in `@layer utilities` so they can be combined with Tailwind utilities.
+- **Anti-pattern:** Never pair bracketed list markers with Tailwind's `list-disc` / `list-decimal` — the system uses custom counters, not browser defaults. Never use a `[#]` marker on a list of fewer than 10 items; the zero-pad is a commitment to the bracketed rhythm. Never use `[✓]` on a list that mixes complete and pending items — `[✓]` is for lists where every item is true, not for to-do progress.
+
 ### Cards / Containers
+- **Component:** `src/components/ProjectCard.astro` is the only first-class card component (used in the project listing). The cards rendered in the UI Kit (§05) and elsewhere on the site use plain `<a>` or `<div>` elements with the same visual contract below.
 - **Corner Style:** No radius. Surfaces are sharp; the 1px border is the only frame. The only `rounded-full` in the system is the 1.5px status indicator dot/halo, used as an indicator shape, not a surface corner.
 - **Background:** Workbench Black, no tonal lift at rest.
 - **Shadow Strategy:** None. State-only elevation: the card border shifts to Bench Orange on hover.
@@ -283,10 +432,6 @@ For each component, character line first, then shape, color assignment, states, 
 - **Reduced motion:** The WebGL scene is replaced with a static labeled grid (the same three satellites, the same labels, drawn in HTML/CSS) at the same height. The narrative of the signature is preserved; the motion is not.
 - **Accessibility:** `role="img"` with `aria-label="Three practice areas orbiting a center of craft: UX, DEV, BUSINESS."` on the orbital container.
 
-### Hero Glow (the only atmospheric decoration)
-- **Device:** A radial gradient (ellipse 80% × 50% at 50% −10%) of Bench Orange at 18% opacity, fading to transparent, with a secondary softer glow (60% × 40% at 50% 0%, 8% opacity). Positioned absolute inset 0, `pointer-events: none`, `z-index: 0`.
-- **Where it appears:** The hero only. The glow is the signature atmosphere of the site — one element, one section, one screen. Forbidden as a global background.
-
 ## 6. Do's and Don'ts
 
 Concrete, forceful guardrails. Every anti-reference in PRODUCT.md carries through here.
@@ -304,7 +449,8 @@ Concrete, forceful guardrails. Every anti-reference in PRODUCT.md carries throug
 - **Do** keep the 3D orbital to one contained section with a full reduced-motion fallback. The work leads; the 3D does not.
 - **Do** pair color with text, position, or icon for any status indicator. Color is never the only carrier of meaning.
 - **Do** subscribe every motion script to `astro:page-load` (init) and `astro:after-swap` (teardown). Teardown disposes geometries, materials, controls, and label renderers.
-- **Do** use the Line Background (45° diagonal, 1px, spaced 16px) as a named backdrop for heroes and data zones in its three tones.
+- **Do** use the Line Background (45° diagonal, 1px, spaced 16px) as a named backdrop for heroes and data zones in its three tones. Reach for the `.line-bg-*` utility classes in `global.css`, never inline the gradient.
+- **Do** validate composition in `/ui-kit` §10 before shipping a new combination. If a new pattern uses more than one component, prototype it there first and then port to the production surface.
 
 ### Don't:
 - **Don't** use gradient text (`background-clip: text` on a gradient). Decorative, never meaningful. Use a single solid color; emphasis through weight or size.

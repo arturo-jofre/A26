@@ -18,7 +18,7 @@ private: true
 Nuevo proceso de venta remota asistida de AFP Capital.
 </div>
 
-<div class="grid-1-2">
+<div class="grid grid-cols-3">
 
 </div>
 

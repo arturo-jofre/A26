@@ -45,8 +45,7 @@ const hudRows = [
 			id="hero"
 			class="relative mx-auto max-w-6xl overflow-hidden pt-32 pb-24 px-4 sm:px-8 lg:px-12"
 		>
-			<!-- Hero glow: the signature accent. The only atmospheric decoration on the page. -->
-			<div class="hero-glow" aria-hidden="true"></div>
+			
 			<!-- Line background: named backdrop for the hero. Static, masked toward the fold edge. -->
 			<div
 				class="line-bg-foreground absolute inset-0 [mask-image:linear-gradient(to_bottom,black,transparent_90%)]"
@@ -54,13 +53,13 @@ const hudRows = [
 			></div>
 
 			<div class="relative z-10">
-				<SectionFrame tone="accent" size="md" class="p-8 sm:p-10">
-					<div class="max-w-3xl space-y-8">
+				<SectionFrame tone="accent" size="md" class="py-10">
+					<div class="max-w-3xl space-y-8" data-reveal-load>
 						<!-- Status badge: availability signal, mono label + Bench Orange dot.
 						     role="status" + aria-live="polite" announces the state to screen readers. -->
 						<Badge
 							variant="status"
-							class="hero-animate"
+							data-reveal
 							role="status"
 							aria-live="polite"
 						>
@@ -68,22 +67,25 @@ const hudRows = [
 						</Badge>
 
 						<h1
-							class="hero-animate text-[clamp(2.75rem,6.5vw,4.5rem)] font-bold leading-[0.95]"
+							data-reveal
+							class="text-[clamp(2.75rem,6.5vw,4.5rem)] font-bold leading-[0.95]"
 						>
 							Arturo Jofré López
 							<br />
-							Product Designer
+							<span class="font-mono text-accent uppercase">Product Designer</span>
 						</h1>
 
 						<p
-							class="hero-animate text-lg leading-[1.6] text-muted max-w-2xl text-pretty"
+							data-reveal
+							class="text-lg leading-[1.6] text-muted max-w-2xl text-pretty"
 						>
 							14 años diseñando productos digitales para gobierno,
 							salud, finanzas, retail, logística y recursos humanos.
 						</p>
 
 						<div
-							class="hero-animate flex flex-col sm:flex-row gap-4 items-start"
+							data-reveal
+							class="flex flex-col sm:flex-row gap-4 items-start"
 						>
 							<Button
 								variant="primary"
@@ -97,7 +99,7 @@ const hudRows = [
 							</Button>
 						</div>
 
-						<MonoMicrocopy class="pt-2">
+						<MonoMicrocopy class="pt-2" data-reveal>
 							// STATUS: AVAILABLE · REPLY &lt; 24H · SANTIAGO, CL
 						</MonoMicrocopy>
 					</div>
@@ -112,7 +114,10 @@ const hudRows = [
 		<!-- ────────────────────────── PROYECTOS DESTACADOS ───────────────────── -->
 		<section class="relative py-24">
 			<div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
-				<div class="flex items-end justify-between mb-12 gap-4 flex-wrap">
+				<div
+					data-reveal
+					class="flex items-end justify-between mb-12 gap-4 flex-wrap"
+				>
 					<div>
 						<Kicker class="mb-2">35+ PROYECTOS // 8 INDUSTRIAS</Kicker>
 						<h2
@@ -150,7 +155,7 @@ const hudRows = [
 		<!-- ────── CÓMO TRABAJO ────── -->
 		<section class="relative py-24">
 			<div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
-				<div class="mb-10 max-w-3xl space-y-2">
+				<div class="mb-10 max-w-3xl space-y-2" data-reveal>
 					<Kicker>
 						DISCIPLINAS // RESEARCH — DESIGN — SYSTEMS
 					</Kicker>
@@ -162,6 +167,7 @@ const hudRows = [
 				</div>
 
 				<div
+					data-reveal-list
 					class="max-w-2xl space-y-6 text-base leading-[1.65] text-muted text-pretty"
 				>
 					<p>
@@ -195,7 +201,7 @@ const hudRows = [
 				<div
 					class="grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-16 items-start"
 				>
-					<div class="space-y-6">
+					<div class="space-y-6" data-reveal>
 						<Kicker>
 							SEP 2011 — PRESENTE // 7 ROLES · 4 EMPRESAS
 						</Kicker>
@@ -228,12 +234,13 @@ const hudRows = [
 						</Button>
 					</div>
 
-					<HudReadout
-						rows={hudRows}
-						label="Trayectoria profesional"
-						framed
-						class="lg:self-start"
-					/>
+					<div data-reveal class="lg:self-start">
+						<HudReadout
+							rows={hudRows}
+							label="Trayectoria profesional"
+							framed
+						/>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -244,57 +251,8 @@ const hudRows = [
 		</div>
 
 		<!-- ────────────────────────── ORBITAL (signature) ────────────────────────── -->
-		<OrbitalSection />
+		
 	</main>
 	<Footer />
 </Layout>
 
-<script>
-	import { animate, stagger, inView } from "motion";
-
-	const prefersReducedMotion = window.matchMedia(
-		"(prefers-reduced-motion: reduce)"
-	).matches;
-
-	let cleanupFns: (() => void)[] = [];
-
-	function destroyAnimations() {
-		cleanupFns.forEach((fn) => fn());
-		cleanupFns = [];
-	}
-
-	function initAnimations() {
-		destroyAnimations();
-		if (prefersReducedMotion) return;
-
-		const hero = document.querySelector("#hero");
-		if (hero) {
-			const animator = animate(
-				".hero-animate",
-				{ opacity: [0, 1], y: [12, 0] },
-				{ delay: stagger(0.08), duration: 0.6 }
-			);
-			cleanupFns.push(() => animator.stop());
-		}
-
-		document.querySelectorAll("section").forEach((section) => {
-			const stop = inView(
-				section,
-				(target) => {
-					animate(
-						target.querySelectorAll(
-							"h2, p, .grid > *, dl > *"
-						),
-						{ opacity: [0, 1], y: [16, 0] },
-						{ delay: stagger(0.05), duration: 0.55 }
-					);
-				},
-				{ amount: 0.15, once: true }
-			);
-			cleanupFns.push(stop);
-		});
-	}
-
-	document.addEventListener("astro:after-swap", destroyAnimations);
-	document.addEventListener("astro:page-load", initAnimations);
-</script>

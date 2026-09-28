@@ -16,9 +16,9 @@ featured: true
 ---
 
 <div class="grid gap-8 ">
- <img class="rounded-2xl" src="/assets/img/portafolio/kb-1.png">
- <img class="rounded-2xl" src="/assets/img/portafolio/kb-2.png" alt="">
- <img class="rounded-2xl" src="/assets/img/portafolio/kb-3.png" alt="">
+ <img class="" src="/assets/img/portafolio/kb-1.png">
+ <img class="" src="/assets/img/portafolio/kb-2.png" alt="">
+ <img class="" src="/assets/img/portafolio/kb-3.png" alt="">
 </div>
 <div class="max-w-3xl mx-auto space-y-4">
 

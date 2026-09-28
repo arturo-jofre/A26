@@ -11,8 +11,9 @@ import Button from "../components/Button.astro";
     <div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
       <div
         class="min-h-[60vh] flex flex-col items-center justify-center text-center space-y-8"
+        data-reveal-load
       >
-        <div class="relative">
+        <div class="relative" data-reveal>
           <span
             class="text-[180px] md:text-[240px] font-bold tracking-tighter text-foreground/5 select-none font-mono absolute inset-0 flex items-center justify-center"
             aria-hidden="true"
@@ -26,14 +27,14 @@ import Button from "../components/Button.astro";
           </p>
         </div>
 
-        <div class="space-y-4 max-w-md">
+        <div class="space-y-4 max-w-md" data-reveal>
           <h1 class="text-3xl md:text-4xl font-bold">Página no encontrada</h1>
           <p class="text-lg text-muted leading-relaxed">
             La página que buscas no existe o fue movida.
           </p>
         </div>
 
-        <div class="flex flex-col sm:flex-row gap-4">
+        <div class="flex flex-col sm:flex-row gap-4" data-reveal>
           <Button variant="primary" size="lg" href="/">
             Volver al inicio
           </Button>
@@ -47,32 +48,3 @@ import Button from "../components/Button.astro";
   <Footer />
 </Layout>
 
-<script>
-  import { animate, stagger } from "motion";
-
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  let currentAnimator: ReturnType<typeof animate> | null = null;
-
-  function destroyAnimations() {
-    if (currentAnimator) {
-      currentAnimator.stop();
-      currentAnimator = null;
-    }
-  }
-
-  function initAnimations() {
-    destroyAnimations();
-    if (prefersReducedMotion) return;
-    currentAnimator = animate(
-      "h1, p, .flex",
-      { opacity: [0, 1], y: [20, 0] },
-      { delay: stagger(0.1), duration: 0.5 },
-    );
-  }
-
-  document.addEventListener("astro:after-swap", destroyAnimations);
-  document.addEventListener("astro:page-load", initAnimations);
-</script>

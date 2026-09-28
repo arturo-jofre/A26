@@ -16,7 +16,7 @@ tags: ["Public"]
 
 
 <div class="grid">
-  <img class="rounded-2xl" src="/assets/img/portafolio/extension-duoc-21.png" alt="Diseño nueva página de  para Toliv.io" loading="lazy">
+  <img class="" src="/assets/img/portafolio/extension-duoc-21.png" alt="Diseño nueva página de  para Toliv.io" loading="lazy">
 </div>
 
 ## ¿El motivo?

@@ -16,9 +16,9 @@ tags: ["Public"]
 
 
 <div class="grid gap-4 sm:grid-cols-3">
-	<img class="rounded-2xl" src="/assets/img/portafolio/kidsbook-ed-icon.png" alt="">
-	<img class="rounded-2xl" src="/assets/img/portafolio/kidsbook-ed-app.png" alt="">
-	<img class="rounded-2xl" src="/assets/img/portafolio/kidsbook.png" alt="">
+	<img class="" src="/assets/img/portafolio/kidsbook-ed-icon.png" alt="">
+	<img class="" src="/assets/img/portafolio/kidsbook-ed-app.png" alt="">
+	<img class="" src="/assets/img/portafolio/kidsbook.png" alt="">
 </div>
 
 ## Desafio

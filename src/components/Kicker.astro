@@ -3,7 +3,7 @@ interface Props {
 	tone?: "accent" | "muted" | "foreground";
 	class?: string;
 }
-const { tone = "accent", class: className = "" } = Astro.props;
+const { tone = "accent", class: className = "", ...attrs } = Astro.props;
 const toneClass = {
 	accent: "text-accent",
 	muted: "text-muted",
@@ -12,6 +12,7 @@ const toneClass = {
 ---
 
 <p
+	{...attrs}
 	class:list={[
 		"text-xs font-mono tracking-widest uppercase",
 		toneClass,

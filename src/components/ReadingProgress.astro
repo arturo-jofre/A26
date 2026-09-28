@@ -1,0 +1,15 @@
+---
+// Barra de progreso de lectura para las páginas de proyecto.
+// No lleva script: motion-system.ts monta la animación scroll-linked
+// sobre cualquier elemento [data-reading-progress] que encuentre.
+---
+<div
+	class="fixed inset-x-0 top-16 z-40 h-px pointer-events-none"
+	aria-hidden="true"
+>
+	<div
+		data-reading-progress
+		class="h-full w-full origin-left bg-accent"
+		style="transform: scaleX(0)"
+	></div>
+</div>

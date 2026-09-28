@@ -17,8 +17,8 @@ tags: ["Public"]
 ---
 
 <div class="grid gap-4 sm:grid-cols-3 grid-flow-row-dense">
-	<img class="rounded-2xl" src="/assets/img/portafolio/tolivmarket-pos-icon.png" alt="Diseño de icono para la app Toliv Market POS" loading="lazy">
-	<img class="rounded-2xl sm:col-span-2" src="/assets/img/portafolio/tm-pos-16.png" alt="" loading="lazy"> 
+	<img class="" src="/assets/img/portafolio/tolivmarket-pos-icon.png" alt="Diseño de icono para la app Toliv Market POS" loading="lazy">
+	<img class=" sm:col-span-2" src="/assets/img/portafolio/tm-pos-16.png" alt="" loading="lazy"> 
 </div>
 
 ## Acerca de

@@ -9,6 +9,12 @@
   --color-subtle: #3A3734;
   --color-border: rgba(214, 211, 206, 0.1);
   --color-border-strong: rgba(214, 211, 206, 0.18);
+
+  /* Springs de Motion muestreados a linear() — críticamente amortiguados
+     (bounce 0), así que asientan sin overshoot. --ease-settle dura ~0.68s
+     (transiciones entre páginas); --ease-snappy ~0.34s (micro-interacciones). */
+  --ease-settle: linear(0, 0.059, 0.185, 0.327, 0.463, 0.582, 0.679, 0.758, 0.819, 0.866, 0.902, 0.928, 0.948, 0.962, 0.973, 0.981, 0.986, 0.99, 0.993, 0.995, 0.996, 0.997, 1);
+  --ease-snappy: linear(0, 0.084, 0.248, 0.42, 0.569, 0.689, 0.78, 0.847, 0.894, 0.928, 0.951, 0.967, 0.978, 0.986, 0.99, 0.994, 0.996, 0.997, 1);
 }
 
 @layer base {
@@ -60,6 +66,47 @@
 }
 
 /* ——————————————————————————————————————————————
+   REVEAL (entradas al hacer scroll / al cargar)
+   El estado oculto inicial solo se aplica cuando JS está activo (html.js) Y
+   el usuario acepta movimiento. Sin JS, o con prefers-reduced-motion, el
+   contenido siempre es visible — el hero nunca queda en blanco.
+——————————————————————————————— */
+@media (prefers-reduced-motion: no-preference) {
+  html.js [data-reveal],
+  html.js [data-reveal-list] > * {
+    opacity: 0;
+  }
+}
+
+/* ——————————————————————————————————————————————
+   VIEW TRANSITIONS (navegación entre páginas)
+   Un crossfade muy corto aporta continuidad; el morph miniatura→hero del
+   proyecto viaja en un spring preciso (sin overshoot).
+——————————————————————————————— */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.16s;
+  animation-timing-function: ease-out;
+}
+
+::view-transition-group(*) {
+  animation-duration: 0.7s;
+  animation-timing-function: var(--ease-settle);
+}
+
+::view-transition-group(root) {
+  animation-duration: 0.16s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+/* ——————————————————————————————————————————————
    LINE BACKGROUND (diagonal 45°, 1px, spaced 16px)
    Named backdrop for heroes and data zones. Static.
    Never over text, never animated.
@@ -71,7 +118,7 @@
       var(--line-bg-color) 0,
       var(--line-bg-color) 1px,
       transparent 1px,
-      transparent 16px);
+      transparent 10px);
 }
 
 .line-bg-foreground {
@@ -87,25 +134,15 @@
 }
 
 /* ——————————————————————————————————————————————
-   HERO GLOW (radial from top-center)
-   The signature accent. The only atmospheric decoration on the page.
-—————————————————————————————— */
-.hero-glow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 0;
-  background:
-    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(240, 64, 0, 0.18), transparent),
-    radial-gradient(ellipse 60% 40% at 50% 0%, rgba(240, 64, 0, 0.08), transparent);
-}
-
-/* ——————————————————————————————————————————————
    UTILITIES
 —————————————————————————————— */
 @layer utilities {
-  .hero-animate {
-    opacity: 0;
+  .ease-snappy {
+    transition-timing-function: var(--ease-snappy);
+  }
+
+  .ease-settle {
+    transition-timing-function: var(--ease-settle);
   }
 
   .glass {
@@ -114,11 +151,101 @@
     border: 1px solid var(--color-border);
   }
 
+  /* Bracketed lists — opt-in for non-prose contexts.
+     .prose-custom ol/ul get the same treatment automatically.
+       ol  · [01] [02] [03] … zero-padded counter
+       ul  · [•] by default
+       ul.list-check / [data-marker="check"] · [✓]
+  */
+  ol.list-bracket,
+  ul.list-bracket,
+  ul.list-check {
+    list-style: none;
+    padding-left: 0;
+    color: var(--color-muted);
+  }
+
+  ol.list-bracket {
+    counter-reset: bracket-ol;
+  }
+
+  ol.list-bracket > li,
+  ul.list-bracket > li,
+  ul.list-check > li {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  ol.list-bracket > li {
+    counter-increment: bracket-ol;
+  }
+
+  ol.list-bracket > li::before,
+  ul.list-bracket > li::before,
+  ul.list-check > li::before {
+    font-family: "Geist Mono", monospace;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-accent);
+    font-feature-settings: "tnum";
+    line-height: inherit;
+    padding-right: 0.25rem;
+  }
+
+  ol.list-bracket > li::before {
+    content: "[" counter(bracket-ol, decimal-leading-zero) "]";
+  }
+
+  ul.list-bracket > li::before {
+    content: "[•]";
+  }
+
+  ul.list-check > li::before {
+    content: "[✓]";
+  }
+
+  ul[data-marker="check"] {
+    list-style: none;
+    padding-left: 0;
+    color: var(--color-muted);
+  }
+
+  ul[data-marker="check"] > li {
+    position: relative;
+    padding-left: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  ul[data-marker="check"] > li::before {
+    content: "[✓]";
+    font-family: "Geist Mono", monospace;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-accent);
+    font-feature-settings: "tnum";
+    line-height: inherit;
+  }
+
   /* Prose styles for markdown content (replaces @tailwindcss/typography) */
+
+  .intro {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
   .prose-custom {
     color: var(--color-foreground);
-    max-width: 65ch;
+    /* max-width: 65ch; */
     line-height: 1.75;
+  }
+
+  .prose-custom > *{
+    max-width: 65ch;
+  }
+
+  .prose-custom .grid{
+    max-width: 100%;
   }
 
   .prose-custom h1 {
@@ -173,20 +300,53 @@
   .prose-custom ul,
   .prose-custom ol {
     margin-bottom: 1.25rem;
-    padding-left: 1.5rem;
+    padding-left: 0;
     color: var(--color-muted);
   }
 
+  .prose-custom ol,
   .prose-custom ul {
-    list-style: disc;
+    list-style: none;
   }
 
   .prose-custom ol {
-    list-style: decimal;
+    counter-reset: bracket-ol;
   }
 
-  .prose-custom li {
+  .prose-custom ol > li,
+  .prose-custom ul > li {
+    position: relative;
+    padding-left: 2.5rem;
     margin-bottom: 0.5rem;
+  }
+
+  .prose-custom ol > li {
+    counter-increment: bracket-ol;
+  }
+
+  .prose-custom ol > li::before,
+  .prose-custom ul > li::before {
+    font-family: "Geist Mono", monospace;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color-accent);
+    font-feature-settings: "tnum";
+    line-height: inherit;
+    position: absolute;
+    left: 0;
+  }
+
+  .prose-custom ol > li::before {
+    content: "[" counter(bracket-ol, decimal-leading-zero) "]";
+  }
+
+  .prose-custom ul > li::before {
+    content: "[•]";
+  }
+
+  .prose-custom ul.list-check > li::before,
+  .prose-custom ul[data-marker="check"] > li::before {
+    content: "[✓]";
   }
 
 	.prose-custom blockquote {
@@ -234,7 +394,6 @@
   }
 
   .prose-custom img {
-    border-radius: 0.5rem;
     margin: 1.5rem 0;
     max-width: 100%;
     height: auto;
@@ -244,5 +403,9 @@
     border: none;
     border-top: 1px solid var(--color-border);
     margin: 2.5rem 0;
+  }
+
+  .prose-custom .grid img {
+    margin: 0;
   }
 }

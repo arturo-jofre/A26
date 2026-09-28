@@ -50,6 +50,6 @@ El trabajo de investigación y testeo posibilitó la mejora de los flujos de reg
 
 ## Prototipo
 
-<div class="prototype">
+<div class="prototype hidden">
 <iframe src="https://marvelapp.com/prototype/c5d7jg4?emb=1&iosapp=false&frameless=false" width="100%" height="720" allowTransparency="true" frameborder="0"></iframe>
 </div>

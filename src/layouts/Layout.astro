@@ -1,5 +1,5 @@
 ---
-import { ClientRouter } from "astro:transitions";
+import { ClientRouter, fade } from "astro:transitions";
 import "../styles/global.css";
 
 interface Props {
@@ -12,7 +12,12 @@ const { title, description = "Portafolio de Arturo Jofré - Product Designer" } 
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
+<html
+	lang="es"
+	class="scroll-smooth"
+	transition:name="root"
+	transition:animate={fade({ duration: "0.16s" })}
+>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
@@ -29,6 +34,24 @@ const { title, description = "Portafolio de Arturo Jofré - Product Designer" } 
 		/>
 
 		<ClientRouter />
+
+		<!--
+			Marca html.js solo cuando hay JS y el usuario acepta movimiento.
+			Es la condición bajo la que global.css oculta los elementos
+			[data-reveal] antes de animarlos: sin JS, o con prefers-reduced-motion,
+			el contenido nunca se oculta. Los listeners viven en `document`, que
+			persiste entre navegaciones, así que el flag sobrevive cada swap.
+		-->
+		<script is:inline>
+			const reducedMotion = window.matchMedia(
+				"(prefers-reduced-motion: reduce)"
+			);
+			const syncMotionFlag = () =>
+				document.documentElement.classList.toggle("js", !reducedMotion.matches);
+			syncMotionFlag();
+			document.addEventListener("astro:after-swap", syncMotionFlag);
+			document.addEventListener("astro:page-load", syncMotionFlag);
+		</script>
 	</head>
 	<body
 		class="antialiased min-h-screen flex flex-col relative overflow-x-hidden"
@@ -40,5 +63,22 @@ const { title, description = "Portafolio de Arturo Jofré - Product Designer" } 
 			Saltar al contenido
 		</a>
 		<slot />
+
+		<!--
+			Un único punto de montaje para todas las animaciones del sitio.
+			Es un módulo (se ejecuta una sola vez): los listeners de `document`
+			persisten y siguen funcionando tras cada navegación client-side.
+		-->
+		<script>
+			import { destroyMotion, initMotion } from "../scripts/motion-system";
+
+			document.addEventListener("astro:after-swap", destroyMotion);
+			document.addEventListener("astro:page-load", initMotion);
+
+			// El primer montaje no puede depender de que `astro:page-load` llegue
+			// después de este módulo: en el primer load esa carrera puede perderse
+			// y el contenido quedaría oculto. initMotion() es idempotente.
+			initMotion();
+		</script>
 	</body>
 </html>

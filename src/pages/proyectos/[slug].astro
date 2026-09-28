@@ -1,4 +1,5 @@
 ---
+import { fade } from "astro:transitions";
 import Layout from "../../layouts/Layout.astro";
 import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
@@ -7,6 +8,7 @@ import Kicker from "../../components/Kicker.astro";
 import MonoMicrocopy from "../../components/MonoMicrocopy.astro";
 import HudReadout from "../../components/HudReadout.astro";
 import Badge from "../../components/Badge.astro";
+import ReadingProgress from "../../components/ReadingProgress.astro";
 
 import { getCollection, render } from "astro:content";
 
@@ -41,26 +43,35 @@ if (project.data.url) {
 }
 
 const tags = project.data.tags ?? [];
+
+// Mismo `transition:name` que ProjectCard: la miniatura morphea aquí.
+const morphName = `project-${project.id.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
 ---
 
 <Layout title={`${project.data.title} — Arturo Jofré`}>
   <Navbar />
+  <ReadingProgress />
   <main id="main" class="pt-24 pb-10 flex-grow">
     <article class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12 py-16 sm:py-20">
       <!-- ─── HEADER (sin chrome: sin frame, sin kicker) ─── -->
-      <header class="mb-16 max-w-3xl project-header space-y-6">
-        <MonoMicrocopy>
+      <header
+        class="mb-16 max-w-3xl project-header space-y-6"
+        data-reveal-load
+      >
+        <MonoMicrocopy data-reveal>
           {project.data.year} · {project.data.client}
           {project.data.type ? ` · ${project.data.type}` : ""}
         </MonoMicrocopy>
 
         <h1
+          data-reveal
           class="text-[clamp(2.25rem,5.5vw,3.75rem)] font-bold leading-[0.98] tracking-[-0.03em] text-balance"
         >
           {project.data.title}
         </h1>
 
         <p
+          data-reveal
           class="text-base sm:text-lg text-muted leading-[1.6] text-pretty"
         >
           {project.data.description}
@@ -68,7 +79,7 @@ const tags = project.data.tags ?? [];
 
         {
           tags.length > 0 && (
-            <div class="flex flex-wrap gap-2 pt-2">
+            <div class="flex flex-wrap gap-2 pt-2" data-reveal>
               {tags.map((t) => (
                 <Badge variant="tag">{t}</Badge>
               ))}
@@ -80,10 +91,14 @@ const tags = project.data.tags ?? [];
         }
       </header>
 
-      <!-- ─── HERO IMAGE ─── -->
+      <!-- ─── HERO IMAGE (destino del morph) ─── -->
       {
         project.data.image && (
-          <div class="mb-16 border border-border aspect-[21/9] overflow-hidden bg-white/5">
+          <div
+            class="mb-16 border border-border aspect-[21/9] overflow-hidden bg-white/5"
+            transition:name={morphName}
+            transition:animate={fade({ duration: "0.5s" })}
+          >
             <img
               src={project.data.image}
               alt={`Cover del proyecto ${project.data.title}`}
@@ -97,6 +112,7 @@ const tags = project.data.tags ?? [];
 
       <!-- ─── META (HUD readout, sin card) ─── -->
       <section
+        data-reveal
         class="grid grid-cols-1 md:grid-cols-[1fr_2fr] gap-8 py-10 border-y border-border mb-16"
       >
         <div>
@@ -112,14 +128,17 @@ const tags = project.data.tags ?? [];
       </section>
 
       <!-- ─── CONTENT ─── -->
-      <section class="prose-custom">
+      <section class="prose-custom" data-reveal-list>
         <Content />
       </section>
 
       <!-- ─── FOOTER DEL PROYECTO ─── -->
       <div class="h-px bg-foreground/10 my-16" aria-hidden="true"></div>
 
-      <footer class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <footer
+        data-reveal
+        class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+      >
         <MonoMicrocopy>
           // END_OF_FILE · {project.id}
         </MonoMicrocopy>
@@ -132,32 +151,3 @@ const tags = project.data.tags ?? [];
   <Footer />
 </Layout>
 
-<script>
-  import { animate, stagger } from "motion";
-
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  let currentAnimator: ReturnType<typeof animate> | null = null;
-
-  function destroyAnimations() {
-    if (currentAnimator) {
-      currentAnimator.stop();
-      currentAnimator = null;
-    }
-  }
-
-  function initAnimations() {
-    destroyAnimations();
-    if (prefersReducedMotion) return;
-    currentAnimator = animate(
-      ".project-header > *, .prose-custom > *",
-      { opacity: [0, 1], y: [10, 0] },
-      { delay: stagger(0.05), duration: 0.5 }
-    );
-  }
-
-  document.addEventListener("astro:after-swap", destroyAnimations);
-  document.addEventListener("astro:page-load", initAnimations);
-</script>

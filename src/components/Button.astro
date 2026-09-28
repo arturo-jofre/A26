@@ -3,6 +3,7 @@ interface Props {
   href?: string;
   variant?: "primary" | "secondary" | "link";
   size?: "sm" | "md" | "lg";
+  type?: "button" | "submit" | "reset";
   disabled?: boolean;
   class?: string;
 }
@@ -11,6 +12,7 @@ const {
   href,
   variant = "primary",
   size = "md",
+  type = "button",
   disabled = false,
   class: className = "",
   ...attrs
@@ -61,7 +63,7 @@ const resolvedClasses = disabled
     </a>
   ) : (
     <button
-      type="button"
+      type={type}
       disabled={disabled}
       {...attrs}
       class:list={resolvedClasses}

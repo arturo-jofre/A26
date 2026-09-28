@@ -1,4 +1,6 @@
 ---
+import { fade } from "astro:transitions";
+
 interface Props {
 	title: string;
 	description: string;
@@ -8,14 +10,24 @@ interface Props {
 	isPrivate?: boolean;
 }
 const { title, description, img, link, year, isPrivate } = Astro.props;
+
+// Continuidad card → detalle: la miniatura se transforma en el hero del
+// proyecto. [slug].astro declara el mismo `transition:name` sobre su imagen.
+const morphName = `project-${link
+	.split("/")
+	.pop()!
+	.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
 ---
 
 <a
 	href={link}
-	class="group block relative bg-background border border-border hover:border-accent transition-colors duration-300"
+	data-reveal
+	class="group block relative bg-background border border-border hover:border-accent transition-colors duration-200"
 >
 	<div
 		class="aspect-[3/2] w-full bg-white/5 overflow-hidden relative"
+		transition:name={morphName}
+		transition:animate={fade({ duration: "0.5s" })}
 	>
 		{
 			img ? (
@@ -24,7 +36,7 @@ const { title, description, img, link, year, isPrivate } = Astro.props;
 					alt={`Screenshot of the ${title} project`}
 					loading="lazy"
 					decoding="async"
-					class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+					class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ease-snappy"
 				/>
 			) : (
 				<div class="w-full h-full flex items-center justify-center text-muted text-sm">
@@ -36,7 +48,7 @@ const { title, description, img, link, year, isPrivate } = Astro.props;
 	<div class="p-4 border-t border-border">
 		<div class="flex justify-between items-baseline mb-1.5">
 			<h3
-				class="text-sm font-bold group-hover:text-accent transition-colors"
+				class="text-lg font-bold group-hover:text-accent transition-colors"
 			>
 				{title}
 			</h3>

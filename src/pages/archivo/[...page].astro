@@ -36,28 +36,29 @@ const yearRange =
   <main id="main" class="pt-24 pb-10 flex-grow">
     <div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
       <!-- ─── HEADER ─── -->
-      <section class="py-16 sm:py-20">
-        <MonoMicrocopy class="mb-6">
+      <section class="py-16 sm:py-20" data-reveal-load>
+        <MonoMicrocopy class="mb-6" data-reveal>
           // SECTION_ID: ARCHIVE · INDEX
         </MonoMicrocopy>
 
         <div class="flex items-end justify-between gap-6 flex-wrap mb-8">
           <div class="max-w-3xl space-y-3">
-            <Kicker>
+            <Kicker data-reveal>
               {visible} PROYECTOS // {new Set(page.data.map((p) => p.data.client)).size}+ INDUSTRIAS // {yearRange}
             </Kicker>
             <h1
+              data-reveal
               class="text-[clamp(2.25rem,5.5vw,3.75rem)] font-bold leading-[0.98] tracking-[-0.03em] text-balance"
             >
               Archivo
             </h1>
-            <p class="text-base sm:text-lg text-muted leading-[1.6] text-pretty max-w-2xl">
+            <p data-reveal class="text-base sm:text-lg text-muted leading-[1.6] text-pretty max-w-2xl">
               Trabajos fuera de portafolio público: proyectos
               confidenciales bajo NDA, versiones anteriores o piezas
               que ya no represento. Acceso en modo lectura.
             </p>
           </div>
-          <MonoMicrocopy tone="accent">
+          <MonoMicrocopy tone="accent" data-reveal>
             // PÁG. {String(page.currentPage).padStart(2, "0")} / {String(page.lastPage).padStart(2, "0")}
           </MonoMicrocopy>
         </div>
@@ -67,7 +68,7 @@ const yearRange =
 
       <!-- ─── GRID ─── -->
       <section class="py-12 sm:py-16">
-        <div class="flex items-baseline justify-between mb-6 flex-wrap gap-3">
+        <div class="flex items-baseline justify-between mb-6 flex-wrap gap-3" data-reveal>
           <MonoMicrocopy>
             // MOSTRANDO {range} DE {page.total}
           </MonoMicrocopy>
@@ -94,6 +95,7 @@ const yearRange =
 
       <!-- ─── PAGINATION ─── -->
       <section
+        data-reveal
         class="flex items-center justify-between border-t border-border pt-6 flex-wrap gap-4"
       >
         <div class="inline-flex items-center divide-x divide-border border border-border font-mono text-[10px] uppercase tracking-widest">
@@ -155,40 +157,3 @@ const yearRange =
   <Footer />
 </Layout>
 
-<script>
-  import { animate, stagger, inView } from "motion";
-
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  let cleanupFns: (() => void)[] = [];
-
-  function destroyAnimations() {
-    cleanupFns.forEach((fn) => fn());
-    cleanupFns = [];
-  }
-
-  function initAnimations() {
-    destroyAnimations();
-    if (prefersReducedMotion) return;
-    const container = document.querySelector(".grid");
-    if (container) {
-      const stop = inView(
-        container,
-        () => {
-          animate(
-            ".grid > *",
-            { opacity: [0, 1], y: [15, 0] },
-            { delay: stagger(0.05), duration: 0.5 }
-          );
-        },
-        { once: true }
-      );
-      cleanupFns.push(stop);
-    }
-  }
-
-  document.addEventListener("astro:after-swap", destroyAnimations);
-  document.addEventListener("astro:page-load", initAnimations);
-</script>

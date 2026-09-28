@@ -14,4 +14,4 @@ archived: true
 draft: false
 ---
 
-<img class="rounded-2xl" src="/assets/img/portafolio/cuprum-apv-tu-bono.png">
+<img class="" src="/assets/img/portafolio/cuprum-apv-tu-bono.png">

@@ -6,16 +6,18 @@ import Layout from "../layouts/Layout.astro";
 	<main class="min-h-screen px-4 sm:px-8 lg:px-12 py-16 sm:py-20">
 		<div class="mx-auto max-w-7xl">
 			<!-- ─── Header ─── -->
-			<header class="mb-12 sm:mb-16 space-y-4 max-w-3xl">
-				<p class="text-xs font-mono tracking-widest uppercase text-accent">
+			<header class="mb-12 sm:mb-16 space-y-4 max-w-3xl" data-reveal-load>
+				<p class="text-xs font-mono tracking-widest uppercase text-accent" data-reveal>
 					// A26.DIRECTIONS · CANDIDATA 01
 				</p>
 				<h1
+					data-reveal
 					class="text-[clamp(2rem,5vw,3.25rem)] font-bold leading-[1.05] tracking-tight text-balance"
 				>
 					Workbench + NERV.
 				</h1>
 				<p
+					data-reveal
 					class="text-base sm:text-lg text-muted leading-relaxed text-pretty max-w-2xl"
 				>
 					La grid y la precisión de ingeniería como esqueleto, con
@@ -29,6 +31,7 @@ import Layout from "../layouts/Layout.astro";
 			     CANDIDATA · FUSED  (Workbench + NERV)
 			     ════════════════════════════════════════════ -->
 			<section
+				data-reveal
 				class="mb-20 p-6 sm:p-8 border border-accent/40 bg-background relative"
 			>
 				<!-- Corner brackets: accent (NERV) -->
@@ -413,7 +416,7 @@ import Layout from "../layouts/Layout.astro";
 			</section>
 
 			<!-- ─── Reference lanes ─── -->
-			<header class="mb-8 space-y-2">
+			<header class="mb-8 space-y-2" data-reveal>
 				<p class="text-xs font-mono tracking-widest uppercase text-muted">
 					// FUENTES · PARA COMPARAR
 				</p>
@@ -427,7 +430,7 @@ import Layout from "../layouts/Layout.astro";
 			<!-- ════════════════════════════════════════════
 			     LANE 01 · NERV  (MAGI Console)
 			     ════════════════════════════════════════════ -->
-			<div class="grid lg:grid-cols-3 gap-px bg-foreground/10">
+			<div class="grid lg:grid-cols-3 gap-px bg-foreground/10" data-reveal-list>
 				<article class="bg-background p-6 sm:p-8 space-y-8">
 					<header class="space-y-3">
 						<div class="flex items-baseline gap-3">

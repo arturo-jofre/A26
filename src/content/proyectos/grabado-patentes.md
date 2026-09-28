@@ -27,16 +27,16 @@ draft: true
 
 <div class="grid gap-4 grid-cols-1 sm:grid-cols-3 sm:grid-rows-2 grid-flow-row-dense mb-16">
   <!-- Pantalla 1: Cuadrícula normal (1 col) -->
-  <img class="rounded-2xl border border-border/10 object-cover w-full h-full" src="/assets/img/portafolio/tolivmarket-app-10.png" alt="Pantalla de Inicio de la App" loading="lazy">
+  <img class=" border border-border/10 object-cover w-full h-full" src="/assets/img/portafolio/tolivmarket-app-10.png" alt="Pantalla de Inicio de la App" loading="lazy">
   
   <!-- Pantalla 2: Cuadrícula normal (1 col) -->
-  <img class="rounded-2xl border border-border/10 object-cover w-full h-full" src="/assets/img/portafolio/tolivmarket-app-11.png" alt="Pantalla de Carrito de Compras" loading="lazy">
+  <img class=" border border-border/10 object-cover w-full h-full" src="/assets/img/portafolio/tolivmarket-app-11.png" alt="Pantalla de Carrito de Compras" loading="lazy">
   
   <!-- Pantalla 3: Mockup Vertical Largo (Ocupa 1 col pero abarca 2 filas en pantallas grandes) -->
-  <img class="rounded-2xl border border-border/10 row-start-1 sm:row-span-2 object-cover w-full h-full" src="/assets/img/portafolio/tolivmarket-app-full-2.png" alt="Flujo de pedido móvil" loading="lazy">
+  <img class=" border border-border/10 row-start-1 sm:row-span-2 object-cover w-full h-full" src="/assets/img/portafolio/tolivmarket-app-full-2.png" alt="Flujo de pedido móvil" loading="lazy">
   
   <!-- Pantalla 4: Banner Horizontal Ancho (Ocupa 2 cols) -->
-  <img class="rounded-2xl border border-border/10 sm:col-span-2 object-cover w-full h-full" src="/assets/img/portafolio/tolivmarket-app-31.png" alt="Vista del flujo de despacho" loading="lazy">
+  <img class=" border border-border/10 sm:col-span-2 object-cover w-full h-full" src="/assets/img/portafolio/tolivmarket-app-31.png" alt="Vista del flujo de despacho" loading="lazy">
 </div>
 
 ---

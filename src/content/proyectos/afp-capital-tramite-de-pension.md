@@ -12,14 +12,13 @@ color: "#f57423"
 tags: [UX]
 private: true
 
-
 ---
 
 <div class="intro">
 Nuevo proceso de solicitud de tramite de pensión de AFP Capital.
 </div>
 
-<div class="grid-1-2">
+<div class="grid grid-cols-3">
 
 </div>
 
@@ -46,4 +45,5 @@ La incorporación de nuevos tipos de pensionados y flujos de traspasos requería
 
 ## Resultados
 
-- Redudicr la fricción de los usuarios para realizar el tramite de manera digital.
+- Reducir la fricción de los usuarios para realizar el tramite de manera digital.
+

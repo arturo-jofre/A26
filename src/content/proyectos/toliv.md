@@ -18,5 +18,5 @@ TOLIV es el primer market place de eventos, herramienta que permiteque productor
 </div>
 
 <div class="grid grid-cols-1">
-  <img class="rounded-2xl" src="/assets/img/portafolio/toliv.png" alt="Diseño nueva página de  para Toliv.io" loading="lazy">
+  <img class="" src="/assets/img/portafolio/toliv.png" alt="Diseño nueva página de  para Toliv.io" loading="lazy">
 </div>

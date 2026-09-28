@@ -19,10 +19,10 @@ featured: true
 ---
 
 <div class="grid gap-4 grid-cols-1 sm:grid-cols-3 sm:grid-rows-2 grid-flow-row-dense">
-	<img class="rounded-2xl" src="/assets/img/portafolio/tolivmarket-app-10.png" alt="Diseño de Toliv market página de inicio" loading="lazy">
-	<img class="rounded-2xl" src="/assets/img/portafolio/tolivmarket-app-11.png" alt="Diseño de Toliv market página de inicio" loading="lazy">
-	<img class="rounded-2xl row-start-1 sm:row-span-2 object-cover" src="/assets/img/portafolio/tolivmarket-app-full-2.png" alt="Diseño de Toliv market página de inicio" loading="lazy">
-	<img class="rounded-2xl sm:col-span-2 object-cover" src="/assets/img/portafolio/tolivmarket-app-31.png" alt="Diseño de Toliv market página de inicio" loading="lazy">
+	<img class="" src="/assets/img/portafolio/tolivmarket-app-10.png" alt="Diseño de Toliv market página de inicio" loading="lazy">
+	<img class="" src="/assets/img/portafolio/tolivmarket-app-11.png" alt="Diseño de Toliv market página de inicio" loading="lazy">
+	<img class=" row-start-1 sm:row-span-2 object-cover" src="/assets/img/portafolio/tolivmarket-app-full-2.png" alt="Diseño de Toliv market página de inicio" loading="lazy">
+	<img class=" sm:col-span-2 object-cover" src="/assets/img/portafolio/tolivmarket-app-31.png" alt="Diseño de Toliv market página de inicio" loading="lazy">
 </div>
 
 ## Desafio

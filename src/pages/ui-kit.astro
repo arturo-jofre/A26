@@ -1,25 +1,42 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Button from "../components/Button.astro";
+import Badge from "../components/Badge.astro";
+import Kicker from "../components/Kicker.astro";
+import SectionFrame from "../components/SectionFrame.astro";
+import HudReadout from "../components/HudReadout.astro";
+import MonoMicrocopy from "../components/MonoMicrocopy.astro";
+import Alert from "../components/Alert.astro";
+
+const hudRows = [
+	{ key: "EXPERIENCIA", value: "14+ AÑOS" },
+	{ key: "PROYECTOS", value: "50+" },
+	{ key: "INDUSTRIAS", value: "8+" },
+	{ key: "PÁVLOV", value: "2015" },
+];
 ---
 
-<Layout title="UI Kit — A26">
+<Layout title="A26 — UI Kit">
 	<main class="min-h-screen px-4 sm:px-8 lg:px-12 py-16 sm:py-20">
 		<div class="mx-auto max-w-6xl space-y-24">
 			<!-- ─── Header ─── -->
 			<header class="space-y-4 max-w-3xl">
-				<p class="text-xs font-mono tracking-widest uppercase text-accent">
-					// A26.UIKIT · WORKBENCH + NERV · v0.3.0
-				</p>
+				<Kicker>DESIGN SYSTEM · WORKBENCH + NERV · v0.5.0</Kicker>
 				<h1
-					class="text-[clamp(2rem,5vw,3.25rem)] font-bold leading-[1.05] tracking-tight text-balance"
+					class="text-[clamp(2.75rem,6.5vw,4.5rem)] font-bold leading-[0.95]"
 				>
-					UI Kit — Workbench + NERV.
+					A26 — UI Kit.
 				</h1>
 				<p class="text-base sm:text-lg text-muted leading-relaxed text-pretty">
-					Componentes listos para desarrollo. Misma disciplina que la
-					candidata: 1px borders que cargan información, mono solo
-					para labels, naranja ≤15% reservado para lo que marca,
-					botones livianos (borde al reposo, relleno al hover).
+					Banco de pruebas visual del design system. Diez
+					secciones: buttons, typography, form controls, badges,
+					cards, data readouts, navigation, feedback, frames &
+					dividers, y §10 composition — un formulario de contacto
+					con validación real que demuestra los componentes
+					<Button variant="link" size="md" class="inline-flex text-base sm:text-lg -mx-1" href="#composition">en conjunto <span class="text-accent" aria-hidden="true">↓</span></Button>.
+					Cada pieza es el componente Astro que vive en
+					<code class="font-mono text-foreground">src/components/</code>;
+					esta página es la fuente de verdad visual.
 				</p>
 			</header>
 
@@ -34,10 +51,10 @@ import Layout from "../layouts/Layout.astro";
 				<div class="space-y-3">
 					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// PRIMARY · TEXTO + BORDE ACENTO · HOVER: RELLENO ACENTO + TEXTO COLOR DE FONDO</p>
 					<div class="flex flex-wrap items-center gap-3">
-						<a href="#" class="inline-flex items-center justify-center gap-2 text-xs font-medium px-4 py-2 border border-accent text-accent hover:bg-accent hover:text-background transition-colors">Primary sm</a>
-						<a href="#" class="inline-flex items-center justify-center gap-2 text-sm font-medium px-6 py-2.5 border border-accent text-accent hover:bg-accent hover:text-background transition-colors">Primary md</a>
-						<a href="#" class="inline-flex items-center justify-center gap-2 text-base font-medium px-8 py-3.5 border border-accent text-accent hover:bg-accent hover:text-background transition-colors">Primary lg</a>
-						<a href="#" class="inline-flex items-center justify-center gap-2 text-sm font-medium px-6 py-2.5 border border-dashed border-border text-muted/50 cursor-not-allowed bg-transparent">Disabled</a>
+						<Button variant="primary" size="sm" href="#">Primary sm</Button>
+						<Button variant="primary" size="md" href="#">Primary md</Button>
+						<Button variant="primary" size="lg" href="#">Primary lg</Button>
+						<Button variant="primary" size="md" href="#" disabled>Disabled</Button>
 					</div>
 				</div>
 
@@ -45,10 +62,10 @@ import Layout from "../layouts/Layout.astro";
 				<div class="space-y-3">
 					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// SECONDARY · BORDE QUIET · HOVER ACENTO + FILL WHITE/5</p>
 					<div class="flex flex-wrap items-center gap-3">
-						<a href="#" class="inline-flex items-center justify-center gap-2 text-xs font-medium px-4 py-2 border border-border-strong text-foreground hover:border-accent hover:text-accent hover:bg-white/5 transition-colors">Secondary sm</a>
-						<a href="#" class="inline-flex items-center justify-center gap-2 text-sm font-medium px-6 py-2.5 border border-border-strong text-foreground hover:border-accent hover:text-accent hover:bg-white/5 transition-colors">Secondary md</a>
-						<a href="#" class="inline-flex items-center justify-center gap-2 text-base font-medium px-8 py-3.5 border border-border-strong text-foreground hover:border-accent hover:text-accent hover:bg-white/5 transition-colors">Secondary lg</a>
-						<a href="#" class="inline-flex items-center justify-center gap-2 text-sm font-medium px-6 py-2.5 border border-dashed border-border text-muted/50 cursor-not-allowed bg-transparent">Disabled</a>
+						<Button variant="secondary" size="sm" href="#">Secondary sm</Button>
+						<Button variant="secondary" size="md" href="#">Secondary md</Button>
+						<Button variant="secondary" size="lg" href="#">Secondary lg</Button>
+						<Button variant="secondary" size="md" href="#" disabled>Disabled</Button>
 					</div>
 				</div>
 
@@ -56,10 +73,10 @@ import Layout from "../layouts/Layout.astro";
 				<div class="space-y-3">
 					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// LINK · TEXTO + FLECHA · HOVER ACENTO</p>
 					<div class="flex flex-wrap items-center gap-6">
-						<a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent transition-colors">Link normal <span class="text-accent">→</span></a>
-						<a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-accent transition-colors">Agenda <span class="text-accent">→</span></a>
+						<Button variant="link" size="md" href="#">Link normal <span class="text-accent" aria-hidden="true">→</span></Button>
+						<Button variant="link" size="md" href="#">Agenda <span class="text-accent" aria-hidden="true">→</span></Button>
 						<a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-foreground border-b border-foreground/30 hover:border-accent hover:text-accent transition-colors pb-0.5">Underlined</a>
-						<a href="#" class="inline-flex items-center gap-1.5 text-sm font-medium text-muted/50 cursor-not-allowed">Link disabled</a>
+						<Button variant="link" size="md" href="#" disabled>Link disabled</Button>
 					</div>
 				</div>
 			</section>
@@ -72,28 +89,33 @@ import Layout from "../layouts/Layout.astro";
 				</header>
 
 				<div class="space-y-4">
-					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// DISPLAY</p>
-					<p class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-[1.0] tracking-[-0.03em] text-balance">Arturo Jofré López</p>
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// DISPLAY · H1 · USADO EN HERO</p>
+					<p class="text-[clamp(2.75rem,6.5vw,4.5rem)] font-bold leading-[0.95]">Arturo Jofré López</p>
 				</div>
 				<div class="space-y-2">
-					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// HEADLINE</p>
-					<p class="text-[clamp(1.75rem,4vw,2.5rem)] font-bold leading-[1.05] tracking-[-0.03em] text-balance">Últimos proyectos</p>
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// HEADLINE · H2 · SECCIONES</p>
+					<p class="text-[clamp(1.875rem,3.5vw,2.5rem)] font-bold leading-[1.1]">Últimos proyectos</p>
 				</div>
 				<div class="space-y-2">
-					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// TITLE</p>
-					<p class="text-base font-bold tracking-[-0.01em]">Nuevo sitio Autofin</p>
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// TITLE · H3 · CARDS / PROJECT CARDS</p>
+					<p class="text-base font-bold">Nuevo sitio Autofin</p>
 				</div>
 				<div class="space-y-2">
-					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// BODY</p>
-					<p class="text-base text-muted leading-relaxed text-pretty max-w-2xl">14 años diseñando productos digitales para gobierno, salud, finanzas, retail y logística. Cada proyecto llevado desde la investigación hasta el lanzamiento.</p>
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// BODY · TEXTO LARGO</p>
+					<p class="text-base leading-[1.65] text-muted text-pretty max-w-2xl">14 años diseñando productos digitales para gobierno, salud, finanzas, retail y logística. Cada proyecto llevado desde la investigación hasta el lanzamiento.</p>
+				</div>
+				<div class="space-y-3">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// KICKER · COMPONENTE · TONO ACENTO / MUTED / FOREGROUND</p>
+					<div class="flex flex-col gap-1">
+						<Kicker>35+ PROYECTOS // 8 INDUSTRIAS</Kicker>
+						<Kicker tone="muted">SEP 2011 — PRESENTE // 7 ROLES</Kicker>
+						<Kicker tone="foreground">DISCIPLINAS // RESEARCH — DESIGN</Kicker>
+					</div>
 				</div>
 				<div class="space-y-2">
-					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// KICKER</p>
-					<p class="text-xs font-mono tracking-widest uppercase text-accent">[ 35+ PROYECTOS // 8 INDUSTRIAS ]</p>
-				</div>
-				<div class="space-y-2">
-					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// MICROCOPY</p>
-					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// STATUS: AVAILABLE · REPLY &lt; 24H</p>
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// MICROCOPY · STATUS / TELEMETRY</p>
+					<MonoMicrocopy>// STATUS: AVAILABLE · REPLY &lt; 24H · SANTIAGO, CL</MonoMicrocopy>
+					<MonoMicrocopy tone="accent">// SYSTEM // ONLINE · v0.2 · three · webgl</MonoMicrocopy>
 				</div>
 			</section>
 
@@ -186,19 +208,24 @@ import Layout from "../layouts/Layout.astro";
 					<span class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums">04</span>
 				</header>
 
+				<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// STATUS · PULSO ANIMADO · A11Y: ROLE="STATUS" + ARIA-LIVE="POLITE"</p>
 				<div class="flex flex-wrap items-center gap-3">
-					<span class="inline-flex items-center gap-2 border border-border px-4 py-1.5 font-mono text-[10px] uppercase tracking-widest text-muted">
-						<span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+					<Badge variant="status" role="status" aria-live="polite">
 						Disponible para proyectos
-					</span>
-					<span class="inline-flex items-center gap-2 border border-accent/50 px-3 py-1.5 font-mono text-[10px] uppercase tracking-widest text-accent">
-						<span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-						Online
-					</span>
-					<span class="inline-flex items-center border border-border px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-widest text-muted">TAG · UX</span>
-					<span class="inline-flex items-center border border-border px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-widest text-muted">TAG · RESEARCH</span>
-					<span class="inline-flex items-center justify-center bg-accent text-white font-mono text-[10px] uppercase tracking-widest px-2 py-1">3</span>
-					<span class="inline-flex items-center justify-center border border-border text-muted font-mono text-[10px] uppercase tracking-widest px-2 py-1">12</span>
+					</Badge>
+					<Badge variant="online">Online</Badge>
+				</div>
+
+				<p class="font-mono text-[10px] uppercase tracking-widest text-muted pt-4">// TAG · LABEL METADATA</p>
+				<div class="flex flex-wrap items-center gap-3">
+					<Badge variant="tag">TAG · UX</Badge>
+					<Badge variant="tag">TAG · RESEARCH</Badge>
+				</div>
+
+				<p class="font-mono text-[10px] uppercase tracking-widest text-muted pt-4">// COUNT · NÚMERO DESTACADO / QUIET</p>
+				<div class="flex flex-wrap items-center gap-3">
+					<Badge variant="count" class="bg-accent text-white">3</Badge>
+					<Badge variant="count" class="border border-border text-muted">12</Badge>
 				</div>
 			</section>
 
@@ -244,59 +271,51 @@ import Layout from "../layouts/Layout.astro";
 
 				<div class="grid md:grid-cols-2 gap-8">
 					<div class="space-y-2">
-						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// HUD READOUT</p>
-						<div class="border border-border-strong p-4">
-							<p class="font-mono text-[10px] uppercase tracking-widest text-accent mb-3">[ TELEMETRY ]</p>
-							<dl class="font-mono text-xs uppercase tracking-widest">
-								<div class="flex justify-between items-baseline py-2 border-b border-border/40">
-									<dt class="text-muted">EXPERIENCIA</dt>
-									<dd class="text-foreground tabular-nums">14+ AÑOS</dd>
-								</div>
-								<div class="flex justify-between items-baseline py-2 border-b border-border/40">
-									<dt class="text-muted">PROYECTOS</dt>
-									<dd class="text-foreground tabular-nums">50+</dd>
-								</div>
-								<div class="flex justify-between items-baseline py-2 border-b border-border/40">
-									<dt class="text-muted">INDUSTRIAS</dt>
-									<dd class="text-foreground tabular-nums">8+</dd>
-								</div>
-								<div class="flex justify-between items-baseline py-2">
-									<dt class="text-muted">PÁVLOV</dt>
-									<dd class="text-accent tabular-nums">2015</dd>
-								</div>
-							</dl>
-						</div>
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// HUD READOUT · FRAMED (SectionFrame + Kicker)</p>
+						<HudReadout
+							rows={hudRows}
+							label="Trayectoria profesional"
+							framed
+						/>
 					</div>
 
 					<div class="space-y-2">
-						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// TABLE</p>
-						<table class="w-full font-mono text-[10px] uppercase tracking-widest border-collapse">
-							<thead>
-								<tr class="border-b border-border">
-									<th class="text-left text-muted font-normal py-2 pr-4">CLIENTE</th>
-									<th class="text-left text-muted font-normal py-2 pr-4">ROL</th>
-									<th class="text-right text-muted font-normal py-2 tabular-nums">AÑO</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="border-b border-border/40 hover:bg-white/[0.02]">
-									<td class="py-2 pr-4 text-foreground">Cleverit</td>
-									<td class="py-2 pr-4 text-muted">Senior UX</td>
-									<td class="py-2 text-right text-muted tabular-nums">2022</td>
-								</tr>
-								<tr class="border-b border-border/40 hover:bg-white/[0.02]">
-									<td class="py-2 pr-4 text-foreground">Aureolab</td>
-									<td class="py-2 pr-4 text-muted">Lead UX</td>
-									<td class="py-2 text-right text-muted tabular-nums">2020</td>
-								</tr>
-								<tr class="hover:bg-white/[0.02]">
-									<td class="py-2 pr-4 text-foreground">Pávlov</td>
-									<td class="py-2 pr-4 text-muted">Co-founder</td>
-									<td class="py-2 text-right text-muted tabular-nums">2015</td>
-								</tr>
-							</tbody>
-						</table>
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// HUD READOUT · BARE (SIN FRAME, PARA INLINE)</p>
+						<HudReadout
+							rows={hudRows}
+							label="Trayectoria profesional"
+						/>
 					</div>
+				</div>
+
+				<div class="space-y-2">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// TABLE</p>
+					<table class="w-full font-mono text-[10px] uppercase tracking-widest border-collapse">
+						<thead>
+							<tr class="border-b border-border">
+								<th class="text-left text-muted font-normal py-2 pr-4">CLIENTE</th>
+								<th class="text-left text-muted font-normal py-2 pr-4">ROL</th>
+								<th class="text-right text-muted font-normal py-2 tabular-nums">AÑO</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="border-b border-border/40 hover:bg-white/[0.02]">
+								<td class="py-2 pr-4 text-foreground">Cleverit</td>
+								<td class="py-2 pr-4 text-muted">Senior UX</td>
+								<td class="py-2 text-right text-muted tabular-nums">2022</td>
+							</tr>
+							<tr class="border-b border-border/40 hover:bg-white/[0.02]">
+								<td class="py-2 pr-4 text-foreground">Aureolab</td>
+								<td class="py-2 pr-4 text-muted">Lead UX</td>
+								<td class="py-2 text-right text-muted tabular-nums">2020</td>
+							</tr>
+							<tr class="hover:bg-white/[0.02]">
+								<td class="py-2 pr-4 text-foreground">Pávlov</td>
+								<td class="py-2 pr-4 text-muted">Co-founder</td>
+								<td class="py-2 text-right text-muted tabular-nums">2015</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 			</section>
 
@@ -348,19 +367,16 @@ import Layout from "../layouts/Layout.astro";
 				</header>
 
 				<div class="space-y-3">
-					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// ALERTS</p>
-					<div class="border border-accent/40 p-4">
-						<p class="font-mono text-[10px] uppercase tracking-widest text-accent mb-1">[ INFO ]</p>
-						<p class="text-sm text-foreground leading-relaxed">Disponible para nuevos proyectos desde agosto 2026.</p>
-					</div>
-					<div class="border border-border p-4">
-						<p class="font-mono text-[10px] uppercase tracking-widest text-muted mb-1">[ NOTA ]</p>
-						<p class="text-sm text-muted leading-relaxed">Algunos proyectos antiguos no están publicados por confidencialidad.</p>
-					</div>
-					<div class="border border-red-400/40 p-4">
-						<p class="font-mono text-[10px] uppercase tracking-widest text-red-400 mb-1">[ ERROR ]</p>
-						<p class="text-sm text-foreground leading-relaxed">No se pudo cargar el proyecto. Intenta de nuevo.</p>
-					</div>
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// ALERTS · INFO / NOTA / ERROR</p>
+					<Alert variant="info">
+						Disponible para nuevos proyectos desde agosto 2026.
+					</Alert>
+					<Alert variant="note">
+						Algunos proyectos antiguos no están publicados por confidencialidad.
+					</Alert>
+					<Alert variant="error">
+						No se pudo cargar el proyecto. Intenta de nuevo.
+					</Alert>
 				</div>
 
 				<div class="grid md:grid-cols-2 gap-8">
@@ -392,33 +408,26 @@ import Layout from "../layouts/Layout.astro";
 					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// SECTION FRAME · VARIANTES DE TONO</p>
 
 					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— ACENTO (HERO/CV)</p>
-					<div class="relative border border-accent/40 p-5">
-						<span class="absolute -top-px -left-px w-3.5 h-3.5 border-t border-l border-accent"></span>
-						<span class="absolute -top-px -right-px w-3.5 h-3.5 border-t border-r border-accent"></span>
-						<span class="absolute -bottom-px -left-px w-3.5 h-3.5 border-b border-l border-accent"></span>
-						<span class="absolute -bottom-px -right-px w-3.5 h-3.5 border-b border-r border-accent"></span>
+					<SectionFrame tone="accent" class="border border-accent/40 p-5">
 						<p class="text-sm text-muted">Sección que se gana el frame: hero, CV, project detail. Máximo 2 por página.</p>
-					</div>
+					</SectionFrame>
 
 					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— FOREGROUND (BLANCO / CHALK)</p>
-					<div class="relative border border-foreground/40 p-5">
-						<span class="absolute -top-px -left-px w-3.5 h-3.5 border-t border-l border-foreground"></span>
-						<span class="absolute -top-px -right-px w-3.5 h-3.5 border-t border-r border-foreground"></span>
-						<span class="absolute -bottom-px -left-px w-3.5 h-3.5 border-b border-l border-foreground"></span>
-						<span class="absolute -bottom-px -right-px w-3.5 h-3.5 border-b border-r border-foreground"></span>
+					<SectionFrame tone="foreground" class="border border-foreground/40 p-5">
 						<p class="text-sm text-muted">Variante clara: para secciones que piden definición sin color. Sin accent.</p>
-					</div>
+					</SectionFrame>
 
 					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— MUTED (GRIS / IRON)</p>
-					<div class="relative border border-muted/40 p-5">
-						<span class="absolute -top-px -left-px w-3.5 h-3.5 border-t border-l border-muted"></span>
-						<span class="absolute -top-px -right-px w-3.5 h-3.5 border-t border-r border-muted"></span>
-						<span class="absolute -bottom-px -left-px w-3.5 h-3.5 border-b border-l border-muted"></span>
-						<span class="absolute -bottom-px -right-px w-3.5 h-3.5 border-b border-r border-muted"></span>
+					<SectionFrame tone="muted" class="border border-muted/40 p-5">
 						<p class="text-sm text-muted">Variante gris: definición estructural, la más discreta de las tres.</p>
-					</div>
+					</SectionFrame>
 
-					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— DASHED (TRANSIENT / PLACEHOLDER)</p>
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— STRONG (POR DEFECTO · SECUNDARIO / BARE HUD)</p>
+					<SectionFrame tone="strong" class="border border-border-strong p-5">
+						<p class="text-sm text-muted">Default del sistema. Frame quieto, sin firma de color. Para bloques secundarios.</p>
+					</SectionFrame>
+
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— DASHED (TRANSIENT / PLACEHOLDER · MANUAL)</p>
 					<div class="relative border border-dashed border-foreground/30 p-5">
 						<span class="absolute -top-px -left-px w-3.5 h-3.5 border-t border-l border-dashed border-foreground/30"></span>
 						<span class="absolute -top-px -right-px w-3.5 h-3.5 border-t border-r border-dashed border-foreground/30"></span>
@@ -432,14 +441,25 @@ import Layout from "../layouts/Layout.astro";
 					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// SECTION HEADER (KICKER + H2)</p>
 					<div class="flex items-end justify-between gap-4 flex-wrap">
 						<div>
-							<p class="text-xs font-mono tracking-widest uppercase text-accent mb-2">[ 35+ PROYECTOS // 8 INDUSTRIAS ]</p>
-							<h3 class="text-3xl font-bold tracking-tight text-balance">Últimos proyectos</h3>
+							<Kicker class="mb-2">35+ PROYECTOS // 8 INDUSTRIAS</Kicker>
+							<h2 class="text-[clamp(1.875rem,3.5vw,2.5rem)] font-bold leading-[1.1]">Últimos proyectos</h2>
 						</div>
 					</div>
 				</div>
 
+				<div class="space-y-4">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// SECTION DIVIDER · ENTRE SECCIONES (WRAPPER MAX-W-6XL)</p>
+					<div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12" aria-hidden="true">
+						<div class="h-px bg-foreground/10"></div>
+					</div>
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— ACCENT · SIGNATURE BREAK · UNA VEZ POR PÁGINA</p>
+					<div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12" aria-hidden="true">
+						<div class="h-px bg-accent/40"></div>
+					</div>
+				</div>
+
 				<div class="space-y-2">
-					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// DIVIDERS</p>
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// DIVIDERS · INLINE</p>
 					<div class="space-y-4">
 						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— SOLID · HAIRLINE</p>
 						<div class="h-px bg-foreground/10"></div>
@@ -449,8 +469,6 @@ import Layout from "../layouts/Layout.astro";
 							<span class="font-mono text-[10px] uppercase tracking-widest text-muted">·</span>
 							<div class="h-px bg-foreground/10 flex-1"></div>
 						</div>
-						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— SOLID · ACCENT</p>
-						<div class="h-px bg-accent/40"></div>
 						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— DASHED · HAIRLINE</p>
 						<div class="border-t border-dashed border-foreground/25"></div>
 						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— DASHED · CENTERED</p>
@@ -463,23 +481,267 @@ import Layout from "../layouts/Layout.astro";
 				</div>
 
 				<div class="space-y-2">
-					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// LINE BACKGROUND · 1PX · DIAGONAL 45°</p>
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// LINE BACKGROUND · 1PX · DIAGONAL 45° · UTILITY CLASSES</p>
 					<div class="space-y-4">
-						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— FOREGROUND / BLANCO</p>
-						<div class="h-24 border border-border" style="background-image: repeating-linear-gradient(45deg, rgba(214, 211, 206, 0.08) 0px, rgba(214, 211, 206, 0.08) 1px, transparent 1px, transparent 16px);"></div>
-						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— ACCENT / NARANJO</p>
-						<div class="h-24 border border-border" style="background-image: repeating-linear-gradient(45deg, rgba(240, 64, 0, 0.14) 0px, rgba(240, 64, 0, 0.14) 1px, transparent 1px, transparent 16px);"></div>
-						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— MUTED / GRIS</p>
-						<div class="h-24 border border-border" style="background-image: repeating-linear-gradient(45deg, rgba(138, 132, 124, 0.14) 0px, rgba(138, 132, 124, 0.14) 1px, transparent 1px, transparent 16px);"></div>
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— <code class="font-mono text-foreground">.line-bg-foreground</code> · CHALK</p>
+						<div class="line-bg-foreground h-24 border border-border"></div>
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— <code class="font-mono text-foreground">.line-bg-accent</code> · NARANJO</p>
+						<div class="line-bg-accent h-24 border border-border"></div>
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">— <code class="font-mono text-foreground">.line-bg-muted</code> · IRON</p>
+						<div class="line-bg-muted h-24 border border-border"></div>
 						<p class="text-xs text-muted leading-relaxed">
-							Líneas de 1px a 45°, espaciadas a 16px. Las tres usan los colores
-							de borde del sistema (chalk / accent / iron). Uso: telón de fondo
-							para secciones hero o zonas de datos, nunca sobre texto. Con
+							Líneas de 1px a 45°, espaciadas a 16px. Las tres utility classes
+							reemplazan los gradientes inline anteriores y viven en
+							<code class="font-mono text-foreground">global.css</code>. Uso:
+							telón de fondo para secciones hero o zonas de datos, nunca sobre
+							texto. Con
 							<code class="font-mono text-foreground">prefers-reduced-motion</code>
-							no aplica movimiento (el fondo es estático).
+							no aplica movimiento (el fondo es estático). El hero en
+							<code class="font-mono text-foreground">index.astro</code>
+							las usa con un mask-image para desvanecer hacia el fold.
 						</p>
 					</div>
 				</div>
+			</section>
+
+			<!-- ═══════════ 10 · COMPOSITION ═══════════ -->
+			<section class="space-y-6" id="composition">
+				<header class="flex items-baseline justify-between border-b border-border pb-3">
+					<h2 class="text-xl font-bold tracking-tight">Composition</h2>
+					<span class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums">10</span>
+				</header>
+
+				<p class="text-sm text-muted leading-relaxed text-pretty max-w-2xl">
+					Mini formulario de contacto que combina
+					<code class="font-mono text-foreground">Button + Alert + Badge + Kicker + MonoMicrocopy + SectionFrame</code>.
+					La validación es real (corre en el navegador) y la lógica
+					sigue el patrón de la casa: subscribir a
+					<code class="font-mono text-foreground">astro:page-load</code>
+					y
+					<code class="font-mono text-foreground">astro:after-swap</code>
+					para sobrevivir las navegaciones client-side.
+				</p>
+
+				<SectionFrame tone="strong" class="border border-border-strong p-6 sm:p-8">
+					<form data-composition-form class="space-y-6" novalidate>
+						<!-- Header row: Kicker + live Badge -->
+						<div class="flex items-center justify-between gap-4 flex-wrap">
+							<Kicker>HABLEMOS · FORMULARIO DE CONTACTO</Kicker>
+							<Badge
+								variant="status"
+								data-form-status
+								role="status"
+								aria-live="polite"
+							>
+								<span data-form-status-text>Borrador</span>
+							</Badge>
+						</div>
+
+						<h3 class="text-[clamp(1.5rem,3vw,2rem)] font-bold leading-[1.1]">
+							Cuéntame sobre tu proyecto
+						</h3>
+
+						<!-- Field row: name + email -->
+						<div class="grid sm:grid-cols-2 gap-4">
+							<div class="space-y-1.5">
+								<label
+									for="composition-name"
+									class="font-mono text-[10px] uppercase tracking-widest text-muted"
+									>Nombre</label
+								>
+								<input
+									type="text"
+									id="composition-name"
+									name="name"
+									data-form-name
+									placeholder="Arturo Jofré"
+									autocomplete="name"
+									class="w-full bg-transparent border border-border px-3 py-2 text-sm text-foreground placeholder:text-muted/50 focus:border-accent focus:outline-none transition-colors"
+								/>
+							</div>
+							<div class="space-y-1.5">
+								<label
+									for="composition-email"
+									class="font-mono text-[10px] uppercase tracking-widest text-muted"
+									>Email</label
+								>
+								<input
+									type="email"
+									id="composition-email"
+									name="email"
+									data-form-email
+									placeholder="hola@arturojofre.cl"
+									autocomplete="email"
+									class="w-full bg-transparent border border-border px-3 py-2 text-sm text-foreground placeholder:text-muted/50 focus:border-accent focus:outline-none transition-colors"
+								/>
+							</div>
+						</div>
+
+						<!-- Type select -->
+						<div class="space-y-1.5">
+							<label
+								for="composition-type"
+								class="font-mono text-[10px] uppercase tracking-widest text-muted"
+								>Tipo de proyecto</label
+							>
+							<select
+								id="composition-type"
+								name="type"
+								data-form-type
+								class="w-full bg-transparent border border-border px-3 py-2 text-sm text-foreground focus:border-accent focus:outline-none transition-colors"
+							>
+								<option class="bg-background">UX Research</option>
+								<option class="bg-background">Product Design</option>
+								<option class="bg-background">Web Development</option>
+								<option class="bg-background">Brand Identity</option>
+							</select>
+						</div>
+
+						<!-- Message + char counter -->
+						<div class="space-y-1.5">
+							<label
+								for="composition-message"
+								class="font-mono text-[10px] uppercase tracking-widest text-muted"
+								>Mensaje</label
+							>
+							<textarea
+								id="composition-message"
+								name="message"
+								data-form-message
+								rows="4"
+								maxlength="500"
+								placeholder="Cuéntame sobre tu proyecto…"
+								class="w-full bg-transparent border border-border px-3 py-2 text-sm text-foreground placeholder:text-muted/50 focus:border-accent focus:outline-none transition-colors resize-y"
+							></textarea>
+							<MonoMicrocopy class="block">
+								// CHARS: <span data-form-chars class="tabular-nums text-foreground">0</span> / 500
+							</MonoMicrocopy>
+						</div>
+
+						<!-- Alerts: hidden, toggled by script -->
+						<div data-form-alert-empty hidden>
+							<Alert variant="error">
+								Faltan campos obligatorios. Revisa nombre, email y mensaje.
+							</Alert>
+						</div>
+						<div data-form-alert-email hidden>
+							<Alert variant="error">
+								El formato del email no es válido. Usa nombre@dominio.cl.
+							</Alert>
+						</div>
+						<div data-form-alert-success hidden>
+							<Alert variant="info">
+								Mensaje enviado. Te respondo en menos de 24h.
+							</Alert>
+						</div>
+
+						<!-- Actions -->
+						<div class="flex flex-wrap items-center gap-3 pt-2">
+							<Button type="submit" data-form-submit>Enviar mensaje</Button>
+							<Button variant="link" type="reset">Limpiar</Button>
+						</div>
+					</form>
+				</SectionFrame>
+
+				<p class="font-mono text-[10px] uppercase tracking-widest text-muted">
+					// COMPOSITION: KICKER + BADGE + H3 + INPUTS + SELECT + TEXTAREA + MONO + ALERT + BUTTON · ASTRO: PAGE-LOAD + AFTER-SWAP
+				</p>
+			</section>
+
+			<!-- ═══════════ 11 · LISTS ═══════════ -->
+			<section class="space-y-6">
+				<header class="flex items-baseline justify-between border-b border-border pb-3">
+					<h2 class="text-xl font-bold tracking-tight">Lists</h2>
+					<span class="font-mono text-[10px] uppercase tracking-widest text-muted tabular-nums">11</span>
+				</header>
+
+				<p class="text-sm text-muted leading-relaxed text-pretty max-w-2xl">
+					La disciplina del sistema aplicada a la enumeración. Tres
+					marcadores bracketed — el contador zero-padded
+					<code class="font-mono text-foreground">[01]</code>, el
+					bullet
+					<code class="font-mono text-foreground">[•]</code> y el
+					checkmark
+					<code class="font-mono text-foreground">[✓]</code>. Se
+					aplican automáticamente a las listas dentro de
+					<code class="font-mono text-foreground">.prose-custom</code>
+					(markdown) y están disponibles como utility classes
+					(<code class="font-mono text-foreground">.list-bracket</code>,
+					<code class="font-mono text-foreground">.list-check</code>)
+					o atributo
+					<code class="font-mono text-foreground">data-marker="check"</code>
+					para uso manual fuera de markdown.
+				</p>
+
+				<div class="grid md:grid-cols-3 gap-8">
+					<!-- ORDERED · [01] -->
+					<div class="space-y-3">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// ORDERED · [01] [02] [03]</p>
+						<ol class="list-bracket text-sm">
+							<li>UX Research</li>
+							<li>Product Design</li>
+							<li>Web Development</li>
+							<li>Brand Identity</li>
+							<li>Design Systems</li>
+						</ol>
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted pt-2">
+							— 0L · CSS COUNTER: DECIMAL-LEADING-ZERO
+						</p>
+					</div>
+
+					<!-- UNORDERED · [•] -->
+					<div class="space-y-3">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// UNORDERED · [•]</p>
+						<ul class="list-bracket text-sm">
+							<li>Cleverit (Senior UX)</li>
+							<li>Aureolab (Lead UX)</li>
+							<li>Agencia Land (UI/UX)</li>
+							<li>Pávlov (Co-founder)</li>
+							<li>PVW Publicidad (Web)</li>
+						</ul>
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted pt-2">
+							— DEFAULT · SIN CLASE
+						</p>
+					</div>
+
+					<!-- CHECKLIST · [✓] -->
+					<div class="space-y-3">
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// CHECKLIST · [✓]</p>
+						<ul class="list-check text-sm">
+							<li>Disponible para proyectos</li>
+							<li>Reply &lt; 24h</li>
+							<li>14+ años de experiencia</li>
+							<li>Santiago, Chile</li>
+						</ul>
+						<p class="font-mono text-[10px] uppercase tracking-widest text-muted pt-2">
+							— .LIST-CHECK · O [DATA-MARKER="CHECK"]
+						</p>
+					</div>
+				</div>
+
+				<!-- NESTED · IN-PROSE BEHAVIOR -->
+				<div class="space-y-3 pt-4 border-t border-border">
+					<p class="font-mono text-[10px] uppercase tracking-widest text-muted">// NESTED · CONTADOR REINICIA POR NIVEL</p>
+					<ol class="list-bracket text-sm">
+						<li>Disciplina
+							<ol class="list-bracket text-sm">
+								<li>UX Research</li>
+								<li>Product Design</li>
+							</ol>
+						</li>
+						<li>Stack
+							<ol class="list-bracket text-sm">
+								<li>Astro</li>
+								<li>Tailwind v4</li>
+								<li>Motion</li>
+							</ol>
+						</li>
+					</ol>
+				</div>
+
+				<p class="font-mono text-[10px] uppercase tracking-widest text-muted">
+					// MARKER: GEIST MONO 0.75REM · TRACKING 0.12EM · ACCENT · POSITION ABSOLUTE
+				</p>
 			</section>
 
 			<!-- ─── Footer note ─── -->
@@ -488,12 +750,164 @@ import Layout from "../layouts/Layout.astro";
 					// A26.UIKIT · WORKBENCH + NERV · TODOS LOS TOKENS DE GLOBAL.CSS
 				</p>
 				<p class="text-sm text-muted leading-relaxed max-w-2xl">
-					Estos componentes mapean al sistema de tokens existente
-					(accent, background, foreground, muted, border, border-strong).
-					El siguiente paso es portarlos a componentes Astro reales
-					(Button, Input, Badge, Alert, etc.) y aplicarlos en las páginas.
+					Estos componentes mapean al sistema de tokens
+					(<code class="font-mono text-foreground">accent</code>,
+					<code class="font-mono text-foreground">background</code>,
+					<code class="font-mono text-foreground">foreground</code>,
+					<code class="font-mono text-foreground">muted</code>,
+					<code class="font-mono text-foreground">border</code>,
+					<code class="font-mono text-foreground">border-strong</code>).
+					Y a las utility classes de fondo
+					(<code class="font-mono text-foreground">.line-bg-foreground</code>,
+					<code class="font-mono text-foreground">.line-bg-accent</code>,
+					<code class="font-mono text-foreground">.line-bg-muted</code>).
+					Los Astro components ya viven en
+					<code class="font-mono text-foreground">src/components/</code>
+					(Button, Badge, Kicker, SectionFrame, HudReadout, MonoMicrocopy, Alert).
 				</p>
 			</footer>
 		</div>
 	</main>
 </Layout>
+
+<script>
+	function setupCompositionForm() {
+		const form = document.querySelector<HTMLFormElement>(
+			"[data-composition-form]",
+		);
+		if (!form) return;
+
+		const status = form.querySelector<HTMLElement>("[data-form-status]");
+		const statusText = form.querySelector<HTMLElement>(
+			"[data-form-status-text]",
+		);
+		const submit = form.querySelector<HTMLButtonElement>(
+			"[data-form-submit]",
+		);
+		const messageInput = form.querySelector<HTMLTextAreaElement>(
+			"[data-form-message]",
+		);
+		const nameInput = form.querySelector<HTMLInputElement>(
+			"[data-form-name]",
+		);
+		const emailInput = form.querySelector<HTMLInputElement>(
+			"[data-form-email]",
+		);
+		const chars = form.querySelector<HTMLElement>("[data-form-chars]");
+		const alertEmpty = form.querySelector<HTMLElement>(
+			"[data-form-alert-empty]",
+		);
+		const alertEmail = form.querySelector<HTMLElement>(
+			"[data-form-alert-email]",
+		);
+		const alertSuccess = form.querySelector<HTMLElement>(
+			"[data-form-alert-success]",
+		);
+
+		if (
+			!status ||
+			!statusText ||
+			!submit ||
+			!messageInput ||
+			!nameInput ||
+			!emailInput ||
+			!chars ||
+			!alertEmpty ||
+			!alertEmail ||
+			!alertSuccess
+		) {
+			return;
+		}
+
+		const statusClass = {
+			empty: "border border-border text-muted",
+			partial: "border border-border text-muted",
+			ready: "border border-border text-muted",
+			sent: "border border-accent/50 text-accent",
+		} as const;
+
+		const hideAlerts = () => {
+			alertEmpty.hidden = true;
+			alertEmail.hidden = true;
+			alertSuccess.hidden = true;
+		};
+
+		const setStatus = (
+			text: string,
+			state: keyof typeof statusClass,
+		) => {
+			statusText.textContent = text;
+			status.className = statusClass[state];
+		};
+
+		const updateChars = () => {
+			chars.textContent = String(messageInput.value.length);
+		};
+
+		const updateStatus = () => {
+			if (statusText.dataset.state === "sent") return;
+
+			const hasAny = [nameInput, emailInput, messageInput].some(
+				(i) => i.value.trim().length > 0,
+			);
+			const hasAll =
+				nameInput.value.trim() &&
+				emailInput.value.trim() &&
+				messageInput.value.trim();
+
+			if (hasAll) {
+				setStatus("Listo para enviar", "ready");
+			} else if (hasAny) {
+				setStatus("Borrador parcial", "partial");
+			} else {
+				setStatus("Borrador", "empty");
+			}
+		};
+
+		setStatus("Borrador", "empty");
+		updateChars();
+
+		messageInput.addEventListener("input", updateChars);
+		form.addEventListener("input", updateStatus);
+
+		form.addEventListener("submit", (e) => {
+			e.preventDefault();
+			hideAlerts();
+
+			const name = nameInput.value.trim();
+			const email = emailInput.value.trim();
+			const message = messageInput.value.trim();
+
+			if (!name || !email || !message) {
+				alertEmpty.hidden = false;
+				return;
+			}
+
+			const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+			if (!emailValid) {
+				alertEmail.hidden = false;
+				return;
+			}
+
+			alertSuccess.hidden = false;
+			submit.disabled = true;
+			submit.textContent = "Enviado";
+			setStatus("Enviado", "sent");
+			statusText.dataset.state = "sent";
+		});
+
+		form.addEventListener("reset", () => {
+			setTimeout(() => {
+				hideAlerts();
+				submit.disabled = false;
+				submit.textContent = "Enviar mensaje";
+				delete statusText.dataset.state;
+				setStatus("Borrador", "empty");
+				updateChars();
+			}, 0);
+		});
+	}
+
+	document.addEventListener("astro:page-load", setupCompositionForm);
+	document.addEventListener("astro:after-swap", setupCompositionForm);
+</script>

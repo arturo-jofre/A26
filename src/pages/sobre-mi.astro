@@ -58,12 +58,12 @@ const experience: Job[] = [
   <main id="main" class="pt-24 pb-10 flex-grow">
     <div class="mx-auto max-w-6xl px-4 sm:px-8 lg:px-12">
       <!-- Intro -->
-      <section class="py-16 space-y-8 max-w-3xl">
-        <MonoMicrocopy>// PERSONA.ID = SOBRE_MI</MonoMicrocopy>
-        <h1 class="text-[clamp(2.25rem,6.5vw,4.5rem)] font-bold">
+      <section class="py-16 space-y-8 max-w-3xl" data-reveal-load>
+        <MonoMicrocopy data-reveal>// PERSONA.ID = SOBRE_MI</MonoMicrocopy>
+        <h1 class="text-[clamp(2.25rem,6.5vw,4.5rem)] font-bold" data-reveal>
           Sobre mí
         </h1>
-        <div class="text-lg text-muted space-y-4 leading-relaxed text-pretty">
+        <div class="text-lg text-muted space-y-4 leading-relaxed text-pretty" data-reveal>
           <p>
             Soy Arturo Jofré López, vivo en Santiago y soy oriundo de Tucapel. En
             14 años he pasado por roles de Diseñador Web, Diseñador UX, Lead UX
@@ -84,13 +84,14 @@ const experience: Job[] = [
       <section
         class="grid lg:grid-cols-[1fr_2fr] gap-12 py-20 border-t border-border mt-8"
       >
-        <div>
+        <div data-reveal>
           <Kicker class="mb-2">SEP 2011 — PRESENTE // 7 ROLES · 4 EMPRESAS</Kicker>
           <h2 class="text-3xl sm:text-4xl font-bold sticky top-24">
             Experiencia<br />Laboral
           </h2>
         </div>
 
+        <div data-reveal>
         <SectionFrame
           tone="accent"
           size="md"
@@ -177,48 +178,10 @@ const experience: Job[] = [
             </table>
           </div>
         </SectionFrame>
+        </div>
       </section>
     </div>
   </main>
   <Footer />
 </Layout>
 
-<script>
-  import { animate, stagger, inView } from "motion";
-
-  const prefersReducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-
-  let cleanupFns: (() => void)[] = [];
-
-  function destroyAnimations() {
-    cleanupFns.forEach((fn) => fn());
-    cleanupFns = [];
-  }
-
-  function initAnimations() {
-    destroyAnimations();
-    if (prefersReducedMotion) return;
-    const sections = document.querySelectorAll("section");
-    sections.forEach((section) => {
-      const stop = inView(
-        section,
-        (info) => {
-          animate(
-            info.target.querySelectorAll(
-              "h1, h2, p, table thead tr, table tbody tr",
-            ),
-            { opacity: [0, 1], y: [15, 0] },
-            { delay: stagger(0.05), duration: 0.5 },
-          );
-        },
-        { once: true },
-      );
-      cleanupFns.push(stop);
-    });
-  }
-
-  document.addEventListener("astro:after-swap", destroyAnimations);
-  document.addEventListener("astro:page-load", initAnimations);
-</script>

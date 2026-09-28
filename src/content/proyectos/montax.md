@@ -27,10 +27,10 @@ Aparte de renovar su sitio web y hacerlo autoadministrable se aprobecho la insta
 ### Rediseño de su imagen
 
 <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
- <img class="rounded-2xl" src="/assets/img/portafolio/p-old-logo-montax.png" alt="Logo Antiguo Montax" loading="lazy">
- <img class="rounded-2xl" src="/assets/img/portafolio/p-nuevo-logo-montax.png" alt="Logo Nuevo Montax" loading="lazy">
+ <img class="" src="/assets/img/portafolio/p-old-logo-montax.png" alt="Logo Antiguo Montax" loading="lazy">
+ <img class="" src="/assets/img/portafolio/p-nuevo-logo-montax.png" alt="Logo Nuevo Montax" loading="lazy">
 </div>
 
 ### La web
 
-<img class="rounded-2xl mx-auto" src="/assets/img/portafolio/p-montax.png" alt="Nuevo sitio Montax">
+<img class=" mx-auto" src="/assets/img/portafolio/p-montax.png" alt="Nuevo sitio Montax">
